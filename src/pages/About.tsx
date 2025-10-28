@@ -5,7 +5,7 @@ import fond2 from "../assets/photos/holy.jpg"
 
 const About = () => {
   return (
-    <section id="about" className="bg-[#F5F5F5] py-12 text-[#003366] font-['Raleway']">
+    <section id="about" className="bg-[#F5F5F5] py-12 text-gray-700 font-['Raleway']">
       <div className="container mx-auto px-4">
         {/* SECTION 1 — QUI SOMMES-NOUS */}
         <div className="flex flex-col md:flex-row items-center gap-8">
@@ -20,7 +20,7 @@ const About = () => {
 
           {/* Description */}
           <div className="md:w-8/12">
-            <h1 className="text-3xl font-bold text-[#007F5F] mb-4 uppercase">
+            <h1 className="text-3xl font-bold text-gray-700 mb-4 uppercase">
               Qui sommes-nous ?
             </h1>
 
@@ -28,14 +28,14 @@ const About = () => {
               Nous sommes un groupe de jeunes consultantes et consultants multisectoriels,
               réunis après <strong>15 à 20 années d’expériences</strong> respectives dans différents secteurs.
               De cette expertise et de cette vision commune est née une PME agile et engagée :
-              <b className="text-[#007F5F] italic"> VINA CONSULTING</b>.
+              <b className="text-gray-700 italic"> VINA CONSULTING</b>.
             </p>
 
             <p className="mb-3">
               Nos interventions se concentrent principalement sur les domaines suivants :
             </p>
 
-            <ul className="list-disc list-inside text-[#007F5F] mb-4 space-y-1">
+            <ul className="list-disc list-inside text-gray-700 mb-4 space-y-1">
               <li>BTP & infrastructures</li>
               <li>Tourisme</li>
               <li>Communication</li>
@@ -54,7 +54,7 @@ const About = () => {
               avec un engagement fort envers la qualité, le respect des délais et la confiance.
             </p>
 
-            <p className="font-semibold text-[#007F5F]">
+            <p className="font-semibold text-gray-700">
               Notre priorité : l’efficacité, la pertinence… et la confiance.
             </p>
           </div>
@@ -62,7 +62,7 @@ const About = () => {
 
         {/* SECTION 2 — COLLABORATEURS */}
         <div className="mt-12">
-          <h2 className="text-xl font-semibold text-[#007F5F] mb-4">
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
             COLLABORATEURS :
           </h2>
 
@@ -83,14 +83,14 @@ const About = () => {
             de Madagascar.
           </p>
 
-          <blockquote className="text-center italic text-[#007F5F] text-lg font-semibold mb-2">
+          <blockquote className="text-center italic text-gray-700 text-lg font-semibold mb-2">
             “Se réunir est un début, rester ensemble est un progrès, travailler ensemble est la réussite.”
           </blockquote>
           <p className="text-right font-medium text-lg mb-8">— Henry Ford</p>
         </div>
 
         {/* SECTION 3 — MEMBRES */}
-        <h2 className="text-center text-2xl font-semibold text-[#007F5F] mb-8">
+        <h2 className="text-center text-2xl font-semibold text-gray-700 mb-8">
           QUELQUES-UNS D'ENTRE NOUS...
         </h2>
 
@@ -102,7 +102,7 @@ const About = () => {
             className="w-full md:w-1/3 object-cover"
           />
           <div className="p-6 md:w-2/3">
-            <h4 className="text-[#007F5F] font-bold text-lg mb-2">
+            <h4 className="text-gray-700 font-bold text-lg mb-2">
               RAMAHANDRISON Felana Anna
             </h4>
             <p className="italic mb-2">Fondatrice & co-gérante de <b>VINA CONSULTING</b></p>
@@ -125,7 +125,7 @@ const About = () => {
             className="w-full md:w-1/3 object-cover"
           />
           <div className="p-6 md:w-2/3 text-left">
-            <h4 className="text-[#007F5F] font-bold text-lg mb-2">
+            <h4 className="text-gray-700 font-bold text-lg mb-2">
               RAKOTOMALALA NOROHARILIVA Holy
             </h4>
             <p className="italic mb-2">Consultante ingénieure Phytochimiste</p>
@@ -142,14 +142,14 @@ const About = () => {
 
         {/* SECTION 4 — VALEURS */}
         <div className="mt-10 bg-[#f5f5f5] shadow-sm rounded-md p-8 text-center md:text-left">
-          <p className="font-semibold text-lg mb-2 text-[#003366]">
+          <p className="font-semibold text-lg mb-2 text-gray-700">
             Innover avec sens. Construire durablement. Agir ensemble...
           </p>
           <p>
             Mais <i>la manière dont on les incarne</i> dans chaque projet...
             <b> ça, il faut le voir pour y croire.</b>
           </p>
-          <p className="italic mt-2 text-[#007F5F]">
+          <p className="italic mt-2 text-gray-700">
             👉 Envie de comprendre ce qui fait vraiment la différence ?
           </p>
         </div>
