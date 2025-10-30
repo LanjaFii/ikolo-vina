@@ -1,159 +1,220 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import crm from "../../assets/images/consortium.png";
+// src/components/layout/Header.tsx
+import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Home, Box, Leaf, Newspaper, Phone } from 'lucide-react'; // icônes
+import '@/index.css';
 
 const Header = () => {
+  const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  
+  const lastScrollY = useRef(0);
+  const scrollThreshold = 10; // Seuil de détection du scroll
 
-  // Gère le changement d'état au scroll
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      // Vérifier si on a dépassé le seuil pour considérer qu'on a scrollé
+      setIsScrolled(currentScrollY > 20);
+      
+      // Détection de la direction du scroll
+      if (Math.abs(currentScrollY - lastScrollY.current) > scrollThreshold) {
+        if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+          // Scroll vers le bas - cacher le header
+          setIsVisible(false);
+        } else if (currentScrollY < lastScrollY.current) {
+          // Scroll vers le haut - montrer le header
+          setIsVisible(true);
+        }
+        
+        lastScrollY.current = currentScrollY;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // Réinitialiser quand on change de page
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      lastScrollY.current = 0;
+      setIsVisible(true);
+    };
   }, []);
 
-  // Ferme le menu mobile quand on scroll
   useEffect(() => {
-    if (menuOpen) {
-      setMenuOpen(false);
-    }
-  }, [isScrolled]);
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
+  const navLinks = [
+    { path: '/', label: 'Accueil', icon: <Home size={18} /> },
+    { path: '/ikolo', label: 'Ikolo', icon: <Box size={18} /> },
+    { path: '/vina', label: 'Vina Consulting', icon: <Leaf size={18} /> },
+    { path: '/wellness', label: 'Nature Wellness', icon: <Leaf size={18} /> },
+    { path: '/blog', label: 'Actualités', icon: <Newspaper size={18} /> },
+    { path: '/contact', label: 'Contact', icon: <Phone size={18} /> },
+  ];
+
+  const isActiveLink = (path: string) => location.pathname === path;
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={{ 
+        y: isVisible ? 0 : -100,
+        transition: { duration: 0.3, ease: "easeInOut" }
+      }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? "bg-white/90 backdrop-blur-xl shadow-2xl py-2 border-b border-gray-200" 
-          : "bg-transparent py-4"
+          ? 'bg-white/95 backdrop-blur-lg shadow-2xl py-2 border-b border-gray-100/50' 
+          : 'py-4'
       }`}
+      style={{
+        backgroundImage: !isScrolled ? "url('/src/assets/fondHeader.png')" : 'none',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
       <nav className="container mx-auto px-6 flex justify-between items-center">
-        {/* --- LOGO --- */}
-        <Link 
-          to="/" 
-          className="flex items-center space-x-3 transition-all duration-500"
-          onClick={() => setMenuOpen(false)}
+        {/* Logo avec animation améliorée */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
-          <img 
-            src={crm} 
-            alt="Ikolo-Vina logo" 
-            className={`transition-all duration-500 ${
-              isScrolled ? "h-12" : "h-16"
-            } w-auto`} 
-          />
-        </Link>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/src/assets/logos/ikolo-vina.png" 
+              alt="Ikolo-Vina" 
+              className={`transition-all duration-500 ${
+                isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-16'
+              }`}
+            />
+          </Link>
+        </motion.div>
 
-        {/* --- MENU BURGER MOBILE --- */}
-        <button
-          className="md:hidden flex flex-col space-y-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span
-            className={`block w-6 h-0.5 transition-all duration-300 ${
-              menuOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 transition-all duration-300 ${
-              menuOpen ? "opacity-0" : "opacity-100"
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 transition-all duration-300 ${
-              menuOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          ></span>
-        </button>
+        {/* Navigation Desktop */}
+        <div className="hidden lg:flex gap-8 items-center">
+          {navLinks.map((link) => {
+            const isActive = isActiveLink(link.path);
+            return (
+              <motion.div
+                key={link.path}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <Link
+                  to={link.path}
+                  className={`
+                    relative font-semibold transition-all duration-300 
+                    px-3 py-2 rounded-lg
+                    ${isScrolled 
+                      ? `text-gray-800 ${isActive ? 'text-special-1' : 'hover:text-pink-700'}`
+                      : `text-white ${isActive ? 'text-white' : 'hover:text-pink-300'}`
+                    }
+                  `}
+                >
+                  <span className="relative z-10">
+                    {link.label}
+                  </span>
+                  
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute bottom-0 left-0 w-full h-0.5 bg-current"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              </motion.div>
+            );
+          })}
+        </div>
 
-        {/* --- LIENS DE NAVIGATION --- */}
-        <div
-          className={`${
-            menuOpen
-              ? "block opacity-100 translate-y-0"
-              : "hidden opacity-0 -translate-y-4"
-          } md:flex md:items-center md:space-x-8 font-medium text-lg absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-2xl md:shadow-none transition-all duration-500 md:opacity-100 md:translate-y-0`}
-        >
-          <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 py-6 md:py-0 px-6 md:px-0">
-            <Link
-              to="/"
-              className={`py-2 px-4 rounded-lg transition-all duration-300 font-semibold ${
-                isScrolled
-                  ? "text-special-1 hover:bg-special-1 hover:text-white"
-                  : "text-white hover:bg-white/20 md:text-gray-800 md:hover:bg-special-1 md:hover:text-white"
-              } ${menuOpen ? "text-gray-800 hover:bg-special-1 hover:text-white" : ""}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Accueil
-            </Link>
-            
-            <Link
-              to="/ikolo"
-              className={`py-2 px-4 rounded-lg transition-all duration-300 font-semibold ${
-                isScrolled
-                  ? "text-special-1 hover:bg-special-1 hover:text-white"
-                  : "text-white hover:bg-white/20 md:text-gray-800 md:hover:bg-special-1 md:hover:text-white"
-              } ${menuOpen ? "text-gray-800 hover:bg-special-1 hover:text-white" : ""}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Ikolo
-            </Link>
-            
-            <Link
-              to="/vina"
-              className={`py-2 px-4 rounded-lg transition-all duration-300 font-semibold ${
-                isScrolled
-                  ? "text-special-1 hover:bg-special-1 hover:text-white"
-                  : "text-white hover:bg-white/20 md:text-gray-800 md:hover:bg-special-1 md:hover:text-white"
-              } ${menuOpen ? "text-gray-800 hover:bg-special-1 hover:text-white" : ""}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Vina Consulting
-            </Link>
-            
-            <Link
-              to="/wellness"
-              className={`py-2 px-4 rounded-lg transition-all duration-300 font-semibold ${
-                isScrolled
-                  ? "text-special-1 hover:bg-special-1 hover:text-white"
-                  : "text-white hover:bg-white/20 md:text-gray-800 md:hover:bg-special-1 md:hover:text-white"
-              } ${menuOpen ? "text-gray-800 hover:bg-special-1 hover:text-white" : ""}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Nature Wellness
-            </Link>
-            
-            <Link
-              to="/blog"
-              className={`py-2 px-4 rounded-lg transition-all duration-300 font-semibold ${
-                isScrolled
-                  ? "text-special-1 hover:bg-special-1 hover:text-white"
-                  : "text-white hover:bg-white/20 md:text-gray-800 md:hover:bg-special-1 md:hover:text-white"
-              } ${menuOpen ? "text-gray-800 hover:bg-special-1 hover:text-white" : ""}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Actualités
-            </Link>
-            
-            <Link
-              to="/contact"
-              className={`py-2 px-4 rounded-lg transition-all duration-300 font-semibold ${
-                isScrolled
-                  ? "text-special-1 hover:bg-special-1 hover:text-white"
-                  : "text-white hover:bg-white/20 md:text-gray-800 md:hover:bg-special-1 md:hover:text-white"
-              } ${menuOpen ? "text-gray-800 hover:bg-special-1 hover:text-white" : ""}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
-            </Link>
-          </div>
+        {/* Menu Mobile */}
+        <div className="lg:hidden">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`p-2 rounded-lg transition-colors duration-300 ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+          >
+            <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+              <motion.span
+                animate={{ rotate: isMobileMenuOpen ? 45 : 0, y: isMobileMenuOpen ? 6 : 0 }}
+                className={`block h-0.5 w-full ${isScrolled ? 'bg-gray-800' : 'bg-white'}`}
+              />
+              <motion.span
+                animate={{ opacity: isMobileMenuOpen ? 0 : 1 }}
+                className={`block h-0.5 w-full ${isScrolled ? 'bg-gray-800' : 'bg-white'}`}
+              />
+              <motion.span
+                animate={{ rotate: isMobileMenuOpen ? -45 : 0, y: isMobileMenuOpen ? -6 : 0 }}
+                className={`block h-0.5 w-full ${isScrolled ? 'bg-gray-800' : 'bg-white'}`}
+              />
+            </div>
+          </motion.button>
+
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: -20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                transition={{ duration: 0.2 }}
+                className={`absolute top-full left-0 right-0 mt-2 rounded-2xl shadow-2xl border backdrop-blur-xl overflow-hidden
+                  ${isScrolled ? 'bg-white/95 border-gray-200' : 'bg-gray-900/95 border-gray-700'}
+                `}
+              >
+                <div className="py-4 flex flex-col gap-2">
+                  {navLinks.map((link, index) => {
+                    const isActive = isActiveLink(link.path);
+                    return (
+                      <motion.div
+                        key={link.path}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                      >
+                        <Link
+                          to={link.path}
+                          className={`flex items-center gap-2 px-6 py-3 font-medium rounded-r-lg border-l-4 mx-4
+                            transition-all duration-300
+                            ${isActive
+                              ? 'border-special-1 bg-special-1/10 text-special-1'
+                              : 'border-transparent text-gray-100 hover:bg-gray-100/10 hover:text-white'
+                            }
+                          `}
+                        >
+                          {link.icon}
+                          {link.label}
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 };
 
