@@ -1,51 +1,433 @@
 // src/pages/Home.tsx
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowRight, Users, Target, Sparkles, Heart, Star } from "lucide-react";
+import { OffersCarousel } from "@/components/offers/OffersCarousel";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+// Animations
+const fadeInUp = {
+  initial: { opacity: 0, y: 60 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, ease: "easeOut" }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const fadeInScale = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { duration: 0.6, ease: "easeOut" }
+};
+
 const Home = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
-      <h1 className="text-3xl font-bold mb-4">Accueil</h1>
-      <p>Bienvenue sur notre site !</p>
+    <div className="min-h-screen">
+      {/* Section Hero avec Bannière */}
+      <section className="relative bg-gradient-to-r from-green-900 via-emerald-800 to-teal-900 text-white">
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <img 
+          src="/src/assets/ikoloVina/banniere.png" 
+          alt="Bannière Ikolo Vina"
+          className="w-full h-[70vh] object-cover blur-[1px]"
+        />
+        <div className="absolute inset-0 z-20 flex items-center justify-center">
+          <motion.div 
+            className="text-center max-w-4xl mx-auto px-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <Badge variant="secondary" className="mb-6 bg-special-1/80 backdrop-blur-sm text-white border-none">
+              Excellence & Innovation
+            </Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              Bienvenue chez Ikolo-Vina
+            </h1>
+            <p className="text-lg md:text-xl lg:text-2xl mb-8 text-gray-100 leading-relaxed">
+              Votre partenaire pour le développement durable, 
+              l'innovation digitale et l'excellence entrepreneuriale
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="px-6 py-3 lg:px-8 lg:py-3 transition-all duration-300 text-sm lg:text-base"
+                style={{
+                  backgroundColor: 'var(--color-special-1)',
+                  color: 'white'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-special-2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-special-1)';
+                }}
+              >
+                Découvrir nos services
+                <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5" />
+              </Button>
+              
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="px-6 py-3 lg:px-8 lg:py-3 transition-all duration-300 border-white text-white text-sm lg:text-base"
+                style={{
+                  backgroundColor: 'transparent'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-special-2)';
+                  e.currentTarget.style.color = 'white';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = 'white';
+                }}
+              >
+                Nous contacter
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section Le Consortium */}
+      <section className="py-10 bg-gradient-to-br from-white to-gray-50/30">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            {/* Colonne de gauche - Cartes valeurs (mobile: 2ème) */}
+            <motion.div 
+              className="order-2 lg:order-1"
+              variants={fadeInUp}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+                  <CardContent className="p-4 lg:p-6 text-center">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-1 to-special-2 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Users className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Expertise Combinée</h3>
+                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                      La fusion des savoir-faire d'Ikolo et Vina Consulting crée une force 
+                      unique capable de répondre à tous vos défis business.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+                  <CardContent className="p-4 lg:p-6 text-center">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-3 to-special-4 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Target className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Vision Holistique</h3>
+                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                      Nous abordons chaque projet avec une perspective globale, intégrant 
+                      développement durable et performance économique.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+                  <CardContent className="p-4 lg:p-6 text-center">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-2 to-special-3 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Sparkles className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Innovation Continue</h3>
+                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                      Toujours à la pointe des dernières tendances, nous intégrons l'innovation 
+                      dans toutes nos solutions et accompagnements.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+                  <CardContent className="p-4 lg:p-6 text-center">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-4 to-special-5 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Heart className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Impact Positif</h3>
+                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                      Notre mission va au-delà du business : créer de la valeur durable 
+                      pour nos clients, leurs communautés et l'environnement.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </motion.div>
+
+            {/* Colonne de droite - Logo et texte principal (mobile: 1er) */}
+            <motion.div 
+              className="order-1 lg:order-2 flex flex-col items-center lg:items-start space-y-6 lg:space-y-8"
+              variants={fadeInScale}
+            >
+              <div className="text-center lg:text-left space-y-4 lg:space-y-6">
+                <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
+                  <span className="text-special-1">Le consortium</span>
+                </h2>
+
+                <div className="relative group flex justify-center">
+  <div className="absolute -inset-2 lg:-inset-4 bg-gradient-to-r from-special-1/20 to-special-2/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+  <img 
+    src="/src/assets/logos/ikolo-vina.png" 
+    alt="Consortium Ikolo-Vina"
+    className="relative h-32 lg:h-48 xl:h-64 w-auto transform group-hover:scale-105 transition-transform duration-500 mx-auto"
+  />
+</div>
+
+                
+                <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
+                  Une Alliance <span className="text-special-1">Stratégique</span> pour Votre Réussite
+                </h2>
+                
+                <p className="text-lg lg:text-xl text-gray-600 leading-relaxed">
+                  Ikolo-Vina incarne la synergie parfaite entre l'innovation digitale et 
+                  l'expertise entrepreneuriale. Notre consortium réunit des compétences 
+                  complémentaires pour vous accompagner dans tous vos projets.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section Les Fondatrices */}
+      <section className="pt-5 pb-0 bg-gradient-to-br from-white to-gray-50/30">
+        <div className="container mx-auto px-4">
+          {/* Titre de section */}
+          <motion.div 
+            className="text-center mb-12 lg:mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">
+              Les <span className="text-special-1">Visionnaires</span> derrière le Consortium
+            </h2>
+          </motion.div>
+
+          {/* Version Desktop - 3 colonnes */}
+          <motion.div 
+            className="hidden lg:grid grid-cols-3 gap-6 lg:gap-8 items-center"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            {/* Colonne 1 - Felana Anna RAMAHANDRISON */}
+            <motion.div className="relative text-center" variants={fadeInUp}>
+              {/* Logo Vina flottant en arrière-plan */}
+              <div className="absolute inset-0 flex items-center justify-center z-0">
+                <img 
+                  src="/src/assets/logos/vina.png" 
+                  alt="Vina Consulting"
+                  className="h-32 lg:h-40 opacity-10 animate-float"
+                  style={{
+                    animation: 'float 6s ease-in-out infinite'
+                  }}
+                />
+              </div>
+              
+              <div className="relative z-10 space-y-4">
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Felana Anna RAMAHANDRISON</h3>
+                <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
+                  Entrepreneuse visionnaire et fondatrice de Vina Consulting, 
+                  Felana Anna apporte son expertise en stratégie d'entreprise 
+                  et innovation digitale. Passionnée par le développement 
+                  économique durable, elle transforme les défis en opportunités.
+                </p>
+                <div className="flex justify-center">
+                  <img 
+                    src="/src/assets/logos/vina.png" 
+                    alt="Vina Consulting"
+                    className="h-10 lg:h-12 opacity-80"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Colonne 2 - Photo centrale */}
+            <motion.div className="flex justify-center" variants={fadeInScale}>
+              <img 
+                src="/src/assets/ikoloVina/AnnaHoly.png" 
+                alt="Felana Anna et Holiniaina Norohariliva"
+                className="h-80 lg:h-96 xl:h-120 w-auto"
+              />
+            </motion.div>
+
+            {/* Colonne 3 - Holiniaina Norohariliva RAKOTOMALALA */}
+            <motion.div className="relative text-center" variants={fadeInUp}>
+              {/* Logo Ikolo flottant en arrière-plan */}
+              <div className="absolute inset-0 flex items-center justify-center z-0">
+                <img 
+                  src="/src/assets/logos/ikolo.png" 
+                  alt="Ikolo"
+                  className="h-32 lg:h-40 opacity-10 animate-float"
+                  style={{
+                    animation: 'float 6s ease-in-out infinite 2s'
+                  }}
+                />
+              </div>
+              
+              <div className="relative z-10 space-y-4">
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Holiniaina Norohariliva RAKOTOMALALA</h3>
+                <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
+                  Fondatrice d'Ikolo, entreprise spécialisée dans les produits 
+                  cosmétiques et médicinaux à base de plantes malgaches. 
+                  Entrepreneuse engagée pour la valorisation des ressources 
+                  naturelles et le bien-être par les plantes.
+                </p>
+                <div className="flex justify-center">
+                  <img 
+                    src="/src/assets/logos/ikolo.png" 
+                    alt="Ikolo"
+                    className="h-10 lg:h-12 opacity-80"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Version Mobile */}
+          <div className="lg:hidden space-y-8">
+            {/* Photo en premier */}
+            <div className="flex justify-center">
+              <img 
+                src="/src/assets/ikoloVina/AnnaHoly.png" 
+                alt="Felana Anna et Holiniaina Norohariliva"
+                className="h-64 w-auto rounded-lg shadow-xl"
+              />
+            </div>
+
+            {/* Textes des fondatrices */}
+            <div className="grid grid-cols-1 gap-8">
+              {/* Felana Anna RAMAHANDRISON */}
+              <div className="text-center space-y-4">
+                <div className="flex justify-center items-center gap-3 mb-3">
+                  <Star className="h-5 w-5 text-special-1" />
+                  <h3 className="text-lg font-bold text-gray-900">Felana Anna RAMAHANDRISON</h3>
+                </div>
+                <p className="text-gray-600 leading-relaxed text-xs">
+                  Entrepreneuse visionnaire et fondatrice de Vina Consulting, 
+                  Felana Anna apporte son expertise en stratégie d'entreprise 
+                  et innovation digitale. Passionnée par le développement 
+                  économique durable, elle transforme les défis en opportunités.
+                </p>
+                <div className="flex justify-center mt-3">
+                  <img 
+                    src="/src/assets/logos/vina.png" 
+                    alt="Vina Consulting"
+                    className="h-8 opacity-80"
+                  />
+                </div>
+              </div>
+
+              {/* Holiniaina Norohariliva RAKOTOMALALA */}
+              <div className="text-center space-y-4">
+                <div className="flex justify-center items-center gap-3 mb-3">
+                  <Star className="h-5 w-5 text-special-2" />
+                  <h3 className="text-lg font-bold text-gray-900">Holiniaina Norohariliva RAKOTOMALALA</h3>
+                </div>
+                <p className="text-gray-600 leading-relaxed text-xs">
+                  Fondatrice d'Ikolo, entreprise spécialisée dans les produits 
+                  cosmétiques et médicinaux à base de plantes malgaches. 
+                  Entrepreneuse engagée pour la valorisation des ressources 
+                  naturelles et le bien-être par les plantes.
+                </p>
+                <div className="flex justify-center mt-3">
+                  <img 
+                    src="/src/assets/logos/ikolo.png" 
+                    alt="Ikolo"
+                    className="h-8 opacity-80"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr className="my-0 border-t border-black w-3/4 mx-auto opacity-50" />
+
+      {/* Section Les Offres */}
+      <section className="pb-0 pt-5 bg-gradient-to-br from-white to-gray-50/30">
+        <div className="container mx-auto px-4">
+          {/* En-tête de section */}
+          <motion.div 
+            className="text-center mb-5"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6">
+              Nos <span className="text-special-1">Offres</span> sur Mesure
+            </h2>
+            <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Découvrez notre gamme complète de services conçus pour répondre 
+              à tous vos besoins en matière de développement d'entreprise et d'innovation.
+            </p>
+          </motion.div>
+
+          {/* Carrousel des offres */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <OffersCarousel />
+          </motion.div>
+
+          {/* CTA Section */}
+          <motion.div 
+            className="text-center mt-10 pt-8 border-t border-gray-200/50"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-gradient-to-r from-special-1/15 via-special-3/10 to-special-2/15 rounded-3xl p-6 lg:p-8 max-w-5xl mx-auto relative overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
+                  Prêt à <span className="text-special-1">transformer</span> votre vision en <span className="text-special-2">réalité</span> ?
+                </h3>
+                
+                <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 lg:mb-10 max-w-3xl mx-auto leading-relaxed">
+                  Contactez-nous dès aujourd'hui pour discuter de votre projet 
+                  et découvrir comment notre expertise peut vous accompagner vers le succès.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link
+                    to="/contact"
+                    className="bg-gradient-to-r from-special-1 to-special-2 hover:from-special-2 hover:to-special-3 text-black px-8 py-3 lg:px-10 lg:py-4 text-base lg:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center border border-black"
+                  >
+                    Nous contacter
+                  </Link>
+                </div>
+                
+                <p className="text-gray-500 text-xs lg:text-sm mt-4 lg:mt-6">
+                  Réponse sous 24h • Devis personnalisé • Accompagnement sur mesure
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };
