@@ -11,8 +11,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      {/* Ajout d'un padding-top pour compenser le header fixe */}
-      <main className="flex-1 pt-20">
+      <main className="flex-1">
         {children}
       </main>
       <Footer />
