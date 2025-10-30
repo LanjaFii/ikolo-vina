@@ -31,7 +31,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full text-white relative">
+    <footer className="w-full mt-0 lg:-mt-24 text-white relative">
       {/* Background différent pour mobile et desktop */}
       <div className="lg:hidden absolute inset-0 z-0 bg-gradient-to-b from-[#0086b1] to-[#006a8a]" />
       <div 
