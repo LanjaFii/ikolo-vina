@@ -2,7 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Box, Leaf, Newspaper, Phone } from 'lucide-react'; // icônes
+import { Home, Box, Leaf, Newspaper, Phone, CalendarDays, Briefcase, Globe2 } from 'lucide-react'; // icônes
 import '@/index.css';
 
 const Header = () => {
@@ -62,9 +62,11 @@ const Header = () => {
 
   const navLinks = [
     { path: '/', label: 'Accueil', icon: <Home size={18} /> },
-    { path: '/ikolo', label: 'Ikolo', icon: <Box size={18} /> },
-    { path: '/vina', label: 'Vina Consulting', icon: <Leaf size={18} /> },
     { path: '/wellness', label: 'Nature Wellness', icon: <Leaf size={18} /> },
+    { path: '/digital', label: 'Communication Digital', icon: <Box size={18} /> },
+    { path: '/events', label: 'Événementiel', icon: <CalendarDays size={18} /> },
+    { path: '/enterprise', label: "Appui à l'Entrepreneuriat", icon: <Briefcase size={18} /> },
+    { path: '/rse', label: 'Accompagnement RSE', icon: <Globe2 size={18} /> },
     { path: '/blog', label: 'Actualités', icon: <Newspaper size={18} /> },
     { path: '/contact', label: 'Contact', icon: <Phone size={18} /> },
   ];
@@ -90,7 +92,7 @@ const Header = () => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      <nav className="container mx-auto px-6 flex justify-between items-center">
+      <nav className="w-full flex justify-between items-center px-2 sm:px-4 md:px-6">
         {/* Logo avec animation améliorée */}
         <motion.div
           whileHover={{ scale: 1.05 }}
@@ -109,7 +111,7 @@ const Header = () => {
         </motion.div>
 
         {/* Navigation Desktop */}
-        <div className="hidden lg:flex gap-8 items-center">
+        <div className="desktop-nav flex gap-0 items-center">
           {navLinks.map((link) => {
             const isActive = isActiveLink(link.path);
             return (
@@ -131,7 +133,7 @@ const Header = () => {
                     }
                   `}
                 >
-                  <span className="relative z-10">
+                  <span className="relative z-10 text-xs">
                     {link.label}
                   </span>
                   
@@ -149,7 +151,7 @@ const Header = () => {
         </div>
 
         {/* Menu Mobile */}
-        <div className="lg:hidden">
+        <div className="mobile-nav">
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -179,7 +181,7 @@ const Header = () => {
                 exit={{ opacity: 0, scale: 0.95, y: -20 }}
                 transition={{ duration: 0.2 }}
                 className={`absolute top-full left-0 right-0 mt-2 rounded-2xl shadow-2xl border backdrop-blur-xl overflow-hidden
-                  ${isScrolled ? 'bg-white/95 border-gray-200' : 'bg-gray-900/95 border-gray-700'}
+                  ${isScrolled ? 'bg-gray-800 border-gray-200' : 'bg-gray-900/95 border-gray-700'}
                 `}
               >
                 <div className="py-4 flex flex-col gap-2">
