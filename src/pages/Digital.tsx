@@ -37,7 +37,7 @@ const fadeInScale = {
     transition: { duration: 0.6, ease: "easeOut" }
 };
 
-const CommunicationDigitale = () => {
+const Digital = () => {
     const services = [
         {
             icon: <Search className="w-8 h-8" />,
@@ -663,4 +663,4 @@ const CommunicationDigitale = () => {
     );
 };
 
-export default CommunicationDigitale;
+export default Digital;

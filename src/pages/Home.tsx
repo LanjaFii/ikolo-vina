@@ -2,10 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Users, Target, Sparkles, Heart, Star } from "lucide-react";
+import { ArrowRight, Star, Handshake, Globe2, Briefcase, FlaskConical } from "lucide-react";
 import { OffersCarousel } from "@/components/offers/OffersCarousel";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { partnersData } from "@/data/partnersData";
 
 // Animations
 const fadeInUp = {
@@ -53,8 +54,8 @@ const Home = () => {
               Bienvenue chez Ikolo-Vina
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl mb-8 text-gray-100 leading-relaxed">
-              Votre partenaire pour le développement durable, 
-              l'innovation digitale et l'excellence entrepreneuriale
+              Bienvenue sur IKOLO-VINA, votre partenaire pour un développement 
+              harmonieux alliant nature, bien-être et innovation. 
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -99,109 +100,112 @@ const Home = () => {
       </section>
 
       {/* Section Le Consortium */}
-      <section className="py-10 bg-gradient-to-br from-white to-gray-50/30">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            {/* Colonne de gauche - Cartes valeurs (mobile: 2ème) */}
-            <motion.div 
-              className="order-2 lg:order-1"
-              variants={fadeInUp}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
-                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
-                  <CardContent className="p-4 lg:p-6 text-center">
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-1 to-special-2 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Users className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
-                    </div>
-                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Expertise Combinée</h3>
-                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                      La fusion des savoir-faire d'Ikolo et Vina Consulting crée une force 
-                      unique capable de répondre à tous vos défis business.
-                    </p>
-                  </CardContent>
-                </Card>
+<section className="py-10 bg-gradient-to-br from-white to-gray-50/30">
+  <div className="container mx-auto px-4">
+    <motion.div 
+      className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+      variants={staggerContainer}
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: true, margin: "-100px" }}
+    >
+      {/* Colonne de gauche - Cartes valeurs */}
+      <motion.div 
+        className="order-2 lg:order-1"
+        variants={fadeInUp}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
 
-                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
-                  <CardContent className="p-4 lg:p-6 text-center">
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-3 to-special-4 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Target className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
-                    </div>
-                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Vision Holistique</h3>
-                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                      Nous abordons chaque projet avec une perspective globale, intégrant 
-                      développement durable et performance économique.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
-                  <CardContent className="p-4 lg:p-6 text-center">
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-2 to-special-3 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Sparkles className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
-                    </div>
-                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Innovation Continue</h3>
-                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                      Toujours à la pointe des dernières tendances, nous intégrons l'innovation 
-                      dans toutes nos solutions et accompagnements.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
-                  <CardContent className="p-4 lg:p-6 text-center">
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-4 to-special-5 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Heart className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
-                    </div>
-                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Impact Positif</h3>
-                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                      Notre mission va au-delà du business : créer de la valeur durable 
-                      pour nos clients, leurs communautés et l'environnement.
-                    </p>
-                  </CardContent>
-                </Card>
+          <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+            <CardContent className="p-4 lg:p-6 text-center">
+              <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-1 to-special-2 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <FlaskConical className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
               </div>
-            </motion.div>
+              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Expertise Scientifique</h3>
+              <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                Une maîtrise reconnue en génie des procédés, formulation cosmétique et 
+                gestion durable des ressources naturelles.
+              </p>
+            </CardContent>
+          </Card>
 
-            {/* Colonne de droite - Logo et texte principal (mobile: 1er) */}
-            <motion.div 
-              className="order-1 lg:order-2 flex flex-col items-center lg:items-start space-y-6 lg:space-y-8"
-              variants={fadeInScale}
-            >
-              <div className="text-center lg:text-left space-y-4 lg:space-y-6">
-                <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
-                  <span className="text-special-1">Le consortium</span>
-                </h2>
-
-                <div className="relative group flex justify-center">
-  <div className="absolute -inset-2 lg:-inset-4 bg-gradient-to-r from-special-1/20 to-special-2/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-  <img 
-    src="/src/assets/logos/ikolo-vina.png" 
-    alt="Consortium Ikolo-Vina"
-    className="relative h-32 lg:h-48 xl:h-64 w-auto transform group-hover:scale-105 transition-transform duration-500 mx-auto"
-  />
-</div>
-
-                
-                <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
-                  Une Alliance <span className="text-special-1">Stratégique</span> pour Votre Réussite
-                </h2>
-                
-                <p className="text-lg lg:text-xl text-gray-600 leading-relaxed">
-                  Ikolo-Vina incarne la synergie parfaite entre l'innovation digitale et 
-                  l'expertise entrepreneuriale. Notre consortium réunit des compétences 
-                  complémentaires pour vous accompagner dans tous vos projets.
-                </p>
+          <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+            <CardContent className="p-4 lg:p-6 text-center">
+              <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-3 to-special-4 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Briefcase className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
               </div>
-            </motion.div>
-          </motion.div>
+              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Leadership Stratégique</h3>
+              <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                Une expertise en organisation, communication et coordination 
+                de partenariats entre secteurs public et privé.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+            <CardContent className="p-4 lg:p-6 text-center">
+              <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-2 to-special-3 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Globe2 className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+              </div>
+              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Vision Durable</h3>
+              <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                Nos actions favorisent la biodiversité, la durabilité environnementale 
+                et une économie verte résiliente.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+            <CardContent className="p-4 lg:p-6 text-center">
+              <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-4 to-special-5 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Handshake className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+              </div>
+              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Partenariats Inclusifs</h3>
+              <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                Nous créons des ponts entre acteurs économiques et sociaux 
+                pour des impacts positifs et partagés.
+              </p>
+            </CardContent>
+          </Card>
         </div>
-      </section>
+      </motion.div>
+
+      {/* Colonne de droite - Logo et texte principal */}
+      <motion.div 
+        className="order-1 lg:order-2 flex flex-col items-center lg:items-start space-y-6 lg:space-y-8"
+        variants={fadeInScale}
+      >
+        <div className="text-center flex flex-col items-center space-y-4 lg:space-y-6">
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
+            <span className="text-special-1">Le consortium</span>
+          </h2>
+
+          <div className="relative group flex justify-center">
+            <div className="absolute -inset-2 lg:-inset-4 bg-gradient-to-r from-special-1/20 to-special-2/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <img 
+              src="/src/assets/logos/ikolo-vina.png" 
+              alt="Consortium Ikolo-Vina"
+              className="relative h-32 lg:h-48 xl:h-64 w-auto transform group-hover:scale-105 transition-transform duration-500 mx-auto"
+            />
+          </div>
+          
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
+            Une Alliance <span className="text-special-1">Visionnaire</span> et Durable
+          </h2>
+          
+          <p className="text-lg lg:text-xl text-gray-600 leading-relaxed">
+            Le consortium Ikolo-Vina unit deux fondatrices aux expertises 
+            complémentaires — l’une scientifique et technique, l’autre 
+            stratégique et organisationnelle. Ensemble, elles conçoivent 
+            des solutions intégrant biodiversité, durabilité et bien-être 
+            humain, au service d’une économie verte et inclusive.
+          </p>
+        </div>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+
 
       {/* Section Les Fondatrices */}
       <section className="pt-5 pb-0 bg-gradient-to-br from-white to-gray-50/30">
@@ -244,10 +248,7 @@ const Home = () => {
               <div className="relative z-10 space-y-4">
                 <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Felana Anna RAMAHANDRISON</h3>
                 <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-                  Entrepreneuse visionnaire et fondatrice de Vina Consulting, 
-                  Felana Anna apporte son expertise en stratégie d'entreprise 
-                  et innovation digitale. Passionnée par le développement 
-                  économique durable, elle transforme les défis en opportunités.
+                  Avec une solide expérience en organisation d’événements et communication institutionnelle, elle excelle dans la mise en relation de partenaires publics et privés. Diplômée en Management du Tourisme Durable et en Communication & Marketing, elle a piloté plus de 15 événements majeurs, favorisant des collaborations efficaces. Spécialiste des campagnes hybrides, elle met l’accent sur l’inclusion, l’impact social et la promotion du développement durable.
                 </p>
                 <div className="flex justify-center">
                   <img 
@@ -285,10 +286,7 @@ const Home = () => {
               <div className="relative z-10 space-y-4">
                 <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Holiniaina Norohariliva RAKOTOMALALA</h3>
                 <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-                  Fondatrice d'Ikolo, entreprise spécialisée dans les produits 
-                  cosmétiques et médicinaux à base de plantes malgaches. 
-                  Entrepreneuse engagée pour la valorisation des ressources 
-                  naturelles et le bien-être par les plantes.
+                  Elle valorise la biodiversité malgache grâce à son expertise en procédés chimiques, formulation cosmétique et gestion durable des ressources naturelles. Forte de plus de 15 ans d’expérience et d’une formation en chimie appliquée, elle conçoit des conférences adaptées aux enjeux locaux et internationaux. Appuyée par un réseau d’experts, elle développe des formulations éco-responsables à base d’huiles essentielles endémiques, alliant protection des écosystèmes et création de valeur pour les communautés.
                 </p>
                 <div className="flex justify-center">
                   <img 
@@ -392,9 +390,53 @@ const Home = () => {
             <OffersCarousel />
           </motion.div>
 
+          {/* Section Partenaires */}
+          <section className="pt-10 pb-4 bg-gradient-to-br from-white to-gray-50/30">
+            <div className="container mx-auto px-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                {/* En-tête de section */}
+                <div className="text-center mb-4 mt-2 lg:mb-4">
+                  <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">
+                    Ils nous ont <span className="text-special-1">fait confiance</span>
+                  </h2>
+                  <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Découvrez les entreprises et organisations qui nous ont choisi pour leurs projets
+                  </p>
+                </div>
+
+                {/* Carrousel automatique */}
+                <div className="relative overflow-hidden">
+                  <div className="flex animate-marquee space-x-4 lg:space-x-6 py-4">
+                    {[...partnersData, ...partnersData, ...partnersData].map((partner, index) => (
+                      <motion.a
+                        key={`${partner.id}-${index}`}
+                        href={partner.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-shrink-0 bg-white rounded-xl p-4 lg:p-6 border border-gray-200 hover:border-special-1/30 hover:shadow-lg transition-all duration-300 flex items-center justify-center w-32 h-32 lg:w-40 lg:h-40"
+                        whileHover={{ scale: 1.05, y: -5 }}
+                      >
+                        <img 
+                          src={partner.logo} 
+                          alt={partner.name}
+                          className="w-24 h-12 lg:w-32 lg:h-16 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                        />
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
           {/* CTA Section */}
           <motion.div 
-            className="text-center mt-10 pt-8 border-t border-gray-200/50"
+            className="text-center mt-2 pt-2 border-t border-gray-200/50"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -428,6 +470,8 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
+      
     </div>
   );
 };
