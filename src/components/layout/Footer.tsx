@@ -34,7 +34,7 @@ const Footer = () => {
     <footer className="w-full mt-0 lg:-mt-24 text-white relative">
       {/* Background différent pour mobile et desktop */}
       <div className="lg:hidden absolute inset-0 z-0 bg-gradient-to-b from-[#0086b1] to-[#006a8a]" />
-      <div 
+      <div
         className="hidden lg:block absolute inset-0 z-0"
         style={{
           backgroundImage: "url('/src/assets/fondFooter.png')",
@@ -43,19 +43,19 @@ const Footer = () => {
           backgroundRepeat: 'no-repeat',
         }}
       />
-      
+
       <div className="relative z-10 w-full mx-auto">
         {/* Version Mobile */}
         <div className="lg:hidden">
           <div className="p-4 space-y-6">
             {/* Logo et informations principales */}
             <div className="flex flex-col items-center space-y-4">
-              <img 
-                src="/src/assets/logos/ikolo-vina.png" 
-                alt="Ikolo-Vina" 
+              <img
+                src="/src/assets/logos/ikolo-vina.png"
+                alt="Ikolo-Vina"
                 className="h-16 w-auto"
               />
-              
+
               <div className="space-y-2 text-center">
                 <div className="flex items-center justify-center gap-2 text-white/90 text-sm">
                   <Mail size={14} />
@@ -103,9 +103,9 @@ const Footer = () => {
                   whileHover={{ scale: 1.05 }}
                   className="bg-white/20 p-3 rounded-lg hover:bg-white/30 transition-all duration-200"
                 >
-                  <img 
-                    src="/src/assets/logos/ikolo.png" 
-                    alt="Ikolo" 
+                  <img
+                    src="/src/assets/logos/ikolo.png"
+                    alt="Ikolo"
                     className="h-8 w-auto"
                   />
                 </motion.a>
@@ -116,9 +116,9 @@ const Footer = () => {
                   whileHover={{ scale: 1.05 }}
                   className="bg-white/20 p-3 rounded-lg hover:bg-white/30 transition-all duration-200"
                 >
-                  <img 
-                    src="/src/assets/logos/vina.png" 
-                    alt="Vina Consulting" 
+                  <img
+                    src="/src/assets/logos/vina.png"
+                    alt="Vina Consulting"
                     className="h-8 w-auto"
                   />
                 </motion.a>
@@ -143,8 +143,8 @@ const Footer = () => {
 
         {/* Version Desktop */}
         <div className="hidden lg:block">
-          <div className="flex flex-col h-full">
-            <div className="flex-grow grid grid-cols-3 gap-8 p-6 lg:p-8">
+          <div className="flex flex-col h-full items-center">
+            <div className="flex-grow grid grid-cols-3 gap-8 p-6 lg:p-8 container">
               {/* Colonne de gauche - avec les liens du site */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -152,15 +152,15 @@ const Footer = () => {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col items-start space-y-6 mt-4"
               >
-                <img 
-                  src="/src/assets/logos/ikolo-vina.png" 
-                  alt="Ikolo-Vina" 
+                <img
+                  src="/src/assets/logos/ikolo-vina.png"
+                  alt="Ikolo-Vina"
                   className="h-32 w-auto"
                 />
                 <p className="text-left text-white/90 text-lg leading-relaxed max-w-md">
                   Votre partenaire de confiance pour des solutions innovantes et durables
                 </p>
-                
+
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-white/80">
                     <Mail size={18} />
@@ -211,7 +211,7 @@ const Footer = () => {
                 <p className="text-white/80 text-center text-lg max-w-md leading-relaxed">
                   Inscrivez-vous pour recevoir nos dernières actualités et offres spéciales
                 </p>
-                
+
                 <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6">
                   <div className="flex flex-col sm:flex-row gap-3">
                     <input
@@ -222,7 +222,7 @@ const Footer = () => {
                       required
                       className="flex-1 px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder:text-white/60 focus:outline-none focus:bg-white/15 focus:border-white/50 text-lg"
                     />
-                    <button 
+                    <button
                       type="submit"
                       className="px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg hover:bg-white/90 hover:text-gray-800 transition-all duration-300 whitespace-nowrap text-lg"
                     >
@@ -261,7 +261,7 @@ const Footer = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="w-full max-w-sm pt-4"
                 >
-                  <button 
+                  <button
                     className="w-full bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-300 flex items-center justify-center"
                     onClick={() => window.location.href = '/contact'}
                   >
@@ -292,9 +292,9 @@ const Footer = () => {
                     className="group flex justify-start"
                   >
                     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/15 transition-all duration-300 border border-white/20 shadow-lg w-full flex justify-center items-center">
-                      <img 
-                        src="/src/assets/logos/ikolo.png" 
-                        alt="Ikolo" 
+                      <img
+                        src="/src/assets/logos/ikolo.png"
+                        alt="Ikolo"
                         className="h-24 w-auto transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
@@ -308,9 +308,9 @@ const Footer = () => {
                     className="group flex justify-start"
                   >
                     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/15 transition-all duration-300 border border-white/20 shadow-lg w-full flex justify-center items-center">
-                      <img 
-                        src="/src/assets/logos/vina.png" 
-                        alt="Vina Consulting" 
+                      <img
+                        src="/src/assets/logos/vina.png"
+                        alt="Vina Consulting"
                         className="h-24 w-auto transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>

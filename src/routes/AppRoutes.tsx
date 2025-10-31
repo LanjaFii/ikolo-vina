@@ -10,6 +10,7 @@ import NotFound from '@/pages/NotFound';
 import Vina from '@/pages/Vina';
 import Wellness from '@/pages/Wellness';
 import Blog from '@/pages/Blog';
+import CommunicationDigitale from '@/pages/CommunicationDigitale'
 
 const AppRoutes = () => {
   return (
@@ -78,7 +79,16 @@ const AppRoutes = () => {
           </Layout>
         }
       />
+      <Route
+        path="/communication-digitale"
+        element={
+          <Layout>
+            <CommunicationDigitale />
+          </Layout>
+        }
+      />
     </Routes>
+
   );
 };
 
