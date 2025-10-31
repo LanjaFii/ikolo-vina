@@ -143,8 +143,8 @@ const Footer = () => {
 
         {/* Version Desktop */}
         <div className="hidden lg:block">
-          <div className="flex flex-col h-full">
-            <div className="flex-grow grid grid-cols-3 gap-8 p-6 lg:p-8">
+          <div className="flex flex-col h-full items-center">
+            <div className="flex-grow grid grid-cols-3 gap-8 p-6 lg:p-8 container">
               {/* Colonne de gauche - avec les liens du site */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
