@@ -33,7 +33,7 @@ const Footer = () => {
   return (
     <footer className="w-full mt-0 lg:-mt-24 text-white relative">
       {/* Background différent pour mobile et desktop */}
-      <div className="lg:hidden absolute inset-0 z-0 bg-gradient-to-b from-[#0086b1] to-[#006a8a]" />
+      <div className="lg:hidden absolute inset-0 z-0 bg-linear-to-b from-[#0086b1] to-[#006a8a]" />
       <div 
         className="hidden lg:block absolute inset-0 z-0"
         style={{
@@ -144,7 +144,7 @@ const Footer = () => {
         {/* Version Desktop */}
         <div className="hidden lg:block">
           <div className="flex flex-col h-full items-center">
-            <div className="flex-grow grid grid-cols-3 gap-8 p-6 lg:p-8 container">
+            <div className="grow grid grid-cols-3 gap-8 p-6 lg:p-8 container">
               {/* Colonne de gauche - avec les liens du site */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
