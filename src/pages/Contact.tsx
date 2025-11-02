@@ -1,7 +1,8 @@
 // src/pages/Contact.tsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 // Animations
 const fadeInUp = {
@@ -49,7 +50,7 @@ const socialLinks = [
   {
     label: 'TikTok',
     url: 'https://tiktok.com',
-    icon: <MessageCircle className="w-5 h-5" />, // TikTok n'est pas disponible dans lucide, on utilise MessageCircle
+    icon: <MessageCircle className="w-5 h-5" />,
     color: 'bg-black',
     hoverColor: 'bg-gray-800',
     textColor: 'text-gray-800',
@@ -68,12 +69,16 @@ const socialLinks = [
   }
 ];
 
+// Clé reCAPTCHA de test (fonctionne en localhost) - À remplacer par le clé de production
+const RECAPTCHA_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"; // Clé de test Google
+
 const Contact = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [captchaValue, setCaptchaValue] = useState('');
-  const [captchaText, setCaptchaText] = useState('');
+  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   // Couleurs de la palette pour le formulaire
   const colors = {
@@ -95,46 +100,72 @@ const Contact = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Générer un Captcha aléatoire
-  const generateCaptcha = () => {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
-    let result = '';
-    for (let i = 0; i < 6; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    setCaptchaText(result);
-    setCaptchaValue('');
+  // Gestion du reCAPTCHA
+  const handleRecaptchaChange = (value: string | null) => {
+    setRecaptchaValue(value);
+    setIsCaptchaValid(!!value);
+  };
+
+  const handleRecaptchaExpired = () => {
+    setRecaptchaValue(null);
     setIsCaptchaValid(false);
   };
 
-  // Vérifier le Captcha
-  const validateCaptcha = (value: string) => {
-    setCaptchaValue(value);
-    setIsCaptchaValid(value.toUpperCase() === captchaText.toUpperCase());
-  };
-
-  // Générer un Captcha au chargement
-  useEffect(() => {
-    generateCaptcha();
-  }, []);
-
-  // Fonction pour gérer la soumission du formulaire
-  const handleSubmit = (e: React.FormEvent) => {
+  // Fonction pour gérer la soumission du formulaire (frontend seulement)
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Vérifier le captcha avant de soumettre
-    if (!isCaptchaValid) {
-      alert('Veuillez compléter correctement le Captcha');
+    setIsSubmitting(true);
+
+    // Vérifier le reCAPTCHA avant de soumettre
+    if (!recaptchaValue) {
+      alert('Veuillez compléter la vérification de sécurité');
+      setIsSubmitting(false);
       return;
     }
-    
-    // Logique de soumission du formulaire
-    console.log('Formulaire soumis avec succès');
-    alert('Message envoyé avec succès !');
-    
-    // Réinitialiser le formulaire
-    e.currentTarget.reset();
-    generateCaptcha();
+
+    // Récupérer les données du formulaire
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const data = {
+      nom: formData.get('nom') as string,
+      email: formData.get('email') as string,
+      telephone: formData.get('telephone') as string,
+      type: formData.get('type') as string,
+      objet: formData.get('objet') as string,
+      message: formData.get('message') as string,
+      recaptcha: recaptchaValue
+    };
+
+    try {
+      // Simulation d'envoi - À adapter selon vos besoins
+      console.log('Données du formulaire:', data);
+      
+      // Option 1: Envoi par email (avec mailto)
+      // const subject = `Contact: ${data.objet}`;
+      // const body = `Nom: ${data.nom}%0AEmail: ${data.email}%0ATéléphone: ${data.telephone}%0AType: ${data.type}%0AMessage: ${data.message}`;
+      // window.open(`mailto:votre-email@entreprise.com?subject=${subject}&body=${body}`);
+
+      // Option 2: Services d'envoi de formulaire sans backend
+      // - Formspree: https://formspree.io/
+      // - Netlify Forms: https://www.netlify.com/products/forms/
+      // - FormSubmit: https://formsubmit.co/
+
+      // Pour l'instant, on simule juste un envoi réussi
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulation délai
+      
+      alert('Message envoyé avec succès ! Nous vous recontacterons rapidement.');
+      
+      // Réinitialiser le formulaire
+      (e.target as HTMLFormElement).reset();
+      recaptchaRef.current?.reset();
+      setRecaptchaValue(null);
+      setIsCaptchaValid(false);
+      
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error);
+      alert('Une erreur est survenue. Veuillez réessayer.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Gestion du survol adapté au mobile
@@ -226,7 +257,7 @@ const Contact = () => {
                 ? 'w-[450px] h-[650px]' 
                 : 'w-[400px] h-[200px]'
             }
-            bg-linear-to-br from-blue-700 to-green-500 border-2 border-blue-900 shadow-2xl z-10 order-1 lg:order-2`}
+            bg-gradient-to-br from-blue-700 to-green-500 border-2 border-blue-900 shadow-2xl z-10 order-1 lg:order-2`}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           variants={fadeInScale}
@@ -246,7 +277,7 @@ const Contact = () => {
           
           {/* Contenu avec bordure et effet glass */}
           <motion.div 
-            className={`absolute transition-all duration-700 rounded-2xl bg-linear-to-br from-gray-300 to-gray-400 text-gray-800 z-20 overflow-visible backdrop-blur-sm border border-gray-200
+            className={`absolute transition-all duration-700 rounded-2xl bg-gradient-to-br from-gray-300 to-gray-400 text-gray-800 z-20 overflow-visible backdrop-blur-sm border border-gray-200
               ${isMobile 
                 ? 'inset-4' 
                 : isHovered 
@@ -299,6 +330,7 @@ const Contact = () => {
                 <motion.div variants={fadeInUp}>
                   <input 
                     type="text" 
+                    name="nom"
                     placeholder="Nom complet" 
                     required 
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 transition-all duration-300 focus:border-[#2987A6] focus:ring-2 focus:ring-[#2987A6]/20 text-sm md:text-base"
@@ -308,6 +340,7 @@ const Contact = () => {
                 <motion.div variants={fadeInUp}>
                   <input 
                     type="email" 
+                    name="email"
                     placeholder="Adresse email" 
                     required 
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 transition-all duration-300 focus:border-[#A65329] focus:ring-2 focus:ring-[#A65329]/20 text-sm md:text-base"
@@ -317,6 +350,7 @@ const Contact = () => {
                 <motion.div variants={fadeInUp}>
                   <input 
                     type="tel" 
+                    name="telephone"
                     placeholder="Numéro de téléphone" 
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 transition-all duration-300 focus:border-[#005F7F] focus:ring-2 focus:ring-[#005F7F]/20 text-sm md:text-base"
                   />
@@ -324,6 +358,7 @@ const Contact = () => {
 
                 <motion.div variants={fadeInUp}>
                   <select 
+                    name="type"
                     required 
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 appearance-none transition-all duration-300 focus:border-[#00804B] focus:ring-2 focus:ring-[#00804B]/20 text-sm md:text-base"
                   >
@@ -337,6 +372,7 @@ const Contact = () => {
                 <motion.div variants={fadeInUp}>
                   <input 
                     type="text" 
+                    name="objet"
                     placeholder="Objet / Sujet du message" 
                     required 
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 transition-all duration-300 focus:border-[#2987A6] focus:ring-2 focus:ring-[#2987A6]/20 text-sm md:text-base"
@@ -345,74 +381,35 @@ const Contact = () => {
                 
                 <motion.div variants={fadeInUp}>
                   <textarea 
+                    name="message"
                     placeholder="Votre message" 
                     required 
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 resize-vertical min-h-24 transition-all duration-300 focus:border-[#A65329] focus:ring-2 focus:ring-[#A65329]/20 text-sm md:text-base"
                   />
                 </motion.div>
 
-                {/* Section Captcha améliorée */}
+                {/* Section reCAPTCHA */}
                 <motion.div variants={fadeInUp} className="bg-gray-100 p-4 rounded-xl border border-gray-300">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-medium text-gray-700">Vérification de sécurité</span>
                     <i className="fa-solid fa-shield-alt" style={{ color: colors.primary }}></i>
                   </div>
                   
-                  {/* Captcha fonctionnel */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <div 
-                      className="flex-1 bg-white p-3 rounded-lg border-2 border-gray-300 text-center font-mono text-lg tracking-widest select-none"
-                      style={{ 
-                        background: 'linear-gradient(45deg, #f0f0f0, #ffffff)',
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
-                        letterSpacing: '3px',
-                        fontWeight: 'bold',
-                        color: '#2987A6'
-                      }}
-                    >
-                      {captchaText}
-                    </div>
-                    <button 
-                      type="button"
-                      onClick={generateCaptcha}
-                      className="p-3 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors duration-300"
-                      title="Générer un nouveau code"
-                    >
-                      <i className="fa-solid fa-rotate" style={{ color: colors.secondary }}></i>
-                    </button>
-                  </div>
-                  
-                  <div className="relative">
-                    <input 
-                      type="text"
-                      placeholder="Entrez le code ci-dessus"
-                      value={captchaValue}
-                      onChange={(e) => validateCaptcha(e.target.value)}
-                      required
-                      className={`w-full px-4 py-3 bg-white border-2 rounded-xl text-gray-800 placeholder-gray-500 transition-all duration-300 focus:ring-2 text-sm md:text-base ${
-                        captchaValue ? 
-                          (isCaptchaValid ? 
-                            'border-green-500 focus:border-green-500 focus:ring-green-500/20' : 
-                            'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-                          ) : 
-                          'border-gray-300 focus:border-[#005F7F] focus:ring-[#005F7F]/20'
-                      }`}
+                  {/* reCAPTCHA Google */}
+                  <div className="flex justify-center">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={RECAPTCHA_SITE_KEY}
+                      onChange={handleRecaptchaChange}
+                      onExpired={handleRecaptchaExpired}
+                      size={isMobile ? "compact" : "normal"}
                     />
-                    {captchaValue && (
-                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                        {isCaptchaValid ? (
-                          <i className="fa-solid fa-check text-green-500" />
-                        ) : (
-                          <i className="fa-solid fa-times text-red-500" />
-                        )}
-                      </div>
-                    )}
                   </div>
                   
-                  {captchaValue && !isCaptchaValid && (
-                    <p className="text-red-500 text-xs mt-2 flex items-center">
+                  {!isCaptchaValid && (
+                    <p className="text-red-500 text-xs mt-2 flex items-center justify-center">
                       <i className="fa-solid fa-exclamation-triangle mr-1" />
-                      Le code de vérification ne correspond pas
+                      Veuillez compléter la vérification de sécurité
                     </p>
                   )}
                 </motion.div>
@@ -420,26 +417,35 @@ const Contact = () => {
                 <motion.div variants={fadeInUp}>
                   <button 
                     type="submit"
-                    disabled={!isCaptchaValid}
+                    disabled={!isCaptchaValid || isSubmitting}
                     className={`w-full px-4 py-4 text-white font-semibold rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] active:scale-95 text-sm md:text-base ${
-                      !isCaptchaValid ? 'opacity-50 cursor-not-allowed' : ''
+                      !isCaptchaValid || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                     }`}
                     style={{
                       background: 'linear-gradient(to right, #2987A6, #00804B)'
                     }}
                     onMouseEnter={(e) => {
-                      if (isCaptchaValid) {
+                      if (isCaptchaValid && !isSubmitting) {
                         e.currentTarget.style.background = 'linear-gradient(to right, #005F7F, #A65329)';
                       }
                     }}
                     onMouseLeave={(e) => {
-                      if (isCaptchaValid) {
+                      if (isCaptchaValid && !isSubmitting) {
                         e.currentTarget.style.background = 'linear-gradient(to right, #2987A6, #00804B)';
                       }
                     }}
                   >
-                    <i className="fa-solid fa-paper-plane mr-2" />
-                    {isCaptchaValid ? 'Envoyer le message' : 'Complétez le Captcha'}
+                    {isSubmitting ? (
+                      <>
+                        <i className="fa-solid fa-spinner fa-spin mr-2" />
+                        Envoi en cours...
+                      </>
+                    ) : (
+                      <>
+                        <i className="fa-solid fa-paper-plane mr-2" />
+                        {isCaptchaValid ? 'Envoyer le message' : 'Complétez la sécurité'}
+                      </>
+                    )}
                   </button>
                 </motion.div>
               </motion.form>
