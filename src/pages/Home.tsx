@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Section Hero avec Bannière */}
-      <section className="relative bg-gradient-to-r from-green-900 via-emerald-800 to-teal-900 text-white">
+      <section className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
           src="/src/assets/ikoloVina/banniere.png" 
@@ -71,144 +71,150 @@ const Home = () => {
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'var(--color-special-1)';
                 }}
+                onClick={() => {
+                  const section = document.getElementById('offres');
+                  section?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Découvrir nos services
                 <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5" />
               </Button>
+              <Link to="/contact">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="px-6 py-3 lg:px-8 lg:py-3 transition-all duration-300 border-white text-white text-sm lg:text-base"
+                  style={{
+                    backgroundColor: 'transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--color-special-2)';
+                    e.currentTarget.style.color = 'white';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'white';
+                  }}
+                >
+                  Nous contacter
+                </Button>
+              </Link>
               
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="px-6 py-3 lg:px-8 lg:py-3 transition-all duration-300 border-white text-white text-sm lg:text-base"
-                style={{
-                  backgroundColor: 'transparent'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-special-2)';
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = 'white';
-                }}
-              >
-                Nous contacter
-              </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Section Le Consortium */}
-<section className="py-10 bg-gradient-to-br from-white to-gray-50/30">
-  <div className="container mx-auto px-4">
-    <motion.div 
-      className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
-      variants={staggerContainer}
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true, margin: "-100px" }}
-    >
-      {/* Colonne de gauche - Cartes valeurs */}
-      <motion.div 
-        className="order-2 lg:order-1"
-        variants={fadeInUp}
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+      <section className="py-10 bg-linear-to-br from-white to-gray-50/30">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            {/* Colonne de gauche - Cartes valeurs */}
+            <motion.div 
+              className="order-2 lg:order-1"
+              variants={fadeInUp}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
 
-          <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
-            <CardContent className="p-4 lg:p-6 text-center">
-              <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-1 to-special-2 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <FlaskConical className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
-              </div>
-              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Expertise Scientifique</h3>
-              <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                Une maîtrise reconnue en génie des procédés, formulation cosmétique et 
-                gestion durable des ressources naturelles.
-              </p>
-            </CardContent>
-          </Card>
+                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+                  <CardContent className="p-4 lg:p-6 text-center">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-linear-to-br from-special-1 to-special-2 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <FlaskConical className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Expertise Scientifique</h3>
+                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                      Une maîtrise reconnue en génie des procédés, formulation cosmétique et 
+                      gestion durable des ressources naturelles.
+                    </p>
+                  </CardContent>
+                </Card>
 
-          <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
-            <CardContent className="p-4 lg:p-6 text-center">
-              <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-3 to-special-4 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Briefcase className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
-              </div>
-              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Leadership Stratégique</h3>
-              <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                Une expertise en organisation, communication et coordination 
-                de partenariats entre secteurs public et privé.
-              </p>
-            </CardContent>
-          </Card>
+                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+                  <CardContent className="p-4 lg:p-6 text-center">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-linear-to-br from-special-3 to-special-4 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Briefcase className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Leadership Stratégique</h3>
+                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                      Une expertise en organisation, communication et coordination 
+                      de partenariats entre secteurs public et privé.
+                    </p>
+                  </CardContent>
+                </Card>
 
-          <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
-            <CardContent className="p-4 lg:p-6 text-center">
-              <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-2 to-special-3 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Globe2 className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
-              </div>
-              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Vision Durable</h3>
-              <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                Nos actions favorisent la biodiversité, la durabilité environnementale 
-                et une économie verte résiliente.
-              </p>
-            </CardContent>
-          </Card>
+                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+                  <CardContent className="p-4 lg:p-6 text-center">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-linear-to-br from-special-2 to-special-3 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Globe2 className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Vision Durable</h3>
+                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                      Nos actions favorisent la biodiversité, la durabilité environnementale 
+                      et une économie verte résiliente.
+                    </p>
+                  </CardContent>
+                </Card>
 
-          <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
-            <CardContent className="p-4 lg:p-6 text-center">
-              <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-gradient-to-br from-special-4 to-special-5 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Handshake className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+                <Card className="hover:shadow-xl transition-all duration-300 group bg-white/70 backdrop-blur-sm">
+                  <CardContent className="p-4 lg:p-6 text-center">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-3 lg:mb-4 bg-linear-to-br from-special-4 to-special-5 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Handshake className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
+                    </div>
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Partenariats Inclusifs</h3>
+                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
+                      Nous créons des ponts entre acteurs économiques et sociaux 
+                      pour des impacts positifs et partagés.
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
-              <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">Partenariats Inclusifs</h3>
-              <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                Nous créons des ponts entre acteurs économiques et sociaux 
-                pour des impacts positifs et partagés.
-              </p>
-            </CardContent>
-          </Card>
+            </motion.div>
+
+            {/* Colonne de droite - Logo et texte principal */}
+            <motion.div 
+              className="order-1 lg:order-2 flex flex-col items-center lg:items-start space-y-6 lg:space-y-8"
+              variants={fadeInScale}
+            >
+              <div className="text-center flex flex-col items-center space-y-4 lg:space-y-6">
+                <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
+                  <span className="text-special-1">Le consortium</span>
+                </h2>
+
+                <div className="relative group flex justify-center">
+                  <div className="absolute -inset-2 lg:-inset-4 bg-linear-to-r from-special-1/20 to-special-2/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/src/assets/logos/ikolo-vina.png" 
+                    alt="Consortium Ikolo-Vina"
+                    className="relative h-32 lg:h-48 xl:h-64 w-auto transform group-hover:scale-105 transition-transform duration-500 mx-auto"
+                  />
+                </div>
+                
+                <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
+                  Une Alliance <span className="text-special-1">Visionnaire</span> et Durable
+                </h2>
+                
+                <p className="text-lg lg:text-xl text-gray-600 leading-relaxed">
+                  Le consortium Ikolo-Vina unit deux fondatrices aux expertises 
+                  complémentaires — l’une scientifique et technique, l’autre 
+                  stratégique et organisationnelle. Ensemble, elles conçoivent 
+                  des solutions intégrant biodiversité, durabilité et bien-être 
+                  humain, au service d’une économie verte et inclusive.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </motion.div>
-
-      {/* Colonne de droite - Logo et texte principal */}
-      <motion.div 
-        className="order-1 lg:order-2 flex flex-col items-center lg:items-start space-y-6 lg:space-y-8"
-        variants={fadeInScale}
-      >
-        <div className="text-center flex flex-col items-center space-y-4 lg:space-y-6">
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
-            <span className="text-special-1">Le consortium</span>
-          </h2>
-
-          <div className="relative group flex justify-center">
-            <div className="absolute -inset-2 lg:-inset-4 bg-gradient-to-r from-special-1/20 to-special-2/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <img 
-              src="/src/assets/logos/ikolo-vina.png" 
-              alt="Consortium Ikolo-Vina"
-              className="relative h-32 lg:h-48 xl:h-64 w-auto transform group-hover:scale-105 transition-transform duration-500 mx-auto"
-            />
-          </div>
-          
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
-            Une Alliance <span className="text-special-1">Visionnaire</span> et Durable
-          </h2>
-          
-          <p className="text-lg lg:text-xl text-gray-600 leading-relaxed">
-            Le consortium Ikolo-Vina unit deux fondatrices aux expertises 
-            complémentaires — l’une scientifique et technique, l’autre 
-            stratégique et organisationnelle. Ensemble, elles conçoivent 
-            des solutions intégrant biodiversité, durabilité et bien-être 
-            humain, au service d’une économie verte et inclusive.
-          </p>
-        </div>
-      </motion.div>
-    </motion.div>
-  </div>
-</section>
+      </section>
 
 
       {/* Section Les Fondatrices */}
-      <section className="pt-5 pb-0 bg-gradient-to-br from-white to-gray-50/30">
+      <section className="pt-5 pb-0 bg-linear-to-br from-white to-gray-50/30">
         <div className="container mx-auto px-4">
           {/* Titre de section */}
           <motion.div 
@@ -361,7 +367,7 @@ const Home = () => {
       <hr className="my-0 border-t border-black w-3/4 mx-auto opacity-50" />
 
       {/* Section Les Offres */}
-      <section className="pb-0 pt-5 bg-gradient-to-br from-white to-gray-50/30">
+      <section id="offres" className="pb-0 pt-5 bg-linear-to-br from-white to-gray-50/30">
         <div className="container mx-auto px-4">
           {/* En-tête de section */}
           <motion.div 
@@ -391,7 +397,7 @@ const Home = () => {
           </motion.div>
 
           {/* Section Partenaires */}
-          <section className="pt-10 pb-4 bg-gradient-to-br from-white to-gray-50/30">
+          <section className="pt-10 pb-4 bg-linear-to-br from-white to-gray-50/30">
             <div className="container mx-auto px-4">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -418,7 +424,7 @@ const Home = () => {
                         href={partner.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-shrink-0 bg-white rounded-xl p-4 lg:p-6 border border-gray-200 hover:border-special-1/30 hover:shadow-lg transition-all duration-300 flex items-center justify-center w-32 h-32 lg:w-40 lg:h-40"
+                        className="shrink-0 bg-white rounded-xl p-4 lg:p-6 border border-gray-200 hover:border-special-1/30 hover:shadow-lg transition-all duration-300 flex items-center justify-center w-32 h-32 lg:w-40 lg:h-40"
                         whileHover={{ scale: 1.05, y: -5 }}
                       >
                         <img 
@@ -442,7 +448,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="bg-gradient-to-r from-special-1/15 via-special-3/10 to-special-2/15 rounded-3xl p-6 lg:p-8 max-w-5xl mx-auto relative overflow-hidden">
+            <div className="bg-linear-to-r from-special-1/15 via-special-3/10 to-special-2/15 rounded-3xl p-6 lg:p-8 max-w-5xl mx-auto relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
                   Prêt à <span className="text-special-1">transformer</span> votre vision en <span className="text-special-2">réalité</span> ?
@@ -456,7 +462,7 @@ const Home = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Link
                     to="/contact"
-                    className="bg-gradient-to-r from-special-1 to-special-2 hover:from-special-2 hover:to-special-3 text-black px-8 py-3 lg:px-10 lg:py-4 text-base lg:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center border border-black"
+                    className="bg-linear-to-r from-special-1 to-special-2 hover:from-special-2 hover:to-special-3 text-black px-8 py-3 lg:px-10 lg:py-4 text-base lg:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center border border-black"
                   >
                     Nous contacter
                   </Link>
