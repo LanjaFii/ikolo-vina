@@ -545,7 +545,7 @@ const Home = () => {
             <div className="bg-linear-to-r from-special-1/15 via-special-3/10 to-special-2/15 rounded-3xl p-6 lg:p-8 max-w-5xl mx-auto relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
-                  Prêt à <span className="text-special-1">transformer</span> votre vision en <span className="text-special-2">réalité</span> ?
+                Prêt à retrouver <span className="text-special-1">l'harmonie et l'équilibre</span> grâce au pouvoir de la nature ?
                 </h3>
                 
                 <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 lg:mb-10 max-w-3xl mx-auto leading-relaxed">
