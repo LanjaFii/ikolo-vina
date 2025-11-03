@@ -21,11 +21,11 @@ const Footer = () => {
 
   const siteLinks = [
     { label: 'Accueil', url: '/' },
-    { label: 'Ikolo', url: '/ikolo' },
-    { label: 'Vina Consulting', url: '/vina' },
     { label: 'Nature Wellness', url: '/wellness' },
-    { label: 'Actualités', url: '/blog' },
-    { label: 'Contact', url: '/contact' },
+    { label: 'Communication Digital', url: '/digital' },
+    { label: 'Événementiel', url: '/events' },
+    { label: 'Appui à l\'Entrepreneuriat', url: '/enterprise' },
+    { label: 'Accompagnement RSE', url: '/rse' },
     { label: 'Mentions légales', url: '/legal' },
     { label: 'Politique de confidentialité', url: '/privacy' },
   ];
@@ -59,7 +59,7 @@ const Footer = () => {
               <div className="space-y-2 text-center">
                 <div className="flex items-center justify-center gap-2 text-white/90 text-sm">
                   <Mail size={14} />
-                  <span>contact@ikolo-vina.com</span>
+                  <span>ikolovinaconsortium@gmail.com</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-white/90 text-sm">
                   <Phone size={14} />
@@ -164,7 +164,7 @@ const Footer = () => {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-white/80">
                     <Mail size={18} />
-                    <span>contact@ikolo-vina.com</span>
+                    <span>ikolovinaconsortium@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-3 text-white/80">
                     <Phone size={18} />
