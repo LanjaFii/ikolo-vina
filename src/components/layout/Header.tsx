@@ -63,7 +63,7 @@ const Header = () => {
   const navLinks = [
     { path: '/', label: 'Accueil', icon: <Home size={18} /> },
     { path: '/wellness', label: 'Nature Wellness', icon: <Leaf size={18} /> },
-    { path: '/digital', label: 'Communication Digital', icon: <Box size={18} /> },
+    { path: '/digital', label: 'Communication Digitale', icon: <Box size={18} /> },
     { path: '/events', label: 'Événementiel', icon: <CalendarDays size={18} /> },
     { path: '/enterprise', label: "Appui à l'Entrepreneuriat", icon: <Briefcase size={18} /> },
     { path: '/rse', label: 'Accompagnement RSE', icon: <Globe2 size={18} /> },

@@ -22,7 +22,7 @@ const Footer = () => {
   const siteLinks = [
     { label: 'Accueil', url: '/' },
     { label: 'Nature Wellness', url: '/wellness' },
-    { label: 'Communication Digital', url: '/digital' },
+    { label: 'Communication Digitale', url: '/digital' },
     { label: 'Événementiel', url: '/events' },
     { label: 'Appui à l\'Entrepreneuriat', url: '/enterprise' },
     { label: 'Accompagnement RSE', url: '/rse' },
@@ -67,7 +67,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center justify-center gap-2 text-white/90 text-sm text-center">
                   <MapPin size={14} />
-                  <span>Rue Pasteur Antanimena, Antananarivo 101</span>
+                  <span>Antanimena, Antananarivo 101</span>
                 </div>
               </div>
             </div>
