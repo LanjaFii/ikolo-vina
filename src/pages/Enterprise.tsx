@@ -25,7 +25,7 @@ const Entreprise = () => {
                         <Badge variant="secondary" className="mb-4 bg-special-1/80 backdrop-blur-sm text-white border-none">
                         Appui à l'entrepreneuriat
                         </Badge>
-                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
                           Entrepreneuriat durable.
                         </h1>
                         <p className="text-base md:text-lg lg:text-xl mb-6 text-gray-100 leading-relaxed">

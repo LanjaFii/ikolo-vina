@@ -30,24 +30,24 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Section Hero avec Bannière */}
-      <section className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white">
+      <section className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white py-16 lg:py-20">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
           src="/src/assets/wellness/nature.png" 
           alt="background Nature Wellness"
-          className="w-full h-[70vh] object-cover blur-[1px]"
+          className="w-full h-full object-cover absolute inset-0 blur-[1px]"
         />
-        <div className="absolute inset-0 z-20 flex items-center justify-center">
+        <div className="container mx-auto px-4 relative z-20">
           <motion.div 
-            className="text-center max-w-4xl mx-auto px-4"
+            className="text-center max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <Badge variant="secondary" className="mb-6 bg-special-1/80 backdrop-blur-sm text-white border-none">
+            <Badge variant="secondary" className="mb-4 bg-special-1/80 backdrop-blur-sm text-white border-none">
               Authenticité Malagasy
             </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
               Nature Wellness
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl mb-8 text-gray-100 leading-relaxed">
