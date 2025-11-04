@@ -250,7 +250,7 @@ const Events = () => {
             >
               {/* Étape 1 */}
               <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
-                <div className="flex-shrink-0 w-12 h-12 bg-special-1 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <div className="shrink-0 w-12 h-12 bg-special-1 rounded-full flex items-center justify-center text-white font-bold text-lg">
                   1
                 </div>
                 <div>
@@ -264,7 +264,7 @@ const Events = () => {
 
               {/* Étape 2 */}
               <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
-                <div className="flex-shrink-0 w-12 h-12 bg-special-2 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <div className="shrink-0 w-12 h-12 bg-special-2 rounded-full flex items-center justify-center text-white font-bold text-lg">
                   2
                 </div>
                 <div>
@@ -278,7 +278,7 @@ const Events = () => {
 
               {/* Étape 3 */}
               <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
-                <div className="flex-shrink-0 w-12 h-12 bg-special-3 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <div className="shrink-0 w-12 h-12 bg-special-3 rounded-full flex items-center justify-center text-white font-bold text-lg">
                   3
                 </div>
                 <div>
@@ -292,7 +292,7 @@ const Events = () => {
 
               {/* Étape 4 */}
               <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
-                <div className="flex-shrink-0 w-12 h-12 bg-special-4 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <div className="shrink-0 w-12 h-12 bg-special-4 rounded-full flex items-center justify-center text-white font-bold text-lg">
                   4
                 </div>
                 <div>
@@ -320,7 +320,7 @@ const Events = () => {
                 
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-special-1 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-6 w-6 text-special-1 mt-1 shrink-0" />
                     <div>
                       <h4 className="font-bold text-gray-900">Expertise Complémentaire</h4>
                       <p className="text-gray-600 text-sm">
@@ -331,7 +331,7 @@ const Events = () => {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-special-2 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-6 w-6 text-special-2 mt-1 shrink-0" />
                     <div>
                       <h4 className="font-bold text-gray-900">Approche Durable</h4>
                       <p className="text-gray-600 text-sm">
@@ -342,7 +342,7 @@ const Events = () => {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-special-3 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-6 w-6 text-special-3 mt-1 shrink-0" />
                     <div>
                       <h4 className="font-bold text-gray-900">Réseau Étendu</h4>
                       <p className="text-gray-600 text-sm">
@@ -353,7 +353,7 @@ const Events = () => {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-special-4 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-6 w-6 text-special-4 mt-1 shrink-0" />
                     <div>
                       <h4 className="font-bold text-gray-900">Solutions Hybrides</h4>
                       <p className="text-gray-600 text-sm">
@@ -364,7 +364,7 @@ const Events = () => {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-special-1 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-6 w-6 text-special-1 mt-1 shrink-0" />
                     <div>
                       <h4 className="font-bold text-gray-900">Sur-Mesure</h4>
                       <p className="text-gray-600 text-sm">
