@@ -231,14 +231,14 @@ const Home = () => {
 
           {/* Version Desktop - 3 colonnes */}
           <motion.div 
-            className="hidden lg:grid grid-cols-3 gap-6 lg:gap-8 items-center"
+            className="hidden lg:grid grid-cols-3 gap-6 lg:gap-2 items-end" 
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, margin: "-100px" }}
           >
             {/* Colonne 1 - Felana Anna RAMAHANDRISON */}
-            <motion.div className="relative text-center" variants={fadeInUp}>
+            <motion.div className="relative text-center flex flex-col justify-end" variants={fadeInUp}>
               {/* Logo Vina flottant en arrière-plan */}
               <div className="absolute inset-0 flex items-center justify-center z-0">
                 <img 
@@ -267,16 +267,16 @@ const Home = () => {
             </motion.div>
 
             {/* Colonne 2 - Photo centrale */}
-            <motion.div className="flex justify-center" variants={fadeInScale}>
+            <motion.div className="flex justify-center items-end" variants={fadeInScale}>
               <img 
                 src="/src/assets/ikoloVina/AnnaHoly.png" 
                 alt="Felana Anna et Holiniaina Norohariliva"
-                className="h-80 lg:h-96 xl:h-120 w-auto"
+                className="max-h-96 w-auto object-contain" // <-- max-h pour pas étirer, object-contain pour garder proportions
               />
             </motion.div>
 
             {/* Colonne 3 - Holiniaina Norohariliva RAKOTOMALALA */}
-            <motion.div className="relative text-center" variants={fadeInUp}>
+            <motion.div className="relative text-center flex flex-col justify-end" variants={fadeInUp}>
               {/* Logo Ikolo flottant en arrière-plan */}
               <div className="absolute inset-0 flex items-center justify-center z-0">
                 <img 

@@ -222,174 +222,173 @@ const Events = () => {
       </section>
 
       {/* Section Notre Approche Événementielle */}
-<section className="py-16 bg-linear-to-r from-special-1/5 to-special-2/5">
-  <div className="container mx-auto px-4">
-    <motion.div 
-      className="text-center mb-12 lg:mb-16"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-    >
-      <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">
-        Notre <span className="text-special-1">Approche</span> Événementielle
-      </h2>
-      <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        Une méthodologie éprouvée en 4 étapes pour garantir le succès de vos événements
-      </p>
-    </motion.div>
-
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-      {/* Colonne de gauche - Étapes */}
-      <motion.div 
-        className="space-y-6"
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        {/* Étape 1 */}
-        <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
-          <div className="flex-shrink-0 w-12 h-12 bg-special-1 rounded-full flex items-center justify-center text-white font-bold text-lg">
-            1
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Diagnostic & Stratégie</h3>
-            <p className="text-gray-600">
-              Analyse approfondie de vos objectifs, cibles et contraintes pour 
-              définir une stratégie événementielle sur mesure.
+      <section className="py-16 bg-linear-to-br from-white to-gray-50/30">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-12 lg:mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">
+              Notre <span className="text-special-1">Approche</span> Événementielle
+            </h2>
+            <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Une méthodologie éprouvée en 4 étapes pour garantir le succès de vos événements
             </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Colonne de gauche - Étapes */}
+            <motion.div 
+              className="space-y-6"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              {/* Étape 1 */}
+              <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
+                <div className="flex-shrink-0 w-12 h-12 bg-special-1 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  1
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Diagnostic & Stratégie</h3>
+                  <p className="text-gray-600">
+                    Analyse approfondie de vos objectifs, cibles et contraintes pour 
+                    définir une stratégie événementielle sur mesure.
+                  </p>
+                </div>
+              </div>
+
+              {/* Étape 2 */}
+              <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
+                <div className="flex-shrink-0 w-12 h-12 bg-special-2 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  2
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Conception Créative</h3>
+                  <p className="text-gray-600">
+                    Design d'expériences uniques intégrant scénographie naturelle, 
+                    contenu engageant et solutions innovantes.
+                  </p>
+                </div>
+              </div>
+
+              {/* Étape 3 */}
+              <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
+                <div className="flex-shrink-0 w-12 h-12 bg-special-3 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  3
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Exécution Impeccable</h3>
+                  <p className="text-gray-600">
+                    Gestion opérationnelle complète avec une équipe dédiée pour 
+                    garantir un déroulement fluide et professionnel.
+                  </p>
+                </div>
+              </div>
+
+              {/* Étape 4 */}
+              <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
+                <div className="flex-shrink-0 w-12 h-12 bg-special-4 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  4
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Mesure d'Impact</h3>
+                  <p className="text-gray-600">
+                    Analyse post-événement et recommandations stratégiques pour 
+                    maximiser le retour sur investissement.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Colonne de droite - Avantages */}
+            <motion.div 
+              className="space-y-6"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-xl border border-gray-200/50">
+                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6 text-center">
+                  Pourquoi Choisir <span className="text-special-1">Ikolo-Vina</span> ?
+                </h3>
+                
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-6 w-6 text-special-1 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-gray-900">Expertise Complémentaire</h4>
+                      <p className="text-gray-600 text-sm">
+                        Alliance unique entre expertise scientifique et compétences 
+                        en communication événementielle.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-6 w-6 text-special-2 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-gray-900">Approche Durable</h4>
+                      <p className="text-gray-600 text-sm">
+                        Événements éco-responsables intégrant les principes du 
+                        développement durable et de la RSE.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-6 w-6 text-special-3 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-gray-900">Réseau Étendu</h4>
+                      <p className="text-gray-600 text-sm">
+                        Accès à un réseau d'experts, partenaires et intervenants 
+                        de qualité dans divers secteurs.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-6 w-6 text-special-4 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-gray-900">Solutions Hybrides</h4>
+                      <p className="text-gray-600 text-sm">
+                        Maîtrise des formats physiques et digitaux pour une portée 
+                        locale et internationale.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-6 w-6 text-special-1 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-gray-900">Sur-Mesure</h4>
+                      <p className="text-gray-600 text-sm">
+                        Solutions personnalisées adaptées à votre budget, vos objectifs 
+                        et votre secteur d'activité.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 p-4 bg-special-1/10 rounded-lg border border-special-1/20">
+                  <p className="text-sm text-gray-700 text-center">
+                    <strong>Notre engagement :</strong> Transformer vos idées en expériences 
+                    mémorables qui renforcent votre marque et développent votre réseau.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
+      </section>
 
-        {/* Étape 2 */}
-        <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
-          <div className="flex-shrink-0 w-12 h-12 bg-special-2 rounded-full flex items-center justify-center text-white font-bold text-lg">
-            2
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Conception Créative</h3>
-            <p className="text-gray-600">
-              Design d'expériences uniques intégrant scénographie naturelle, 
-              contenu engageant et solutions innovantes.
-            </p>
-          </div>
-        </div>
-
-        {/* Étape 3 */}
-        <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
-          <div className="flex-shrink-0 w-12 h-12 bg-special-3 rounded-full flex items-center justify-center text-white font-bold text-lg">
-            3
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Exécution Impeccable</h3>
-            <p className="text-gray-600">
-              Gestion opérationnelle complète avec une équipe dédiée pour 
-              garantir un déroulement fluide et professionnel.
-            </p>
-          </div>
-        </div>
-
-        {/* Étape 4 */}
-        <div className="flex items-start space-x-4 p-4 rounded-lg bg-white/50 backdrop-blur-sm border border-gray-200/50">
-          <div className="flex-shrink-0 w-12 h-12 bg-special-4 rounded-full flex items-center justify-center text-white font-bold text-lg">
-            4
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Mesure d'Impact</h3>
-            <p className="text-gray-600">
-              Analyse post-événement et recommandations stratégiques pour 
-              maximiser le retour sur investissement.
-            </p>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Colonne de droite - Avantages */}
-      <motion.div 
-        className="space-y-6"
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-xl border border-gray-200/50">
-          <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6 text-center">
-            Pourquoi Choisir <span className="text-special-1">Ikolo-Vina</span> ?
-          </h3>
-          
-          <div className="space-y-4">
-            <div className="flex items-start space-x-3">
-              <CheckCircle className="h-6 w-6 text-special-1 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-bold text-gray-900">Expertise Complémentaire</h4>
-                <p className="text-gray-600 text-sm">
-                  Alliance unique entre expertise scientifique et compétences 
-                  en communication événementielle.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3">
-              <CheckCircle className="h-6 w-6 text-special-2 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-bold text-gray-900">Approche Durable</h4>
-                <p className="text-gray-600 text-sm">
-                  Événements éco-responsables intégrant les principes du 
-                  développement durable et de la RSE.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3">
-              <CheckCircle className="h-6 w-6 text-special-3 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-bold text-gray-900">Réseau Étendu</h4>
-                <p className="text-gray-600 text-sm">
-                  Accès à un réseau d'experts, partenaires et intervenants 
-                  de qualité dans divers secteurs.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3">
-              <CheckCircle className="h-6 w-6 text-special-4 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-bold text-gray-900">Solutions Hybrides</h4>
-                <p className="text-gray-600 text-sm">
-                  Maîtrise des formats physiques et digitaux pour une portée 
-                  locale et internationale.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3">
-              <CheckCircle className="h-6 w-6 text-special-1 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-bold text-gray-900">Sur-Mesure</h4>
-                <p className="text-gray-600 text-sm">
-                  Solutions personnalisées adaptées à votre budget, vos objectifs 
-                  et votre secteur d'activité.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6 p-4 bg-special-1/10 rounded-lg border border-special-1/20">
-            <p className="text-sm text-gray-700 text-center">
-              <strong>Notre engagement :</strong> Transformer vos idées en expériences 
-              mémorables qui renforcent votre marque et développent votre réseau.
-            </p>
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  </div>
-</section>
-
-      {/* Reste du code inchangé... */}
       {/* Section Livrables */}
-      <section className="py-5 bg-white">
+      <section className="py-5 bg-linear-to-br from-white to-gray-50/30">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-12 lg:mb-16"
@@ -465,7 +464,7 @@ const Events = () => {
       </section>
 
       {/* Section CTA Finale */}
-      <section className="py-5 bg-linear-to-br from-gray-50 to-white">
+      <section className="py-5 bg-linear-to-br from-white to-gray-50/30">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center"
