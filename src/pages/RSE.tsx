@@ -3,11 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import {
-  Leaf,
   Recycle,
   Heart,
   Users,
-  Sprout,
   CheckCircle,
   Zap,
   Building,
@@ -126,7 +124,7 @@ const Rse = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-special-1 via-special-4 to-special-2 text-white py-16 lg:py-20">
+      <section className="relative bg-linear-to-r from-special-1 via-special-4 to-special-2 text-white py-16 lg:py-20">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img
           src="/src/assets/rse/hero-rse.png"
@@ -195,7 +193,7 @@ const Rse = () => {
                       />
 
                       {/* Overlay gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
 
                       {/* Contenu */}
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform group-hover:translate-y-0 transition-transform duration-300">
@@ -224,7 +222,7 @@ const Rse = () => {
       </section>
 
       {/* Section Solutions */}
-      <section className="py-8 bg-gradient-to-br from-special-2/5 to-white">
+      <section className="py-8 bg-linear-to-br from-special-2/5 to-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -250,7 +248,7 @@ const Rse = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="group"
                 >
-                  <Card className="h-full border-0 bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden group-hover:shadow-xl transition-all duration-500 border border-special-2/20">
+                  <Card className="h-full border-0 bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden group-hover:shadow-xl transition-all duration-500 border-special-2/20">
                     <div className="flex flex-col md:flex-row h-full">
                       <div className="md:w-2/5">
                         <div className="relative h-48 md:h-full">
@@ -259,7 +257,7 @@ const Rse = () => {
                             alt={solution.alt}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                           />
-                          <div className="absolute top-4 right-4 w-12 h-12 rounded-xl bg-gradient-to-r from-special-2 to-special-1 flex items-center justify-center shadow-lg">
+                          <div className="absolute top-4 right-4 w-12 h-12 rounded-xl bg-linear-to-r from-special-2 to-special-1 flex items-center justify-center shadow-lg">
                             <div className="text-white">
                               {solution.icon}
                             </div>
@@ -273,7 +271,7 @@ const Rse = () => {
                             {solution.title}
                           </h3>
 
-                          <p className="text-gray-600 text-sm mb-4 leading-relaxed flex-grow">
+                          <p className="text-gray-600 text-sm mb-4 leading-relaxed grow">
                             {solution.description}
                           </p>
 
@@ -297,7 +295,7 @@ const Rse = () => {
       </section>
 
       {/* Section Engagements - Design amélioré */}
-      <section className="py-16 bg-gradient-to-br from-special-2/10 to-white">
+      <section className="py-16 bg-linear-to-br from-special-2/10 to-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -327,17 +325,17 @@ const Rse = () => {
                       className="flex items-start space-x-6 group cursor-pointer"
                     >
                       {/* Numéro d'étape */}
-                      <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-special-2 to-special-1 rounded-2xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform duration-300">
+                      <div className="shrink-0 w-16 h-16 bg-linear-to-r from-special-2 to-special-1 rounded-2xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform duration-300">
                         {index + 1}
                       </div>
 
                       {/* Ligne de connexion (sauf pour le dernier) */}
                       {index < engagements.length - 1 && (
-                        <div className="absolute left-8 top-16 w-0.5 h-16 bg-gradient-to-b from-special-2 to-special-1 transform translate-y-16"></div>
+                        <div className="absolute left-8 top-16 w-0.5 h-16 bg-linear-to-b from-special-2 to-special-1 transform translate-y-16"></div>
                       )}
 
                       {/* Contenu */}
-                      <div className="flex-grow">
+                      <div className="grow">
                         <div className="flex items-center mb-3">
                           <div className="text-special-2 mr-3">
                             {engagement.icon}
@@ -374,7 +372,7 @@ const Rse = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-center mt-12"
           >
-            <div className="bg-gradient-to-r from-special-2/10 to-special-1/10 rounded-2xl p-8 border border-special-2/20 max-w-3xl mx-auto">
+            <div className="bg-linear-to-r from-special-2/10 to-special-1/10 rounded-2xl p-8 border border-special-2/20 max-w-3xl mx-auto">
               <h4 className="text-lg font-bold text-gray-900 mb-4">
                 Notre mission
               </h4>

@@ -245,7 +245,7 @@ const Contact = () => {
                   whileHover={{ scale: 1.05 }}
                   className={`flex items-center gap-3 p-3 ${social.bgColor} ${social.textColor} rounded-xl hover:${social.bgColor.replace('50', '100')} transition-all duration-300 transform border ${social.borderColor} flex-1`}
                 >
-                  <div className={`w-8 h-8 ${social.color} rounded-full flex items-center justify-center text-white flex-shrink-0`}>
+                  <div className={`w-8 h-8 ${social.color} rounded-full flex items-center justify-center text-white shrink-0`}>
                     {social.icon}
                   </div>
                   <span className="font-medium">{social.label}</span>
@@ -468,25 +468,6 @@ const Contact = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Styles pour la scrollbar avec les nouvelles couleurs (non modifiés) */}
-      <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(200, 200, 200, 0.2);
-          border-radius: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: linear-gradient(to bottom, #2987A6, #00804B);
-          border-radius: 8px;
-          transition: all 0.3s ease;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(to bottom, #005F7F, #A65329);
-        }
-      `}</style>
     </motion.div>
   );
 };
