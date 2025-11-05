@@ -50,7 +50,7 @@ const Digital = () => {
             <section className="relative bg-linear-to-r from-special-1 via-special-4 to-special-2 text-white py-16 lg:py-20">
                 <div className="absolute inset-0 bg-black/40 z-10"></div>
                 <img
-                    src="/src/assets/offers/online.png"
+                    src="/assets/offers/online.png"
                     alt="Communication digitale"
                     className="w-full h-full object-cover absolute inset-0 blur-[1px]"
                 />
@@ -104,7 +104,7 @@ const Digital = () => {
                                 <div className="relative group">
                                     <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500">
                                         <img
-                                            src="/src/assets/digital/strategy.png"
+                                            src="/assets/digital/strategy.png"
                                             alt="Audit et stratégie digitale"
                                             className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                                         />
@@ -150,7 +150,7 @@ const Digital = () => {
                                 <div className="relative group">
                                     <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500">
                                         <img
-                                            src="/src/assets/digital/dev.png"
+                                            src="/assets/digital/dev.png"
                                             alt="Création de sites web"
                                             className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                                         />
@@ -196,7 +196,7 @@ const Digital = () => {
                                 <div className="relative group">
                                     <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500">
                                         <img
-                                            src="/src/assets/digital/socialMedia.png"
+                                            src="/assets/digital/socialMedia.png"
                                             alt="Gestion des réseaux sociaux"
                                             className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                                         />
@@ -242,7 +242,7 @@ const Digital = () => {
                                 <div className="relative group">
                                     <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500">
                                         <img
-                                            src="/src/assets/digital/marketing.png"
+                                            src="/assets/digital/marketing.png"
                                             alt="Marketing digital"
                                             className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                                         />
@@ -288,7 +288,7 @@ const Digital = () => {
                                 <div className="relative group">
                                     <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500">
                                         <img
-                                            src="/src/assets/digital/formation.png"
+                                            src="/assets/digital/formation.png"
                                             alt="Formation digitale"
                                             className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                                         />
@@ -418,7 +418,7 @@ const Digital = () => {
                             className="text-center"
                         >
                             <img
-                                src="/src/assets/offers/online.png"
+                                src="/assets/offers/online.png"
                                 alt="Équipe IKOLO-VINA"
                                 className="rounded-xl shadow-lg max-w-md mx-auto"
                             />

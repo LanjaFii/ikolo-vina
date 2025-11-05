@@ -86,7 +86,7 @@ const Header = () => {
           : 'py-4'
       }`}
       style={{
-        backgroundImage: !isScrolled ? "url('/src/assets/fondHeader.png')" : 'none',
+        backgroundImage: !isScrolled ? "url('/assets/fondHeader.png')" : 'none',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
@@ -101,7 +101,7 @@ const Header = () => {
         >
           <Link to="/" className="flex items-center">
             <img 
-              src="/src/assets/logos/ikolo-vina.png" 
+              src="/assets/logos/ikolo-vina.png" 
               alt="Ikolo-Vina" 
               className={`transition-all duration-500 ${
                 isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-16'

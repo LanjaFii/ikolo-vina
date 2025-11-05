@@ -33,7 +33,7 @@ const Home = () => {
       <section className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white py-16 lg:py-20">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
-          src="/src/assets/wellness/nature.png" 
+          src="/assets/wellness/nature.png" 
           alt="background Nature Wellness"
           className="w-full h-full object-cover absolute inset-0 blur-[1px]"
         />
@@ -80,7 +80,7 @@ const Home = () => {
                 <div className="relative group flex justify-center">
                 <div className="absolute -inset-2 lg:-inset-4 bg-linear-to-r from-special-1/20 to-special-2/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <img 
-                    src="/src/assets/logos/Nature Wellness.png" 
+                    src="/assets/logos/Nature Wellness.png" 
                     alt="Logo Nature Wellness"
                     className="relative h-32 lg:h-48 xl:h-64 w-auto transform group-hover:scale-105 transition-transform duration-500 mx-auto rounded-ss-3xl rounded-ee-3xl"
                   />
@@ -124,7 +124,7 @@ const Home = () => {
                   <CardContent className="p-4 lg:p-6 text-center">
                     <div className=" from-special-3 to-special-4 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 overflow-hidden">
                       <img 
-                        src="/src/assets/wellness/Spa1.png" 
+                        src="/assets/wellness/Spa1.png" 
                         alt="spa"
                         className=" object-cover"
                       />
@@ -136,7 +136,7 @@ const Home = () => {
                   <CardContent className="p-4 lg:p-6 text-center">
                     <div className=" from-special-3 to-special-4 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 overflow-hidden">
                       <img 
-                        src="/src/assets/wellness/Spa2.png" 
+                        src="/assets/wellness/Spa2.png" 
                         alt="spa"
                         className=" object-cover"
                       />
@@ -206,7 +206,7 @@ const Home = () => {
       <div className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white h-32">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
-          src="/src/assets/wellness/Diagnostique.png" 
+          src="/assets/wellness/Diagnostique.png" 
           alt="Diagnostic centre bien-être"
           className="w-full h-full object-cover blur-[0.5px] group-hover:scale-110 transition-transform duration-500"
         />
@@ -242,7 +242,7 @@ const Home = () => {
       <div className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white h-32">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
-          src="/src/assets/wellness/Optimisation.png" 
+          src="/assets/wellness/Optimisation.png" 
           alt="Optimisation architecturale"
           className="w-full h-full object-cover blur-[0.5px] group-hover:scale-110 transition-transform duration-500"
         />
@@ -278,7 +278,7 @@ const Home = () => {
       <div className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white h-32">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
-          src="/src/assets/wellness/FormationAtelier.png" 
+          src="/assets/wellness/FormationAtelier.png" 
           alt="Formation et ateliers"
           className="w-full h-full object-cover blur-[0.5px] group-hover:scale-110 transition-transform duration-500"
         />
@@ -319,7 +319,7 @@ const Home = () => {
       <div className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white h-32">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
-          src="/src/assets/wellness/Mark&Comm1.png" 
+          src="/assets/wellness/Mark&Comm1.png" 
           alt="Marketing et communication"
           className="w-full h-full object-cover blur-[0.5px] group-hover:scale-110 transition-transform duration-500"
         />
@@ -365,7 +365,7 @@ const Home = () => {
                   <div className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white h-32">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
                     <img 
-                      src="/src/assets/wellness/LeadMan.png" 
+                      src="/assets/wellness/LeadMan.png" 
                       alt="background Nature Wellness"
                       className="w-full h-full object-cover blur-[0.5px] group-hover:scale-110 transition-transform duration-500"
                     />
@@ -405,7 +405,7 @@ const Home = () => {
                   <div className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white h-32">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
                     <img 
-                      src="/src/assets/wellness/Recherche.png" 
+                      src="/assets/wellness/Recherche.png" 
                       alt="background Nature Wellness"
                       className="w-full h-full object-cover blur-[0.5px] group-hover:scale-110 transition-transform duration-500"
                     />
@@ -453,7 +453,7 @@ const Home = () => {
                   <div className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white h-32">
                     <div className="absolute inset-0 bg-black/40 z-10"></div>
                     <img 
-                      src="/src/assets/wellness/Suivi.png" 
+                      src="/assets/wellness/Suivi.png" 
                       alt="background Nature Wellness"
                       className="w-full h-full object-cover blur-[0.5px] group-hover:scale-110 transition-transform duration-500"
                     />
@@ -479,7 +479,7 @@ const Home = () => {
                 <div className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white h-32">
                   <div className="absolute inset-0 bg-black/40 z-10"></div>
                   <img 
-                    src="/src/assets/wellness/Pack.png" 
+                    src="/assets/wellness/Pack.png" 
                     alt="background Nature Wellness"
                     className="w-full h-full object-cover blur-[0.5px] group-hover:scale-110 transition-transform duration-500"
                   />

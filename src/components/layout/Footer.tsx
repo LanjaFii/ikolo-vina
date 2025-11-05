@@ -37,7 +37,7 @@ const Footer = () => {
       <div 
         className="hidden lg:block absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('/src/assets/fondFooter.png')",
+          backgroundImage: "url('/assets/fondFooter.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -51,7 +51,7 @@ const Footer = () => {
             {/* Logo et informations principales */}
             <div className="flex flex-col items-center space-y-4">
               <img 
-                src="/src/assets/logos/ikolo-vina.png" 
+                src="/assets/logos/ikolo-vina.png" 
                 alt="Ikolo-Vina" 
                 className="h-16 w-auto"
               />
@@ -104,7 +104,7 @@ const Footer = () => {
                   className="bg-white/20 p-3 rounded-lg hover:bg-white/30 transition-all duration-200"
                 >
                   <img 
-                    src="/src/assets/logos/ikolo.png" 
+                    src="/assets/logos/ikolo.png" 
                     alt="Ikolo" 
                     className="h-8 w-auto"
                   />
@@ -117,7 +117,7 @@ const Footer = () => {
                   className="bg-white/20 p-3 rounded-lg hover:bg-white/30 transition-all duration-200"
                 >
                   <img 
-                    src="/src/assets/logos/vina.png" 
+                    src="/assets/logos/vina.png" 
                     alt="Vina Consulting" 
                     className="h-8 w-auto"
                   />
@@ -153,7 +153,7 @@ const Footer = () => {
                 className="flex flex-col items-start space-y-6 mt-4"
               >
                 <img 
-                  src="/src/assets/logos/ikolo-vina.png" 
+                  src="/assets/logos/ikolo-vina.png" 
                   alt="Ikolo-Vina" 
                   className="h-32 w-auto"
                 />
@@ -293,7 +293,7 @@ const Footer = () => {
                   >
                     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/15 transition-all duration-300 border border-white/20 shadow-lg w-full flex justify-center items-center">
                       <img 
-                        src="/src/assets/logos/ikolo.png" 
+                        src="/assets/logos/ikolo.png" 
                         alt="Ikolo" 
                         className="h-24 w-auto transition-transform duration-300 group-hover:scale-105"
                       />
@@ -309,7 +309,7 @@ const Footer = () => {
                   >
                     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/15 transition-all duration-300 border border-white/20 shadow-lg w-full flex justify-center items-center">
                       <img 
-                        src="/src/assets/logos/vina.png" 
+                        src="/assets/logos/vina.png" 
                         alt="Vina Consulting" 
                         className="h-24 w-auto transition-transform duration-300 group-hover:scale-105"
                       />

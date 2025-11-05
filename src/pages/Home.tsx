@@ -36,7 +36,7 @@ const Home = () => {
       <section className="relative bg-linear-to-r from-green-900 via-emerald-800 to-teal-900 text-white">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
-          src="/src/assets/ikoloVina/banniere.png" 
+          src="/assets/ikoloVina/banniere.png" 
           alt="Bannière Ikolo Vina"
           className="w-full h-[70vh] object-cover blur-[1px]"
         />
@@ -189,7 +189,7 @@ const Home = () => {
                 <div className="relative group flex justify-center">
                   <div className="absolute -inset-2 lg:-inset-4 bg-linear-to-r from-special-1/20 to-special-2/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <img 
-                    src="/src/assets/logos/ikolo-vina.png" 
+                    src="/assets/logos/ikolo-vina.png" 
                     alt="Consortium Ikolo-Vina"
                     className="relative h-32 lg:h-48 xl:h-64 w-auto transform group-hover:scale-105 transition-transform duration-500 mx-auto"
                   />
@@ -242,7 +242,7 @@ const Home = () => {
               {/* Logo Vina flottant en arrière-plan */}
               <div className="absolute inset-0 flex items-center justify-center z-0">
                 <img 
-                  src="/src/assets/logos/vina.png" 
+                  src="/assets/logos/vina.png" 
                   alt="Vina Consulting"
                   className="h-32 lg:h-40 opacity-10 animate-float"
                   style={{
@@ -258,7 +258,7 @@ const Home = () => {
                 </p>
                 <div className="flex justify-center">
                   <img 
-                    src="/src/assets/logos/vina.png" 
+                    src="/assets/logos/vina.png" 
                     alt="Vina Consulting"
                     className="h-10 lg:h-12 opacity-80"
                   />
@@ -269,7 +269,7 @@ const Home = () => {
             {/* Colonne 2 - Photo centrale */}
             <motion.div className="flex justify-center items-end" variants={fadeInScale}>
               <img 
-                src="/src/assets/ikoloVina/AnnaHoly.png" 
+                src="/assets/ikoloVina/AnnaHoly.png" 
                 alt="Felana Anna et Holiniaina Norohariliva"
                 className="max-h-96 w-auto object-contain" // <-- max-h pour pas étirer, object-contain pour garder proportions
               />
@@ -280,7 +280,7 @@ const Home = () => {
               {/* Logo Ikolo flottant en arrière-plan */}
               <div className="absolute inset-0 flex items-center justify-center z-0">
                 <img 
-                  src="/src/assets/logos/ikolo.png" 
+                  src="/assets/logos/ikolo.png" 
                   alt="Ikolo"
                   className="h-32 lg:h-40 opacity-10 animate-float"
                   style={{
@@ -296,7 +296,7 @@ const Home = () => {
                 </p>
                 <div className="flex justify-center">
                   <img 
-                    src="/src/assets/logos/ikolo.png" 
+                    src="/assets/logos/ikolo.png" 
                     alt="Ikolo"
                     className="h-10 lg:h-12 opacity-80"
                   />
@@ -310,7 +310,7 @@ const Home = () => {
             {/* Photo en premier */}
             <div className="flex justify-center">
               <img 
-                src="/src/assets/ikoloVina/AnnaHoly.png" 
+                src="/assets/ikoloVina/AnnaHoly.png" 
                 alt="Felana Anna et Holiniaina Norohariliva"
                 className="h-64 w-auto rounded-lg shadow-xl"
               />
@@ -332,7 +332,7 @@ const Home = () => {
                 </p>
                 <div className="flex justify-center mt-3">
                   <img 
-                    src="/src/assets/logos/vina.png" 
+                    src="/assets/logos/vina.png" 
                     alt="Vina Consulting"
                     className="h-8 opacity-80"
                   />
@@ -353,7 +353,7 @@ const Home = () => {
                 </p>
                 <div className="flex justify-center mt-3">
                   <img 
-                    src="/src/assets/logos/ikolo.png" 
+                    src="/assets/logos/ikolo.png" 
                     alt="Ikolo"
                     className="h-8 opacity-80"
                   />

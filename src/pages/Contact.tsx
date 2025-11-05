@@ -207,7 +207,7 @@ const Contact = () => {
       animate="animate"
       variants={staggerContainer}
       style={{
-        backgroundImage: "url('/src/assets/background.svg')",
+        backgroundImage: "url('/assets/background.svg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

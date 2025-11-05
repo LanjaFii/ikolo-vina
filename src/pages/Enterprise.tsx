@@ -11,7 +11,7 @@ const Entreprise = () => {
             <section className="relative bg-linear-to-r from-special-1 via-special-4 to-special-2 text-white py-16 lg:py-20">
                 <div className="absolute inset-0 bg-black/40 z-10"></div>
                 <img
-                    src="/src/assets/appui/banniere1.png"
+                    src="/assets/appui/banniere1.png"
                     alt="Appui à l'entreprenariat"
                     className="w-full h-full object-cover absolute inset-0 blur-[1px]"
                 />
@@ -66,7 +66,7 @@ const Entreprise = () => {
                             <div className="relative group">
                                 <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500">
                                     <img
-                                        src="/src/assets/appui/AppuiFormation.png"
+                                        src="/assets/appui/AppuiFormation.png"
                                         alt="Appui et Formation en Création d'Entreprise"
                                         className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
@@ -99,7 +99,7 @@ const Entreprise = () => {
                             <div className="relative group">
                                 <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500">
                                     <img
-                                        src="/src/assets/appui/accompagnement.png"
+                                        src="/assets/appui/accompagnement.png"
                                         alt="Accompagnement et Formation à la Gestion d'Entreprise"
                                         className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
@@ -132,7 +132,7 @@ const Entreprise = () => {
                             <div className="relative group">
                                 <div className="relative rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500">
                                     <img
-                                        src="/src/assets/appui/Digitalisation.png"
+                                        src="/assets/appui/Digitalisation.png"
                                         alt="Accompagnement à la Digitalisation d'Entreprise"
                                         className="w-full h-48 lg:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                                     />

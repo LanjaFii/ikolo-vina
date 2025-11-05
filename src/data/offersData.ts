@@ -16,7 +16,7 @@ export const offersData: Offer[] = [
     title: "Nature Wellness",
     shortDescription: "Programme phare pour révéler l'essence et la performance de votre centre de bien-être ou spa",
     icon: "🌿",
-    image: "/src/assets/offers/natureWellness.png",
+    image: "/assets/offers/natureWellness.png",
     fullDescription:
       "Découvrez notre programme phare 'Nature & Wellness Consulting', conçu pour révéler l'essence et la performance de votre centre de bien-être ou spa à travers les plantes médicinales et aromatiques et les savoirs durables de Madagascar. Inspiré par la biodiversité exceptionnelle de l'île, ce programme transforme les espaces wellness en expériences immersives, sensorielles et régénérantes, alignées sur les tendances holistiques mondiales.",
     features: [
@@ -41,7 +41,7 @@ export const offersData: Offer[] = [
     title: "Communication Digitale",
     shortDescription: "Renforcement de la présence web et réseaux sociaux pour une visibilité accrue",
     icon: "💻",
-    image: "/src/assets/offers/online.png",
+    image: "/assets/offers/online.png",
     fullDescription:
       "Objectif : Renforcer la présence des PME sur le web et les réseaux sociaux pour une visibilité accrue et un engagement durable. Nous proposons des stratégies digitales complètes incluant audit, création de contenu, campagnes ciblées et formation pour autonomiser vos équipes.",
     features: [
@@ -65,7 +65,7 @@ export const offersData: Offer[] = [
     title: "Événementiel",
     shortDescription: "Organisation d'événements sur mesure pour développer votre réseau et crédibilité",
     icon: "🎯",
-    image: "/src/assets/offers/events.png",
+    image: "/assets/offers/events.png",
     fullDescription:
       "Objectif : Permettre aux PME de se faire connaître, de développer leur réseau et de renforcer leur crédibilité via des événements sur mesure. Nous concevons et organisons des événements adaptés à vos besoins avec gestion complète de la logistique à la communication.",
     features: [
@@ -88,7 +88,7 @@ export const offersData: Offer[] = [
     title: "Appui à l'Entrepreneuriat",
     shortDescription: "Soutien aux entrepreneurs malgaches à chaque étape de leur parcours",
     icon: "🚀",
-    image: "/src/assets/offers/enterprise.png",
+    image: "/assets/offers/enterprise.png",
     fullDescription:
       "Nous soutenons les entrepreneurs malgaches à chaque étape de leur parcours pour une croissance inclusive et durable. De la création à la gestion en passant par la digitalisation, nous accompagnons votre développement avec des outils adaptés au contexte local.",
     features: [
@@ -111,7 +111,7 @@ export const offersData: Offer[] = [
     title: "Accompagnement RSE",
     shortDescription: "Intégration de la RSE pour un impact positif sur l'environnement et la société",
     icon: "🌍",
-    image: "/src/assets/offers/rse.png",
+    image: "/assets/offers/rse.png",
     fullDescription:
       "Intégrez la Responsabilité Sociétale des Entreprises (RSE) pour un impact positif sur l'environnement et la société. Nous vous accompagnons dans la mise en place de stratégies RSE concrètes adaptées au contexte malgache, de l'optimisation énergétique au développement communautaire.",
     features: [

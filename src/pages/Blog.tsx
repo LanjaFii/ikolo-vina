@@ -43,14 +43,14 @@ const articlesData: Article[] = [
     date: "2022-2023",
     readTime: "5 min",
     images: [
-      "/src/assets/blog/SIAE 1.jpg",
-      "/src/assets/blog/SIAE 2.jpg",
-      "/src/assets/blog/SIAE 3.jpg",
-      "/src/assets/blog/SIAE 4.jpg",
-      "/src/assets/blog/SIAE 5.jpg",
-      "/src/assets/blog/SIAE 6.jpg",
-      "/src/assets/blog/SIAE 7.jpg",
-      "/src/assets/blog/SIAE 8.jpg"
+      "/assets/blog/SIAE 1.jpg",
+      "/assets/blog/SIAE 2.jpg",
+      "/assets/blog/SIAE 3.jpg",
+      "/assets/blog/SIAE 4.jpg",
+      "/assets/blog/SIAE 5.jpg",
+      "/assets/blog/SIAE 6.jpg",
+      "/assets/blog/SIAE 7.jpg",
+      "/assets/blog/SIAE 8.jpg"
     ],
     content: `
       Depuis sa création, le Salon International des Acteurs Économiques (SIAE) s'est imposé comme une plateforme incontournable de rencontres, de réflexion et de collaboration entre les forces vives de l'économie malgache. Lors de ses deux premières éditions — en 2022 et 2023 — Holiniaina Rakotomalala Norohariliva, fondatrice d'IKOLO, a joué un rôle central dans la conception, la coordination et le rayonnement de cet événement d'envergure, au niveau national comme au niveau international.
@@ -76,9 +76,9 @@ const articlesData: Article[] = [
     date: "2022-2023",
     readTime: "6 min",
     images: [
-      "/src/assets/blog/inim1.jpeg.jpg",
-      "/src/assets/blog/inim2.JPG",
-      "/src/assets/blog/inim3.JPG"
+      "/assets/blog/inim1.jpeg.jpg",
+      "/assets/blog/inim2.JPG",
+      "/assets/blog/inim3.JPG"
     ],
     content: `
       🌿 **INIM : CONGRES SUR LA VALORISATION DES MATIERES PREMIERES VEGETALES ISSUES DES TERRES MALGACHES ET LA VALORISATION DE LEURS ECHANGES COMMERCIAUX NATIONAUX ET INTERNATIONAUX**
@@ -110,10 +110,10 @@ const articlesData: Article[] = [
     date: "8 Février 2025",
     readTime: "4 min",
     images: [
-      "/src/assets/blog/DT1.jpg",
-      "/src/assets/blog/DT2.jpg",
-      "/src/assets/blog/DT3.jpg",
-      "/src/assets/blog/DT4.jpg"
+      "/assets/blog/DT1.jpg",
+      "/assets/blog/DT2.jpg",
+      "/assets/blog/DT3.jpg",
+      "/assets/blog/DT4.jpg"
     ],
     content: `
       🌿 **Atelier Design Thinking : une immersion collaborative entre 2M Consulting, IKOLO et VINA**
@@ -135,13 +135,13 @@ const articlesData: Article[] = [
     date: "24 Juin 2025",
     readTime: "5 min",
     images: [
-      "/src/assets/blog/kengo1.jpeg",
-      "/src/assets/blog/kengo2.jpeg",
-      "/src/assets/blog/kengo3.jpeg",
-      "/src/assets/blog/kengo4.jpeg",
-      "/src/assets/blog/kengo5.jpeg",
-      "/src/assets/blog/kengo6.jpeg",
-      "/src/assets/blog/kengo7.jpg"
+      "/assets/blog/kengo1.jpeg",
+      "/assets/blog/kengo2.jpeg",
+      "/assets/blog/kengo3.jpeg",
+      "/assets/blog/kengo4.jpeg",
+      "/assets/blog/kengo5.jpeg",
+      "/assets/blog/kengo6.jpeg",
+      "/assets/blog/kengo7.jpg"
     ],
     content: `
       **KENGO KUMA DAY : UNE JOURNEE DEDIEE AU CELEBRE ARCHITECTE JAPONAIS KENGO KUMA**
@@ -208,7 +208,7 @@ const Blog = () => {
       <section className="relative bg-linear-to-r from-special-1 via-special-4 to-special-2 text-white py-16 lg:py-20">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img
-          src="/src/assets/blog/banniere.png"
+          src="/assets/blog/banniere.png"
           alt="Blog Ikolo Vina"
           className="w-full h-full object-cover absolute inset-0 blur-[1px]"
         />

@@ -25,7 +25,7 @@ const Rse = () => {
       title: "Optimisation Énergétique",
       description: "Audits énergétiques et solutions renouvelables pour réduire votre empreinte carbone et vos coûts.",
       benefits: ["Audit énergétique complet", "Solutions solaires et renouvelables", "Réduction empreinte carbone", "Économies durables"],
-      image: "/src/assets/rse/service-energie.png",
+      image: "/assets/rse/service-energie.png",
       alt: "Installation de panneaux solaires sur le toit d'une entreprise malgache"
     },
     {
@@ -33,7 +33,7 @@ const Rse = () => {
       title: "Gestion des Déchets",
       description: "Stratégie zéro déchet et valorisation des ressources dans une logique d'économie circulaire.",
       benefits: ["Stratégie zéro déchet", "Recyclage et valorisation", "Réduction des plastiques", "Économie circulaire"],
-      image: "/src/assets/rse/service-dechets.png",
+      image: "/assets/rse/service-dechets.png",
       alt: "Système de tri et recyclage des déchets dans une entreprise malgache"
     },
     {
@@ -41,7 +41,7 @@ const Rse = () => {
       title: "Bien-Être au Travail",
       description: "Programmes de wellness et amélioration de la qualité de vie pour vos collaborateurs.",
       benefits: ["Programmes de wellness", "Qualité de vie au travail", "Équilibre vie pro/perso", "Environnement de travail sain"],
-      image: "/src/assets/rse/service-bienetre.png",
+      image: "/assets/rse/service-bienetre.png",
       alt: "Espace de bien-être et détente pour employés dans une entreprise"
     },
     {
@@ -49,7 +49,7 @@ const Rse = () => {
       title: "Développement Local",
       description: "Soutien aux AGR et création de partenariats inclusifs avec les communautés malgaches.",
       benefits: ["Soutien aux petits producteurs", "Circuits courts et équitables", "Développement communautaire", "Partenariats inclusifs"],
-      image: "/src/assets/rse/service-agriculture.png",
+      image: "/assets/rse/service-agriculture.png",
       alt: "Projet d'agriculture durable avec communauté locale malgache"
     },
     {
@@ -57,7 +57,7 @@ const Rse = () => {
       title: "Ressources Locales",
       description: "Intégration des ressources naturelles malgaches dans votre chaîne de valeur durable.",
       benefits: ["Chaînes d'approvisionnement durables", "Produits locaux et bio", "Préservation biodiversité", "Innovation éco-responsable"],
-      image: "/src/assets/rse/service-ressources.png",
+      image: "/assets/rse/service-ressources.png",
       alt: "Valorisation des produits locaux malgaches dans une chaîne de valeur durable"
     }
   ];
@@ -67,7 +67,7 @@ const Rse = () => {
       icon: <Target className="w-10 h-10" />,
       title: "Impact Concret",
       description: "Des résultats mesurables qui transforment votre entreprise et son environnement",
-      image: "/src/assets/rse/valeur-impact.png",
+      image: "/assets/rse/valeur-impact.png",
       alt: "Projet RSE montrant des résultats concrets de transformation",
       color: "from-blue-500 to-cyan-400"
     },
@@ -75,7 +75,7 @@ const Rse = () => {
       icon: <Award className="w-10 h-10" />,
       title: "Excellence Durable",
       description: "Une approche qualité qui garantit la pérennité de vos initiatives RSE",
-      image: "/src/assets/rse/valeur-excellence.png",
+      image: "/assets/rse/valeur-excellence.png",
       alt: "Certification et reconnaissance de l'excellence durable",
       color: "from-emerald-500 to-green-400"
     },
@@ -83,7 +83,7 @@ const Rse = () => {
       icon: <TrendingUp className="w-10 h-10" />,
       title: "Croissance Responsable",
       description: "Allier performance économique et responsabilité sociétale pour un développement harmonieux",
-      image: "/src/assets/rse/valeur-croissance.png",
+      image: "/assets/rse/valeur-croissance.png",
       alt: "Graphique montrant une croissance économique responsable",
       color: "from-amber-500 to-orange-400"
     },
@@ -91,7 +91,7 @@ const Rse = () => {
       icon: <Users className="w-10 h-10" />,
       title: "Engagement Communautaire",
       description: "Créer de la valeur partagée avec les communautés locales malgaches",
-      image: "/src/assets/rse/valeur-communautaire.png",
+      image: "/assets/rse/valeur-communautaire.png",
       alt: "Communauté locale collaborant sur un projet RSE",
       color: "from-purple-500 to-pink-400"
     }
@@ -127,7 +127,7 @@ const Rse = () => {
       <section className="relative bg-linear-to-r from-special-1 via-special-4 to-special-2 text-white py-16 lg:py-20">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img
-          src="/src/assets/rse/hero-rse.png"
+          src="/assets/rse/hero-rse.png"
           alt="Équipe IKOLO-VINA en projet RSE de reforestation avec communauté locale malgache"
           className="w-full h-full object-cover absolute inset-0 blur-[1px]"
         />

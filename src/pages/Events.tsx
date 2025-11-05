@@ -13,7 +13,7 @@ const Events = () => {
       <section className="relative bg-linear-to-r from-special-1 via-special-4 to-special-2 text-white py-16 lg:py-20">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img
-          src="/src/assets/events/banniere.png"
+          src="/assets/events/banniere.png"
           alt="Événementiel Ikolo Vina"
           className="w-full h-full object-cover absolute inset-0 blur-[1px]"
         />
@@ -47,7 +47,7 @@ const Events = () => {
               {/* Colonne Image */}
               <div className="relative">
                 <img 
-                  src="/src/assets/events/holy.png" 
+                  src="/assets/events/holy.png" 
                   alt="Conception & Organisation Événementielle"
                   className="w-full h-full object-cover"
                 />
@@ -151,7 +151,7 @@ const Events = () => {
               {/* Colonne Image */}
               <div className="relative order-1 lg:order-2">
                 <img 
-                  src="/src/assets/events/annah.png" 
+                  src="/assets/events/annah.png" 
                   alt="Gestion Complète d'Événements"
                   className="w-full h-full object-cover"
                 />
@@ -167,7 +167,7 @@ const Events = () => {
               {/* Colonne Image */}
               <div className="relative">
                 <img 
-                  src="/src/assets/events/hasina.png" 
+                  src="/assets/events/hasina.png" 
                   alt="Formats Hybrides et Internationaux"
                   className="w-full h-full object-cover"
                 />
