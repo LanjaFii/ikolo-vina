@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, Clock, X, ChevronLeft, ChevronRight, Target, Puzzle, Megaphone, Handshake, Leaf } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { ComponentType, SVGProps } from 'react';
 
 // Animations
@@ -20,6 +20,21 @@ const staggerContainer = {
       staggerChildren: 0.2
     }
   }
+};
+
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 300 : -300,
+    opacity: 0
+  }),
+  center: {
+    x: 0,
+    opacity: 1
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 300 : -300,
+    opacity: 0
+  })
 };
 
 interface Article {
@@ -53,7 +68,7 @@ const articlesData: Article[] = [
       "/assets/blog/SIAE 8.jpg"
     ],
     content: `
-      Depuis sa création, le Salon International des Acteurs Économiques (SIAE) s'est imposé comme une plateforme incontournable de rencontres, de réflexion et de collaboration entre les forces vives de l'économie malgache. Lors de ses deux premières éditions — en 2022 et 2023 — Holiniaina Rakotomalala Norohariliva, fondatrice d'IKOLO, a joué un rôle central dans la conception, la coordination et le rayonnement de cet événement d'envergure, au niveau national comme au niveau international.
+      Depuis sa création, le Salon International des Acteurs Économiques (SIAE) s'est imposé comme une plateforme incontournable de rencontres, de réflexion et de collaboration entre les forces vives de l'économie malgache. Lors de ses deux premières éditions — en 2022 et en 2023 — Holiniaina Rakotomalala Norohariliva, fondatrice d'IKOLO, a joué un rôle central dans la conception, la coordination et le rayonnement de cet événement d'envergure, au niveau national comme au niveau international.
 
       🎯 **Une direction stratégique au service de l'ouverture**
       En tant que Directrice des relations extérieures du SIAE sur les deux éditions, Holiniaina a orchestré les liens institutionnels, diplomatiques et sectoriels qui ont permis au salon de s'ancrer dans les dynamiques nationales et régionales. Grâce à son sens aigu de la diplomatie et sa capacité à valoriser les talents locaux, elle a su positionner le SIAE comme un espace de convergence entre acteurs publics, privés et internationaux.
@@ -165,10 +180,14 @@ const articlesData: Article[] = [
 const Blog = () => {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [direction, setDirection] = useState<number>(0);
+  const [hoverImageIndex, setHoverImageIndex] = useState<{ [key: number]: number }>({});
+  const hoverIntervalRef = useRef<{ [key: number]: number }>({});
 
   const openModal = (article: Article) => {
     setSelectedArticle(article);
     setCurrentImageIndex(0);
+    setDirection(0);
     document.body.style.overflow = 'hidden';
   };
 
@@ -179,6 +198,7 @@ const Blog = () => {
 
   const nextImage = () => {
     if (!selectedArticle) return;
+    setDirection(1);
     setCurrentImageIndex((prev) => 
       prev === selectedArticle.images.length - 1 ? 0 : prev + 1
     );
@@ -186,101 +206,178 @@ const Blog = () => {
 
   const prevImage = () => {
     if (!selectedArticle) return;
+    setDirection(-1);
     setCurrentImageIndex((prev) => 
       prev === 0 ? selectedArticle.images.length - 1 : prev - 1
     );
   };
 
-  // Auto-scroll des images
+  // Gestion du survol des articles
+  const handleArticleHover = (articleId: number, article: Article) => {
+    if (article.images.length > 1) {
+      // Démarrer le défilement automatique pour cet article
+      hoverIntervalRef.current[articleId] = window.setInterval(() => {
+        setHoverImageIndex(prev => ({
+          ...prev,
+          [articleId]: ((prev[articleId] || 0) + 1) % article.images.length
+        }));
+      }, 2000); // Change d'image toutes les 2 secondes
+    }
+  };
+
+  const handleArticleLeave = (articleId: number) => {
+    if (hoverIntervalRef.current[articleId]) {
+      clearInterval(hoverIntervalRef.current[articleId]);
+      delete hoverIntervalRef.current[articleId];
+    }
+  };
+
+  // Auto-scroll des images dans la modal
   useEffect(() => {
     if (!selectedArticle) return;
-    const interval = setInterval(() => {
+    const interval = window.setInterval(() => {
+      setDirection(1);
       setCurrentImageIndex((prev) =>
         prev === selectedArticle.images.length - 1 ? 0 : prev + 1
       );
-    }, 5000); // Change d'image toutes les 5 secondes
+    }, 5000);
     return () => clearInterval(interval);
   }, [selectedArticle]);
 
+  // Nettoyer les intervalles à la destruction
+  useEffect(() => {
+    return () => {
+      Object.values(hoverIntervalRef.current).forEach(interval => clearInterval(interval));
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-linear-to-br from-white via-gray-50/50 to-special-4/10">
       {/* Section Hero */}
       <section className="relative bg-linear-to-r from-special-1 via-special-4 to-special-2 text-white py-16 lg:py-20">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-black/30 z-10"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent z-20"></div>
         <img
           src="/assets/blog/banniere.png"
           alt="Blog Ikolo Vina"
           className="w-full h-full object-cover absolute inset-0 blur-[1px]"
         />
-        <div className="container mx-auto px-4 relative z-20">
+        <div className="container mx-auto px-4 relative z-30">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
             className="text-center max-w-4xl mx-auto"
           >
-            <Badge variant="secondary" className="mb-4 bg-special-1/80 backdrop-blur-sm text-white border-none">
-              Actualités & Réalisations
-            </Badge>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              Nos <span className="text-special-1">Articles</span>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+            </motion.div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
+              Nos <span className="text-special-3 drop-shadow-lg">Articles</span>
             </h1>
-            <p className="text-base md:text-lg lg:text-xl mb-6 text-gray-100 leading-relaxed">
-              Retour sur les événements marquants qui ont façonné notre expertise 
-              en organisation et coordination d'événements.
+            <p className="text-lg md:text-xl lg:text-2xl mb-8 text-gray-100 leading-relaxed font-light max-w-3xl mx-auto">
+              Découvrez les événements marquants qui ont façonné notre expertise 
+              en organisation et coordination d'événements d'exception.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Section Articles */}
-      <section className="py-16 bg-linear-to-br from-white to-gray-50/30">
-        <div className="container mx-auto px-4">
-
+      <section className="py-5 lg:pt-5 pb-15 relative">
+        <div className="absolute inset-0 bg-linear-to-b from-transparent to-gray-50/20 pointer-events-none"></div>
+        <div className="container mx-auto px-4 relative">
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, margin: "-100px" }}
           >
             {articlesData.map((article) => (
-              <motion.div key={article.id} variants={fadeInUp}>
+              <motion.div 
+                key={article.id} 
+                variants={fadeInUp}
+                className="group"
+                onMouseEnter={() => handleArticleHover(article.id, article)}
+                onMouseLeave={() => handleArticleLeave(article.id)}
+              >
                 <Card 
-                  className="hover:shadow-2xl transition-all duration-500 group cursor-pointer bg-white/70 backdrop-blur-sm border-0 overflow-hidden"
+                  className="hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white/80 backdrop-blur-sm border border-gray-100/50 overflow-hidden hover:border-special-1/20 h-full flex flex-col"
                   onClick={() => openModal(article)}
                 >
-                  <div className="relative overflow-hidden">
-                    <img 
-                      src={article.images[0]} 
-                      alt={article.title}
-                      className="w-full h-48 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
-                    <Badge className="absolute top-4 left-4 bg-special-1 text-white border-none">
-                      {article.category}
-                    </Badge>
+                  <div className="relative overflow-hidden h-64 lg:h-80">
+                    <AnimatePresence mode="wait" custom={direction}>
+                      <motion.img 
+                        key={hoverImageIndex[article.id] || 0}
+                        src={article.images[hoverImageIndex[article.id] || 0]}
+                        alt={article.title}
+                        className="w-full h-full object-cover absolute inset-0"
+                        custom={direction}
+                        variants={slideVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{ duration: 0.3 }}
+                      />
+                    </AnimatePresence>
+                    
+                    {/* Badge */}
+                    <div className="absolute top-4 left-4 z-20">
+                      <Badge className="bg-special-1/95 backdrop-blur-sm text-white border-none shadow-lg px-3 py-1.5 text-xs font-semibold">
+                        {article.category}
+                      </Badge>
+                    </div>
+
+                    {/* Image counter */}
+                    {article.images.length > 1 && (
+                      <div className="absolute top-4 right-4 z-20">
+                        <div className="bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full">
+                          {((hoverImageIndex[article.id] || 0) + 1)} / {article.images.length}
+                        </div>
+                      </div>
+                    )}
                   </div>
                   
-                  <CardContent className="p-6 lg:p-8">
+                  <CardContent className="p-6 lg:p-8 flex-1 flex flex-col">
                     <div className="flex items-center text-gray-500 text-sm mb-4">
-                      <Calendar className="h-4 w-4 mr-2" />
-                      <span className="mr-4">{article.date}</span>
-                      <Clock className="h-4 w-4 mr-2" />
-                      <span>{article.readTime}</span>
+                      <Calendar className="h-4 w-4 mr-2 text-special-1" />
+                      <span className="mr-4 font-medium">{article.date}</span>
+                      <Clock className="h-4 w-4 mr-2 text-special-1" />
+                      <span className="font-medium">{article.readTime}</span>
                     </div>
                     
-                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-special-1 transition-colors duration-300">
+                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-special-1 transition-colors duration-300 leading-tight min-h-14 flex items-start">
                       {article.title}
                     </h3>
                     
-                    <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3">
+                    <p className="text-gray-600 leading-relaxed mb-6 line-clamp-2 text-base font-light min-h-12 flex items-start">
                       {article.excerpt}
                     </p>
                     
-                    <div className="flex items-center text-special-1 font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                      Lire la suite
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-100 group-hover:border-special-1/30 transition-colors duration-300 mt-auto">
+                      <span className="text-special-1 font-semibold group-hover:translate-x-2 transition-transform duration-300 flex items-center">
+                        Lire la suite
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </span>
+                      <div className="flex space-x-1">
+                        {article.images.slice(0, 3).map((_, index) => (
+                          <div 
+                            key={index}
+                            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                              (hoverImageIndex[article.id] || 0) === index 
+                                ? 'bg-special-1' 
+                                : 'bg-gray-300'
+                            }`}
+                          />
+                        ))}
+                        {article.images.length > 3 && (
+                          <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                        )}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -297,28 +394,33 @@ const Blog = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={closeModal}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-2xl max-w-4xl max-h-[90vh] overflow-hidden flex flex-col w-full"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25 }}
+              className="bg-white rounded-2xl max-w-4xl max-h-[95vh] overflow-hidden flex flex-col w-full shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex justify-between items-center p-2 border-b border-gray-200">
-                <div>
-                  <Badge className="bg-special-1 text-white border-none">
+              <div className="flex justify-between items-center p-6 border-b border-gray-100 bg-linear-to-r from-white to-gray-50/50">
+                <div className="flex items-center space-x-4">
+                  <Badge className="bg-special-1 text-white border-none shadow-lg px-4 py-2">
                     {selectedArticle.category}
                   </Badge>
+                  <div className="flex items-center text-gray-500 text-sm">
+                    <Calendar className="h-4 w-4 mr-1" />
+                    <span>{selectedArticle.date}</span>
+                  </div>
                 </div>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={closeModal}
-                  className="hover:bg-gray-100 rounded-full"
+                  className="hover:bg-gray-100 rounded-full transition-all duration-200 hover:scale-110"
                 >
                   <X className="h-5 w-5" />
                 </Button>
@@ -327,17 +429,19 @@ const Blog = () => {
               {/* Content */}
               <div className="flex-1 overflow-y-auto">
                 {/* Carousel d'images */}
-                <div className="relative h-80 lg:h-96 bg-gray-100">
-                  <AnimatePresence mode="wait">
+                <div className="relative h-80 lg:h-96 bg-linear-to-br from-gray-100 to-gray-200 overflow-hidden">
+                  <AnimatePresence mode="wait" custom={direction}>
                     <motion.img
                       key={currentImageIndex}
                       src={selectedArticle.images[currentImageIndex]}
                       alt={`${selectedArticle.title} - Image ${currentImageIndex + 1}`}
-                      className="w-full h-full object-cover"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
+                      className="w-full h-full object-cover absolute inset-0"
+                      custom={direction}
+                      variants={slideVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.3 }}
                     />
                   </AnimatePresence>
 
@@ -348,84 +452,97 @@ const Blog = () => {
                         variant="ghost"
                         size="icon"
                         onClick={prevImage}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full"
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110"
                       >
-                        <ChevronLeft className="h-5 w-5" />
+                        <ChevronLeft className="h-6 w-6" />
                       </Button>
                       <Button
                         variant="ghost"
                         size="icon"
                         onClick={nextImage}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110"
                       >
-                        <ChevronRight className="h-5 w-5" />
+                        <ChevronRight className="h-6 w-6" />
                       </Button>
                     </>
                   )}
 
                   {/* Indicators */}
                   {selectedArticle.images.length > 1 && (
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3">
                       {selectedArticle.images.map((_, index) => (
                         <button
                           key={index}
-                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                          className={`w-3 h-3 rounded-full transition-all duration-300 shadow-lg ${
+                            index === currentImageIndex 
+                              ? 'bg-white scale-125' 
+                              : 'bg-white/50 hover:bg-white/80'
                           }`}
-                          onClick={() => setCurrentImageIndex(index)}
+                          onClick={() => {
+                            setDirection(index > currentImageIndex ? 1 : -1);
+                            setCurrentImageIndex(index);
+                          }}
                         />
                       ))}
                     </div>
                   )}
+
+                  {/* Image counter */}
+                  <div className="absolute top-6 right-6 bg-black/50 backdrop-blur-sm text-white text-sm px-3 py-1.5 rounded-full">
+                    {currentImageIndex + 1} / {selectedArticle.images.length}
+                  </div>
                 </div>
 
                 {/* Contenu de l'article */}
-                <div className="p-6 lg:p-8">
-                  <div className="flex items-center text-gray-500 text-sm mb-4">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span className="mr-4">{selectedArticle.date}</span>
-                    <Clock className="h-4 w-4 mr-2" />
-                    <span>{selectedArticle.readTime}</span>
-                  </div>
+                <div className="p-8 lg:p-12">
+                  <div className="max-w-4xl mx-auto">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8 leading-tight tracking-tight">
+                      {selectedArticle.title}
+                    </h2>
 
-                  <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
-                    {selectedArticle.title}
-                  </h2>
-
-                  <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-                    {selectedArticle.content.split('\n\n').map((paragraph, pIndex) => (
-                      <p key={pIndex} className="mb-4">
-                        {paragraph.split('**').map((text, i) => {
-                          const renderTextWithIcons = (input: string, keyBase: string | number) => {
-                            const ICON_MAP: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
-                              '🎯': Target,
-                              '🧩': Puzzle,
-                              '📣': Megaphone,
-                              '🤝': Handshake,
-                              '🌿': Leaf,
-                              '🌱': Leaf
+                    <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                      {selectedArticle.content.split('\n\n').map((paragraph, pIndex) => (
+                        <motion.p 
+                          key={pIndex} 
+                          className="mb-6 text-lg leading-8"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: pIndex * 0.1 }}
+                        >
+                          {paragraph.split('**').map((text, i) => {
+                            const renderTextWithIcons = (input: string, keyBase: string | number) => {
+                              const ICON_MAP: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
+                                '🎯': Target,
+                                '🧩': Puzzle,
+                                '📣': Megaphone,
+                                '🤝': Handshake,
+                                '🌿': Leaf,
+                                '🌱': Leaf
+                              };
+                              const escapeRegExp = (s: string) => s.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+                              const keys = Object.keys(ICON_MAP).map(escapeRegExp);
+                              const re = new RegExp(`(${keys.join('|')})`, 'g');
+                              const parts = input.split(re);
+                              return parts.map((part, idx) => {
+                                if (ICON_MAP[part]) {
+                                  const Icon = ICON_MAP[part];
+                                  return <Icon key={`${keyBase}-icon-${idx}`} className="inline mr-3 h-5 w-5 text-special-1 align-text-bottom" />;
+                                }
+                                return part;
+                              });
                             };
-                            const escapeRegExp = (s: string) => s.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
-                            const keys = Object.keys(ICON_MAP).map(escapeRegExp);
-                            const re = new RegExp(`(${keys.join('|')})`, 'g');
-                            const parts = input.split(re);
-                            return parts.map((part, idx) => {
-                              if (ICON_MAP[part]) {
-                                const Icon = ICON_MAP[part];
-                                return <Icon key={`${keyBase}-icon-${idx}`} className="inline mr-2 h-4 w-4 text-special-1 align-text-bottom" />;
-                              }
-                              return part;
-                            });
-                          };
 
-                          return i % 2 === 1 ? (
-                            <strong key={i} className="text-special-1">{renderTextWithIcons(text, `${pIndex}-${i}`)}</strong>
-                          ) : (
-                            <span key={i}>{renderTextWithIcons(text, `${pIndex}-${i}`)}</span>
-                          );
-                        })}
-                      </p>
-                    ))}
+                            return i % 2 === 1 ? (
+                              <strong key={i} className="text-special-1 font-semibold bg-linear-to-r from-special-1 to-special-2 bg-clip-text text-transparent">
+                                {renderTextWithIcons(text, `${pIndex}-${i}`)}
+                              </strong>
+                            ) : (
+                              <span key={i}>{renderTextWithIcons(text, `${pIndex}-${i}`)}</span>
+                            );
+                          })}
+                        </motion.p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

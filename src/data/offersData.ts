@@ -63,7 +63,7 @@ export const offersData: Offer[] = [
   {
     id: 3,
     title: "Événementiel",
-    shortDescription: "Organisation d'événements sur mesure pour développer votre réseau et crédibilité",
+    shortDescription: "Organisation d'événements sur mesure pour développer votre réseau et votre crédibilité",
     icon: "🎯",
     image: "/assets/offers/events.png",
     fullDescription:
@@ -86,7 +86,7 @@ export const offersData: Offer[] = [
   {
     id: 4,
     title: "Appui à l'Entrepreneuriat",
-    shortDescription: "Soutien aux entrepreneurs malgaches à chaque étape de leur parcours",
+    shortDescription: "Soutien aux entrepreneurs et porteur de projet",
     icon: "🚀",
     image: "/assets/offers/enterprise.png",
     fullDescription:

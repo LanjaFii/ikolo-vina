@@ -370,7 +370,7 @@ const Digital = () => {
             </section>
 
             {/* Section Pourquoi Nous Choisir */}
-            <section className="pt-16 pb-2 bg-linear-to-br from-special-1/10 to-special-2/10">
+            <section className="pt-16 pb-2 bg-linear-to-br from-white to-gray-50/30">
                 <div className="container mx-auto px-8 lg:px-16">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                         <motion.div
@@ -418,7 +418,7 @@ const Digital = () => {
                             className="text-center"
                         >
                             <img
-                                src="/assets/offers/online.png"
+                                src="/assets/digital/ikoloVinaDigital.png"
                                 alt="Équipe IKOLO-VINA"
                                 className="rounded-xl shadow-lg max-w-md mx-auto"
                             />
@@ -428,7 +428,7 @@ const Digital = () => {
             </section>
 
             {/* Section CTA Finale */}
-            <section className="py-5 bg-linear-to-br from-gray-50 to-white">
+            <section className="py-5 bg-linear-to-br from-white to-gray-50/30">
                 <div className="container mx-auto px-4">
                     <motion.div
                         className="text-center mt-2 pt-2 border-t border-gray-200/50"

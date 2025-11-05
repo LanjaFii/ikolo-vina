@@ -172,7 +172,7 @@ const Footer = () => {
                   </div>
                   <div className="flex items-start gap-3 text-white/80">
                     <MapPin size={18} className="mt-0.5" />
-                    <span>Rue Pasteur<br />Antanimena, Antananarivo 101</span>
+                    <span>Antanimena, Antananarivo 101</span>
                   </div>
                 </div>
 

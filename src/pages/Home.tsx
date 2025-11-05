@@ -252,7 +252,9 @@ const Home = () => {
               </div>
               
               <div className="relative z-10 space-y-4">
-                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Felana Anna RAMAHANDRISON</h3>
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">
+                  Felana Anna<br />RAMAHANDRISON
+                </h3>
                 <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
                   Avec une solide expérience en organisation d’événements et communication institutionnelle, elle excelle dans la mise en relation de partenaires publics et privés. Diplômée en Management du Tourisme Durable et en Communication & Marketing, elle a piloté plus de 15 événements majeurs, favorisant des collaborations efficaces. Spécialiste des campagnes hybrides, elle met l’accent sur l’inclusion, l’impact social et la promotion du développement durable.
                 </p>
@@ -290,9 +292,9 @@ const Home = () => {
               </div>
               
               <div className="relative z-10 space-y-4">
-                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Holiniaina Norohariliva RAKOTOMALALA</h3>
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Holiniaina Norohariliva<br />RAKOTOMALALA</h3>
                 <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-                  Elle valorise la biodiversité malgache grâce à son expertise en procédés chimiques, formulation cosmétique et gestion durable des ressources naturelles. Forte de plus de 15 ans d’expérience et d’une formation en chimie appliquée, elle conçoit des conférences adaptées aux enjeux locaux et internationaux. Appuyée par un réseau d’experts, elle développe des formulations éco-responsables à base d’huiles essentielles endémiques, alliant protection des écosystèmes et création de valeur pour les communautés.
+                  Elle valorise la biodiversité malgache grâce à son expertise en procédés chimiques, formulation cosmétique et gestion durable des ressources naturelles. Forte de plus de 15 ans d’expérience et d’une formation en chimie appliquée, elle conçoit des conférences adaptées aux enjeux locaux et internationaux. Appuyée par un réseau d’experts, elle développe des formulations éco-responsables à base d'actifs biothérapeutiques et d’huiles essentielles, alliant protection des écosystèmes et création de valeur pour les communautés.
                 </p>
                 <div className="flex justify-center">
                   <img 
@@ -322,7 +324,7 @@ const Home = () => {
               <div className="text-center space-y-4">
                 <div className="flex justify-center items-center gap-3 mb-3">
                   <Star className="h-5 w-5 text-special-1" />
-                  <h3 className="text-lg font-bold text-gray-900">Felana Anna RAMAHANDRISON</h3>
+                  <h3 className="text-lg font-bold text-gray-900">Felana Anna<br />RAMAHANDRISON</h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-xs">
                   Entrepreneuse visionnaire et fondatrice de Vina Consulting, 
@@ -343,7 +345,7 @@ const Home = () => {
               <div className="text-center space-y-4">
                 <div className="flex justify-center items-center gap-3 mb-3">
                   <Star className="h-5 w-5 text-special-2" />
-                  <h3 className="text-lg font-bold text-gray-900">Holiniaina Norohariliva RAKOTOMALALA</h3>
+                  <h3 className="text-lg font-bold text-gray-900">Holiniaina Norohariliva<br />RAKOTOMALALA</h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-xs">
                   Fondatrice d'Ikolo, entreprise spécialisée dans les produits 
@@ -411,7 +413,7 @@ const Home = () => {
                     Ils nous ont <span className="text-special-1">fait confiance</span>
                   </h2>
                   <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Découvrez les entreprises et organisations qui nous ont choisi pour leurs projets
+                    Découvrez les entreprises et organisations qui nous ont collaboré avec nous
                   </p>
                 </div>
 

@@ -176,7 +176,7 @@ const Entreprise = () => {
             </section>
 
             {/* Section CTA Finale */}
-            <section className="py-5 bg-linear-to-br from-gray-50 to-white">
+            <section className="py-5 bg-linear-to-br from-white to-gray-50/30">
                 <div className="container mx-auto px-4">
                     <motion.div 
                                 className="text-center mt-2 pt-2 border-t border-gray-200/50"

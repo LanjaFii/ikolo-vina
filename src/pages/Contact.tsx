@@ -214,11 +214,9 @@ const Contact = () => {
         backgroundAttachment: 'fixed'
       }}
     >
-      {/* Overlay pour améliorer la lisibilité */}
-      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
       
       {/* Layout principal responsive */}
-      <div className="relative w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-8 z-20">
+      <div className="relative w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-8">
         
         {/* Section réseaux sociaux - UTILISE fixedDimensions (grande taille) */}
         <motion.div 

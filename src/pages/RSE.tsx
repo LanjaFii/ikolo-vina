@@ -15,8 +15,10 @@ import {
   TrendingUp,
   Sparkles,
   Globe,
-  Shield
+  Shield,
+  ArrowRight
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Rse = () => {
   const solutions = [
@@ -153,7 +155,7 @@ const Rse = () => {
       </section>
 
       {/* Section Notre Vision RSE */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-linear-to-br from-white to-gray-50/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -222,7 +224,7 @@ const Rse = () => {
       </section>
 
       {/* Section Solutions */}
-      <section className="py-8 bg-linear-to-br from-special-2/5 to-white">
+      <section className="py-8 bg-linear-to-br from-white to-gray-50/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -295,7 +297,7 @@ const Rse = () => {
       </section>
 
       {/* Section Engagements - Design amélioré */}
-      <section className="py-16 bg-linear-to-br from-special-2/10 to-white">
+      <section className="pt-10 pb-2 bg-linear-to-br from-white to-gray-50/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -312,7 +314,7 @@ const Rse = () => {
           </motion.div>
 
           {/* Section Engagements - Steps Vertical */}
-          <section className="py-10 bg-white">
+          <section className="py-10 bg-linear-to-br from-white to-gray-50/30">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <div className="space-y-8">
@@ -385,6 +387,49 @@ const Rse = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Section CTA Finale - Accompagnement RSE */}
+      <section className="py-5 bg-linear-to-br from-white to-gray-50/30">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-linear-to-r from-special-1/15 via-special-3/10 to-special-2/15 rounded-3xl p-8 lg:p-12 max-w-5xl mx-auto relative overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
+                  Prêt à <span className="text-special-1">agir</span> pour un impact{" "}
+                  <span className="text-special-2">durable</span> ?
+                </h3>
+
+                <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 lg:mb-10 max-w-3xl mx-auto leading-relaxed">
+                  Ensemble, faisons de votre stratégie RSE un levier concret de
+                  performance, d'engagement et de sens.  
+                  Contactez notre équipe pour un accompagnement adapté à vos enjeux.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link
+                    to="/contact"
+                    className="bg-linear-to-r from-special-1 to-special-2 hover:from-special-2 hover:to-special-3 text-black px-8 py-3 lg:px-10 lg:py-4 text-base lg:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center border border-black"
+                  >
+                    Nous contacter
+                    <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5" />
+                  </Link>
+                </div>
+
+                <p className="text-gray-500 text-xs lg:text-sm mt-4 lg:mt-6">
+                  Diagnostic RSE • Conseils stratégiques • Solutions durables sur mesure
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
     </div>
   );
 };
