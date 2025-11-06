@@ -431,37 +431,46 @@ const Digital = () => {
             <section className="py-5 bg-linear-to-br from-white to-gray-50/30">
                 <div className="container mx-auto px-4">
                     <motion.div
-                        className="text-center mt-2 pt-2 border-t border-gray-200/50"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        viewport={{ once: true }}
+                    className="text-center mt-2 pt-2 border-t border-gray-200/50"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: true }}
                     >
-                        <div className="bg-linear-to-r from-special-1/15 via-special-3/10 to-special-2/15 rounded-3xl p-6 lg:p-8 max-w-5xl mx-auto relative overflow-hidden">
-                            <div className="relative z-10">
-                                <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
-                                    Prêt à <span className="text-special-1">transformer</span> votre présence digitale ?
-                                </h3>
+                    <div className="bg-linear-to-r from-special-1/15 via-special-3/10 to-special-2/15 rounded-3xl p-6 lg:p-8 max-w-5xl mx-auto relative overflow-hidden">
+                        <div className="relative z-10">
+                        <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
+                            Prêt à <span className="text-special-1">transformer</span> votre présence digitale ?
+                        </h3>
 
-                                <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 lg:mb-10 max-w-3xl mx-auto leading-relaxed">
-                                    Contactez-nous dès aujourd'hui pour un audit gratuit et découvrez comment
-                                    nos solutions digitales peuvent propulser votre entreprise vers de nouveaux sommets.
-                                </p>
+                        <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 lg:mb-10 max-w-3xl mx-auto leading-relaxed">
+                            Contactez-nous dès aujourd'hui pour un audit gratuit et découvrez comment
+                            nos solutions digitales peuvent propulser votre entreprise vers de nouveaux sommets.
+                        </p>
 
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                                    <Link
-                                        to="/contact"
-                                        className="bg-linear-to-r from-special-1 to-special-2 hover:from-special-2 hover:to-special-3 text-black px-8 py-3 lg:px-10 lg:py-4 text-base lg:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center border border-black"
-                                    >
-                                        Nous contacter
-                                    </Link>
-                                </div>
+                        {/* Phrase clignotante */}
+                        <motion.p
+                            className="text-special-3 font-bold text-lg lg:text-xl mb-6"
+                            animate={{ opacity: [1, 0.5, 1] }}
+                            transition={{ duration: 1.2, repeat: Infinity, repeatType: "loop" }}
+                        >
+                            Premier rendez-vous offert !
+                        </motion.p>
 
-                                <p className="text-gray-500 text-xs lg:text-sm mt-4 lg:mt-6">
-                                    Réponse sous 24h • Devis personnalisé • Accompagnement sur mesure
-                                </p>
-                            </div>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <Link
+                            to="/contact"
+                            className="bg-linear-to-r from-special-1 to-special-2 hover:from-special-2 hover:to-special-3 text-black px-8 py-3 lg:px-10 lg:py-4 text-base lg:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center border border-black"
+                            >
+                            Nous contacter
+                            </Link>
                         </div>
+
+                        <p className="text-gray-500 text-xs lg:text-sm mt-4 lg:mt-6">
+                            Réponse sous 24h • Devis personnalisé • Accompagnement sur mesure
+                        </p>
+                        </div>
+                    </div>
                     </motion.div>
                 </div>
             </section>

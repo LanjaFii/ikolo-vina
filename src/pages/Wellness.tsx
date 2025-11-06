@@ -551,6 +551,15 @@ const Home = () => {
                   Contactez-nous dès aujourd'hui pour discuter de votre projet 
                   et découvrir comment notre expertise peut vous accompagner vers le succès.
                 </p>
+
+                {/* Phrase clignotante */}
+                <motion.p
+                    className="text-special-3 font-bold text-lg lg:text-xl mb-6"
+                    animate={{ opacity: [1, 0.5, 1] }}
+                    transition={{ duration: 1.2, repeat: Infinity, repeatType: "loop" }}
+                >
+                    Premier rendez-vous offert !
+                </motion.p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Link
