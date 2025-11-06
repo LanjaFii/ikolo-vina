@@ -9,6 +9,8 @@ import Wellness from '@/pages/Wellness';
 import Enterprise from '@/pages/Enterprise';
 import RSE from '@/pages/RSE';
 import Blog from '@/pages/Blog';
+import Privacy from '@/pages/Privacy';
+import Legal from '@/pages/Legal';
 
 const AppRoutes = () => {
   return (
@@ -21,6 +23,8 @@ const AppRoutes = () => {
       <Route path="/rse" element={<RSE />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/legal" element={<Legal />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

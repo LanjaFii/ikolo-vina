@@ -1,7 +1,8 @@
 // src/components/layout/Footer.tsx (Version sans shadcn)
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, ExternalLink, Facebook, Twitter, Instagram, Linkedin, Phone, MapPin } from 'lucide-react';
+import { Mail, ExternalLink, Facebook, Twitter, Instagram, Linkedin, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -60,10 +61,6 @@ const Footer = () => {
                 <div className="flex items-center justify-center gap-2 text-white/90 text-sm">
                   <Mail size={14} />
                   <span>ikolovinaconsortium@gmail.com</span>
-                </div>
-                <div className="flex items-center justify-center gap-2 text-white/90 text-sm">
-                  <Phone size={14} />
-                  <span>+261 38 00 000 00</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-white/90 text-sm text-center">
                   <MapPin size={14} />
@@ -166,10 +163,6 @@ const Footer = () => {
                     <Mail size={18} />
                     <span>ikolovinaconsortium@gmail.com</span>
                   </div>
-                  <div className="flex items-center gap-3 text-white/80">
-                    <Phone size={18} />
-                    <span>+261 38 00 000 00</span>
-                  </div>
                   <div className="flex items-start gap-3 text-white/80">
                     <MapPin size={18} className="mt-0.5" />
                     <span>Antanimena, Antananarivo 101</span>
@@ -181,17 +174,20 @@ const Footer = () => {
                   <h4 className="text-xl font-semibold text-white mb-4">Navigation</h4>
                   <div className="grid grid-cols-2 gap-1">
                     {siteLinks.map((link, index) => (
-                      <motion.a
+                      <motion.div
                         key={link.label}
-                        href={link.url}
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.4, delay: index * 0.05 }}
                         whileHover={{ y: -2 }}
-                        className="text-white/80 hover:text-white transition-colors duration-300 font-medium text-base text-left"
                       >
-                        {link.label}
-                      </motion.a>
+                        <Link
+                          to={link.url}
+                          className="text-white/80 hover:text-white transition-colors duration-300 font-medium text-base text-left block"
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
