@@ -72,7 +72,7 @@ const Home = () => {
               className="order-1 lg:order-1 flex flex-col items-center lg:items-start space-y-6 lg:space-y-8"
               variants={fadeInScale}
             >
-              <div className="text-center flex flex-col items-center space-y-4 lg:space-y-6">
+              <div className="text-center flex flex-col items-center space-y-0 -mt-1">
                 <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
                   <span className="text-special-1">Découvrez notre programme phare</span>
                 </h2>
@@ -82,7 +82,7 @@ const Home = () => {
                   <img 
                     src="/assets/logos/Nature Wellness.png" 
                     alt="Logo Nature Wellness"
-                    className="relative h-32 lg:h-48 xl:h-64 w-auto transform group-hover:scale-105 transition-transform duration-500 mx-auto rounded-ss-3xl rounded-ee-3xl"
+                    className="relative h-96 lg:h-96 xl:h-96 w-auto transform group-hover:scale-115 transition-transform duration-500 mx-auto rounded-ss-3xl rounded-ee-3xl"
                   />
                 </div>
                 
@@ -222,7 +222,7 @@ const Home = () => {
 
       <CardContent className="p-4 lg:p-6 text-center group-hover:bg-white/90 transition-colors duration-500">
         <h5 className="text-lg lg:text-xl font-bold text-gray-900 mb-4">
-          On vous dit proposer le programme d'accompagnement adéquat
+          En vue de proposer le programme d’accompagnement approprié
         </h5>
         <ul className="text-gray-600 text-xs lg:text-sm leading-relaxed text-left space-y-3">
           <li className="flex items-start">
@@ -381,7 +381,7 @@ const Home = () => {
 
                   <CardContent className="p-4 lg:p-6 text-center group-hover:bg-white/90 transition-colors duration-500">
                     <h5 className="text-lg lg:text-xl font-bold text-gray-900 mb-4">
-                      Contenu du diagnostic :
+                      Compétences Clés : 
                     </h5>
                     <ul className="text-gray-600 text-xs lg:text-sm leading-relaxed text-left space-y-3">
                       <li className="flex items-start">
@@ -416,7 +416,7 @@ const Home = () => {
                           Offre de gamme de produits de soins thérapeutiques et adapté à l’offre du centre, sa nouvelle image, répondant aux normes actuelles (environnementales et autres) :
                           <ul className="text-gray-400 text-xs lg:text-sm leading-relaxed text-center space-y-3">
                             <li className=" items-center">
-                        <span>Formats professionnels et clients</span>
+                        <span>Formats professionnels et  Formats clients</span>
                             </li>
                           </ul>
                         </div>
@@ -426,7 +426,7 @@ const Home = () => {
 
                   <CardContent className="p-4 lg:p-6 text-center group-hover:bg-white/90 transition-colors duration-500">
                     <h5 className="text-lg lg:text-xl font-bold text-gray-900 mb-4">
-                      Quelques produits proposés : 
+                      Quelques produits et services proposés: 
                     </h5>
                     <ul className="text-gray-600 text-xs lg:text-sm leading-relaxed text-left space-y-3">
                       <li className="flex items-start">
@@ -441,10 +441,12 @@ const Home = () => {
                         <span className="text-special-1 mr-2 mt-1">•</span>
                         <span>Savons et sels de bain pour rituels bien-être</span>
                       </li>
+                      <li className="flex items-start">
+                        <span className="text-special-1 mr-2 mt-1">•</span>
+                        <span>Ateliers de partages : Réunions collaboratives entre acteurs de la chaîne « plantes » (thérapeutes, producteurs, chercheurs…) 
+                          pour créer des liens et optimiser les synergies, même sans se connaître. </span>
+                      </li>
                       </ul>
-                      <p className="text-lg lg:text-base font-bold text-gray-600 mb-4 text-start">Ateliers de partages entre acteurs de la chaine de valeurs « plantes » qui sans se connaitre, 
-                        travaillent de près et devraient être connectés : thérapeutes, producteurs, chercheurs, ...
-                      </p>
                   </CardContent>
                 </Card>
 
@@ -486,9 +488,6 @@ const Home = () => {
                   <div className="absolute inset-0 z-20 flex items-center justify-center">
                     <div className="text-center max-w-4xl mx-auto px-4">
                       <h3 className="text-xl font-bold leading-tight">PACK ESSENTIEL </h3>
-                      <div className="mb-2 bg-special-1/80 backdrop-blur-sm text-white border-none inline-block px-3 py-1 rounded-full text-xs">
-                        
-                      </div>
                     </div>
                   </div>
                 </div>
