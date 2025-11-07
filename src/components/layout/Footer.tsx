@@ -283,20 +283,19 @@ const Footer = () => {
                   </div>
                 </div>
 
-                {/* Bouton contact */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="w-full max-w-sm pt-4"
                 >
-                  <button 
-                    className="w-full bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-300 flex items-center justify-center"
-                    onClick={() => window.location.href = '/contact'}
+                  <a
+                    href="mailto:ikolovinaconsortium@gmail.com"
+                    className="w-full bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold py-4 px-6 rounded-lg text-lg transition-all duration-300 items-center justify-center inline-flex"
                   >
                     <Mail className="mr-3" size={20} />
                     Nous contacter
-                  </button>
+                  </a>
                 </motion.div>
               </motion.div>
 
@@ -313,7 +312,7 @@ const Footer = () => {
                 </h3>
                 <div className="flex flex-col gap-10 w-full">
                   <motion.a
-                    href="https://ikolo.com"
+                    href="#"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
@@ -329,7 +328,7 @@ const Footer = () => {
                     </div>
                   </motion.a>
                   <motion.a
-                    href="https://vina-consulting.com"
+                    href="#"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
