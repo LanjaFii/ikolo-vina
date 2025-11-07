@@ -224,7 +224,7 @@ const Rse = () => {
       </section>
 
       {/* Section Solutions */}
-      <section className="py-8 bg-linear-to-br from-white to-gray-50/30">
+      <section className="py-16 bg-gradient-to-br from-special-2/5 to-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -241,54 +241,65 @@ const Rse = () => {
           </motion.div>
 
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col md:flex-row md:flex-wrap gap-6 justify-center">
               {solutions.map((solution, index) => (
                 <motion.div
                   key={solution.title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group"
+                  className={`group ${
+                    // Tous les éléments prennent 50% sauf le dernier si impair
+                    index === solutions.length - 1 && solutions.length % 2 !== 0
+                      ? 'md:w-full flex justify-center'
+                      : 'md:w-[calc(50%-12px)]' // 50% moins la moitié du gap (24px/2 = 12px)
+                    }`}
                 >
-                  <Card className="h-full border-0 bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden group-hover:shadow-xl transition-all duration-500 border-special-2/20">
-                    <div className="flex flex-col md:flex-row h-full">
-                      <div className="md:w-2/5">
-                        <div className="relative h-48 md:h-full">
-                          <img
-                            src={solution.image}
-                            alt={solution.alt}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                          />
-                          <div className="absolute top-4 right-4 w-12 h-12 rounded-xl bg-linear-to-r from-special-2 to-special-1 flex items-center justify-center shadow-lg">
-                            <div className="text-white">
-                              {solution.icon}
+                  <div className={
+                    index === solutions.length - 1 && solutions.length % 2 !== 0
+                      ? 'w-full max-w-2xl'
+                      : 'w-full'
+                  }>
+                    <Card className="h-full border-0 bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden group-hover:shadow-xl transition-all duration-500 border border-special-2/20">
+                      <div className="flex flex-col md:flex-row h-full">
+                        <div className="md:w-2/5">
+                          <div className="relative h-48 md:h-full">
+                            <img
+                              src={solution.image}
+                              alt={solution.alt}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <div className="absolute top-4 right-4 w-12 h-12 rounded-xl bg-gradient-to-r from-special-2 to-special-1 flex items-center justify-center shadow-lg">
+                              <div className="text-white">
+                                {solution.icon}
+                              </div>
                             </div>
                           </div>
                         </div>
+
+                        <div className="md:w-3/5">
+                          <CardContent className="p-6 h-full flex flex-col">
+                            <h3 className="text-xl font-bold text-gray-900 mb-3">
+                              {solution.title}
+                            </h3>
+
+                            <p className="text-gray-600 text-sm mb-4 leading-relaxed flex-grow">
+                              {solution.description}
+                            </p>
+
+                            <div className="space-y-2">
+                              {solution.benefits.map((benefit, idx) => (
+                                <div key={idx} className="flex items-start space-x-2">
+                                  <CheckCircle className="w-4 h-4 text-special-2 mt-0.5 shrink-0" />
+                                  <span className="text-gray-700 text-sm leading-relaxed">{benefit}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </CardContent>
+                        </div>
                       </div>
-
-                      <div className="md:w-3/5">
-                        <CardContent className="p-6 h-full flex flex-col">
-                          <h3 className="text-xl font-bold text-gray-900 mb-3">
-                            {solution.title}
-                          </h3>
-
-                          <p className="text-gray-600 text-sm mb-4 leading-relaxed grow">
-                            {solution.description}
-                          </p>
-
-                          <div className="space-y-2">
-                            {solution.benefits.map((benefit, idx) => (
-                              <div key={idx} className="flex items-start space-x-2">
-                                <CheckCircle className="w-4 h-4 text-special-2 mt-0.5 shrink-0" />
-                                <span className="text-gray-700 text-sm leading-relaxed">{benefit}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </CardContent>
-                      </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -313,52 +324,82 @@ const Rse = () => {
             </p>
           </motion.div>
 
-          {/* Section Engagements - Steps Vertical */}
-          <section className="py-10 bg-linear-to-br from-white to-gray-50/30">
+          {/* Section Solutions */}
+          <section className="py-16 bg-gradient-to-br from-special-2/5 to-white">
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <div className="space-y-8">
-                  {engagements.map((engagement, index) => (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-center mb-12"
+              >
+                <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4">
+                  Nos <span className="text-special-2">Domaines</span> d'Expertise RSE
+                </h2>
+                <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                  Une approche complète couvrant tous les aspects de la responsabilité sociétale
+                </p>
+              </motion.div>
+
+              <div className="max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {solutions.map((solution, index) => (
                     <motion.div
-                      key={engagement.title}
-                      initial={{ opacity: 0, x: -50 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.2 }}
-                      className="flex items-start space-x-6 group cursor-pointer"
+                      key={solution.title}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className={`group ${
+                        // Centrer le dernier élément si nombre impair
+                        index === solutions.length - 1 && solutions.length % 2 !== 0
+                          ? 'md:col-span-2 flex justify-center'
+                          : ''
+                        }`}
                     >
-                      {/* Numéro d'étape */}
-                      <div className="shrink-0 w-16 h-16 bg-linear-to-r from-special-2 to-special-1 rounded-2xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform duration-300">
-                        {index + 1}
-                      </div>
+                      <div className={
+                        index === solutions.length - 1 && solutions.length % 2 !== 0
+                          ? 'w-full max-w-2xl'  // Limiter la largeur pour le dernier élément centré
+                          : 'w-full'
+                      }>
+                        <Card className="h-full border-0 bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden group-hover:shadow-xl transition-all duration-500 border border-special-2/20">
+                          <div className="flex flex-col md:flex-row h-full">
+                            <div className="md:w-2/5">
+                              <div className="relative h-48 md:h-full">
+                                <img
+                                  src={solution.image}
+                                  alt={solution.alt}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                />
+                                <div className="absolute top-4 right-4 w-12 h-12 rounded-xl bg-gradient-to-r from-special-2 to-special-1 flex items-center justify-center shadow-lg">
+                                  <div className="text-white">
+                                    {solution.icon}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 
-                      {/* Ligne de connexion (sauf pour le dernier) */}
-                      {index < engagements.length - 1 && (
-                        <div className="absolute left-8 top-16 w-0.5 h-16 bg-linear-to-b from-special-2 to-special-1 transform translate-y-16"></div>
-                      )}
+                            <div className="md:w-3/5">
+                              <CardContent className="p-6 h-full flex flex-col">
+                                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                                  {solution.title}
+                                </h3>
 
-                      {/* Contenu */}
-                      <div className="grow">
-                        <div className="flex items-center mb-3">
-                          <div className="text-special-2 mr-3">
-                            {engagement.icon}
+                                <p className="text-gray-600 text-sm mb-4 leading-relaxed flex-grow">
+                                  {solution.description}
+                                </p>
+
+                                <div className="space-y-2">
+                                  {solution.benefits.map((benefit, idx) => (
+                                    <div key={idx} className="flex items-start space-x-2">
+                                      <CheckCircle className="w-4 h-4 text-special-2 mt-0.5 shrink-0" />
+                                      <span className="text-gray-700 text-sm leading-relaxed">{benefit}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </CardContent>
+                            </div>
                           </div>
-                          <h3 className="text-xl font-bold text-gray-900">
-                            {engagement.title}
-                          </h3>
-                        </div>
-                        <p className="text-gray-600 leading-relaxed mb-4">
-                          {engagement.description}
-                        </p>
-
-                        {/* Statistique en badge */}
-                        <div className="inline-flex items-center space-x-2 bg-special-2/10 px-4 py-2 rounded-full border border-special-2/20">
-                          <span className="text-special-2 font-bold text-lg">
-                            {engagement.stat}
-                          </span>
-                          <span className="text-gray-700 text-sm">
-                            {engagement.statLabel}
-                          </span>
-                        </div>
+                        </Card>
                       </div>
                     </motion.div>
                   ))}
@@ -407,17 +448,17 @@ const Rse = () => {
 
                 <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 lg:mb-10 max-w-3xl mx-auto leading-relaxed">
                   Ensemble, faisons de votre stratégie RSE un levier concret de
-                  performance, d'engagement et de sens.  
+                  performance, d'engagement et de sens.
                   Contactez notre équipe pour un accompagnement adapté à vos enjeux.
                 </p>
 
                 {/* Phrase clignotante */}
                 <motion.p
-                    className="text-special-3 font-bold text-lg lg:text-xl mb-6"
-                    animate={{ opacity: [1, 0.5, 1] }}
-                    transition={{ duration: 1.2, repeat: Infinity, repeatType: "loop" }}
+                  className="text-special-3 font-bold text-lg lg:text-xl mb-6"
+                  animate={{ opacity: [1, 0.5, 1] }}
+                  transition={{ duration: 1.2, repeat: Infinity, repeatType: "loop" }}
                 >
-                    Premier rendez-vous offert !
+                  Premier rendez-vous offert !
                 </motion.p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
