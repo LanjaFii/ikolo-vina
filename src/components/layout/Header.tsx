@@ -126,8 +126,8 @@ const Header = () => {
                     relative font-semibold transition-all duration-300 
                     px-3 py-2 rounded-lg
                     ${isScrolled
-                      ? `text-gray-800 ${isActive ? 'text-special-1' : 'hover:text-[#ebc2bb] hover:drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]'}`
-                      : `text-white ${isActive ? 'text-white' : 'hover:text-[#dba49b]'}`
+                      ? `text-gray-800 ${isActive ? 'text-special-1' : 'hover:text-[#005F7F] hover:drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]'}`
+                      : `text-white ${isActive ? 'text-white' : 'hover:text-[#ebc2bb]'}`
                     }
                   `}
                 >
