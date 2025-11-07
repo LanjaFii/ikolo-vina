@@ -10,17 +10,18 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  
+  const activeColor = 'text-special-1'
+
   const lastScrollY = useRef(0);
   const scrollThreshold = 10; // Seuil de détection du scroll
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Vérifier si on a dépassé le seuil pour considérer qu'on a scrollé
       setIsScrolled(currentScrollY > 20);
-      
+
       // Détection de la direction du scroll
       if (Math.abs(currentScrollY - lastScrollY.current) > scrollThreshold) {
         if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
@@ -30,7 +31,7 @@ const Header = () => {
           // Scroll vers le haut - montrer le header
           setIsVisible(true);
         }
-        
+
         lastScrollY.current = currentScrollY;
       }
     };
@@ -47,7 +48,7 @@ const Header = () => {
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    
+
     // Réinitialiser quand on change de page
     return () => {
       window.removeEventListener('scroll', onScroll);
@@ -74,17 +75,16 @@ const Header = () => {
   const isActiveLink = (path: string) => location.pathname === path;
 
   return (
-    <motion.header 
+    <motion.header
       initial={{ y: -100 }}
-      animate={{ 
+      animate={{
         y: isVisible ? 0 : -100,
         transition: { duration: 0.3, ease: "easeInOut" }
       }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-lg shadow-2xl py-2 border-b border-gray-100/50' 
-          : 'py-4'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+        ? 'bg-white/95 backdrop-blur-lg shadow-2xl py-2 border-b border-gray-100/50'
+        : 'py-4'
+        }`}
       style={{
         backgroundImage: !isScrolled ? "url('/assets/fondHeader.png')" : 'none',
         backgroundSize: 'cover',
@@ -100,12 +100,11 @@ const Header = () => {
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
           <Link to="/" className="flex items-center">
-            <img 
-              src="/assets/logos/ikolo-vina.png" 
-              alt="Ikolo-Vina" 
-              className={`transition-all duration-500 ${
-                isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-16'
-              }`}
+            <img
+              src="/assets/logos/ikolo-vina.png"
+              alt="Ikolo-Vina"
+              className={`transition-all duration-500 ${isScrolled ? 'h-10 md:h-12' : 'h-14 md:h-16'
+                }`}
             />
           </Link>
         </motion.div>
@@ -127,16 +126,16 @@ const Header = () => {
                   className={`
                     relative font-semibold transition-all duration-300 
                     px-3 py-2 rounded-lg
-                    ${isScrolled 
-                      ? `text-gray-800 ${isActive ? 'text-special-1' : 'hover:text-pink-700'}`
-                      : `text-white ${isActive ? 'text-white' : 'hover:text-pink-300'}`
+                    ${isScrolled
+                      ? `text-gray-800 ${isActive ? 'text-special-1' : 'hover:text-[#ebc2bb] hover:drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]'}`
+                      : `text-white ${isActive ? 'text-white' : 'hover:text-[#dba49b]'}`
                     }
                   `}
                 >
                   <span className="relative z-10 text-xs">
                     {link.label}
                   </span>
-                  
+
                   {isActive && (
                     <motion.div
                       layoutId="activeIndicator"
