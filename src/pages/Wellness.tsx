@@ -443,7 +443,7 @@ const Home = () => {
                       </li>
                       <li className="flex items-start">
                         <span className="text-special-1 mr-2 mt-1">•</span>
-                        <span>Ateliers de partages : Réunions collaboratives entre acteurs de la chaîne « plantes » (thérapeutes, producteurs, chercheurs…) 
+                        <span>Ateliers de partages : Réunions collaboratives entre acteurs de la chaîne «plantes» (thérapeutes, producteurs, chercheurs…) 
                           pour créer des liens et optimiser les synergies, même sans se connaître. </span>
                       </li>
                       </ul>
