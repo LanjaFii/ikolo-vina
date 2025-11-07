@@ -82,10 +82,10 @@ const Contact = () => {
 
   // Couleurs de la palette pour le formulaire
   const colors = {
-    primary: '#2987A6',
-    secondary: '#A65329',
-    accent1: '#005F7F',
-    accent2: '#00804B',
+    primary: "#2987A6",
+    secondary: "#A65329",
+    accent1: "#005F7F",
+    accent2: "#00804B",
   };
 
   // Détection mobile (non modifiée)
@@ -95,9 +95,9 @@ const Contact = () => {
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
 
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Gestion du reCAPTCHA (non modifiée)
@@ -111,48 +111,61 @@ const Contact = () => {
     setIsCaptchaValid(false);
   };
 
-  // Fonction pour gérer la soumission du formulaire (non modifiée)
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  //  Fonction pour gérer la soumission du formulaire de contact
+  // --------------------------------------------------------------
+  // Cette fonction est déclenchée lorsqu'un utilisateur envoie le formulaire.
+  // Elle vérifie le reCAPTCHA, récupère les données du formulaire,
+  // et les envoie à ton backend via l’API "/api/contact".
 
-    // Vérifier le reCAPTCHA avant de soumettre
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Empêche le rechargement automatique de la page
+    setIsSubmitting(true); // Active l’état "en cours d’envoi" pour désactiver le bouton
+
+    // Vérifie que l'utilisateur a bien validé le reCAPTCHA avant d’envoyer
     if (!recaptchaValue) {
-      alert('Veuillez compléter la vérification de sécurité');
-      setIsSubmitting(false);
+      alert(" Veuillez compléter la vérification de sécurité");
+      setIsSubmitting(false); // Réactive le bouton si le reCAPTCHA n’est pas validé
       return;
     }
 
-    // Récupérer les données du formulaire
+    // Récupère les données saisies dans le formulaire
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const data = {
-      nom: formData.get('nom') as string,
-      email: formData.get('email') as string,
-      telephone: formData.get('telephone') as string,
-      type: formData.get('type') as string,
-      objet: formData.get('objet') as string,
-      message: formData.get('message') as string,
-      recaptcha: recaptchaValue
+      nom: formData.get("nom"), // Nom de l’utilisateur
+      email: formData.get("email"), // Adresse email
+      // telephone: formData.get("telephone") as string,
+      // type: formData.get("type") as string,
+      message: formData.get("message"), // Contenu du message
+      recaptcha: recaptchaValue, // Valeur du reCAPTCHA pour vérification
     };
 
     try {
-      // Simulation d'envoi - À adapter selon vos besoins
-      console.log('Données du formulaire:', data);
+      //  Envoie les données au serveur backend
+      //  L’URL "http://localhost:5000/api/contact" doit pointer vers ton serveur backend.
+      // En production (sur Vercel ou autre hébergeur), remplace par "/api/contact".
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST", // Méthode HTTP POST pour envoyer les données
+        headers: { "Content-Type": "application/json" }, // Indique qu’on envoie du JSON
+        body: JSON.stringify(data), // Convertit les données en chaîne JSON
+      });
 
-      // Pour l'instant, on simule juste un envoi réussi
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulation délai
+      const result = await response.json(); // Récupère la réponse JSON du serveur
 
-      alert('Message envoyé avec succès ! Nous vous recontacterons rapidement.');
-
-      // Réinitialiser le formulaire
-      (e.target as HTMLFormElement).reset();
-      recaptchaRef.current?.reset();
-      setRecaptchaValue(null);
-      setIsCaptchaValid(false);
-
+      // Si le message a bien été envoyé
+      if (response.ok) {
+        alert(result.message); // Affiche le message de succès
+        (e.target as HTMLFormElement).reset(); // Réinitialise le formulaire
+        recaptchaRef.current?.reset(); // Réinitialise le reCAPTCHA
+        setRecaptchaValue(null); // Vide la valeur du reCAPTCHA
+        setIsCaptchaValid(false); // Indique que le captcha n’est plus valide
+      } else {
+        // Si le serveur renvoie une erreur (ex : champs manquants)
+        alert(result.error || "Erreur d’envoi");
+      }
     } catch (error) {
-      console.error('Erreur lors de l\'envoi:', error);
-      alert('Une erreur est survenue. Veuillez réessayer.');
+      // Si le serveur ne répond pas ou erreur réseau
+      console.error("Erreur:", error);
+      alert("Une erreur est survenue lors de l’envoi.");
     } finally {
       setIsSubmitting(false);
     }
@@ -184,17 +197,17 @@ const Contact = () => {
    */
   const fixedDimensions = {
     // Desktop: w-[450px] (taille survolée), Mobile: w-full max-w-md
-    width: isMobile ? 'w-full max-w-md' : 'w-[450px]',
+    width: isMobile ? "w-full max-w-md" : "w-[450px]",
     // Desktop: h-[500px] (taille survolée/ouverte), Mobile: h-[500px]
-    height: 'h-[500px]'
+    height: "h-[500px]",
   };
 
   // Le formulaire change désormais de taille au survol pour créer l'effet d'expansion
   const formDimensions = {
     // Desktop: w-450px (hover) ou w-400px (initial), Mobile: w-full max-w-md
-    width: isMobile ? 'w-full max-w-md' : (isHovered ? 'w-[450px]' : 'w-[400px]'),
+    width: isMobile ? "w-full max-w-md" : isHovered ? "w-[450px]" : "w-[400px]",
     // Desktop: h-500px (hover) ou h-200px (initial), Mobile: h-500px
-    height: isMobile ? 'h-[500px]' : (isHovered ? 'h-[500px]' : 'h-[200px]')
+    height: isMobile ? "h-[500px]" : isHovered ? "h-[500px]" : "h-[200px]",
   };
 
   // Pour le formulaire, nous devons utiliser les dimensions qui changent (formDimensions)
@@ -208,16 +221,14 @@ const Contact = () => {
       variants={staggerContainer}
       style={{
         backgroundImage: "url('/assets/background.svg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
       }}
     >
-
       {/* Layout principal responsive */}
       <div className="relative w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-8">
-
         {/* Section réseaux sociaux - UTILISE fixedDimensions (grande taille) */}
         <motion.div
           // Utilise fixedDimensions pour avoir une taille fixe et grande (450x500 sur desktop)
@@ -226,7 +237,10 @@ const Contact = () => {
         >
           <div className="bg-white rounded-2xl p-4 md:p-6 shadow-2xl border border-gray-200 w-full h-full flex flex-col">
             <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center justify-center">
-              <MessageCircle className="w-5 h-5 mr-2" style={{ color: colors.primary }} />
+              <MessageCircle
+                className="w-5 h-5 mr-2"
+                style={{ color: colors.primary }}
+              />
               Suivez-nous
             </h3>
 
@@ -241,9 +255,18 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
-                  className={`flex items-center gap-3 p-3 ${social.bgColor} ${social.textColor} rounded-xl hover:${social.bgColor.replace('50', '100')} transition-all duration-300 transform border ${social.borderColor} flex-1`}
+                  className={`flex items-center gap-3 p-3 ${social.bgColor} ${
+                    social.textColor
+                  } rounded-xl hover:${social.bgColor.replace(
+                    "50",
+                    "100"
+                  )} transition-all duration-300 transform border ${
+                    social.borderColor
+                  } flex-1`}
                 >
-                  <div className={`w-8 h-8 ${social.color} rounded-full flex items-center justify-center text-white shrink-0`}>
+                  <div
+                    className={`w-8 h-8 ${social.color} rounded-full flex items-center justify-center text-white shrink-0`}
+                  >
                     {social.icon}
                   </div>
                   <span className="font-medium">{social.label}</span>
@@ -268,13 +291,12 @@ const Contact = () => {
           onMouseLeave={handleMouseLeave}
           variants={fadeInScale}
         >
-
           {/* Effet de bordure colorée au survol */}
           <motion.div
             className={`absolute inset-0 rounded-3xl transition-all duration-1000
-              ${isHovered ? 'opacity-20 blur-sm' : 'opacity-0'}`}
+              ${isHovered ? "opacity-20 blur-sm" : "opacity-0"}`}
             style={{
-              background: 'linear-gradient(135deg, #2987A6, #005F7F)'
+              background: "linear-gradient(135deg, #2987A6, #005F7F)",
             }}
           />
 
@@ -284,40 +306,45 @@ const Contact = () => {
           {/* Contenu avec bordure et effet glass */}
           <motion.div
             className={`absolute transition-all duration-700 rounded-2xl bg-linear-to-br from-gray-300 to-gray-400 text-gray-800 z-20 overflow-visible backdrop-blur-sm border border-gray-200
-              ${isMobile
-                ? 'inset-4'
-                : isHovered
-                  ? 'inset-4'
-                  : 'inset-8'
-              }`}
+              ${isMobile ? "inset-4" : isHovered ? "inset-4" : "inset-8"}`}
             variants={fadeInUp}
           >
-
             <div className="relative flex flex-col items-center justify-start w-full h-full gap-3 p-2">
-
               {/* Titre avec les nouvelles couleurs */}
               <motion.h2
                 className={`absolute text-center whitespace-nowrap transition-all duration-700 font-light tracking-widest
-                  ${isMobile || isHovered
-                    ? 'top-3 left-1/2 transform -translate-x-1/2 text-base z-30'
-                    : 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl'
+                  ${
+                    isMobile || isHovered
+                      ? "top-3 left-1/2 transform -translate-x-1/2 text-base z-30"
+                      : "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl"
                   }`}
                 variants={fadeInUp}
               >
                 <span
                   className={`transition-all duration-700 inline-block font-light
-                    ${isHovered || isMobile ? 'font-medium' : ''}
+                    ${isHovered || isMobile ? "font-medium" : ""}
                   `}
-                  style={isHovered || isMobile ? {
-                    background: 'linear-gradient(to right, #2987A6, #00804B)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text'
-                  } : { color: '#374151' }}
+                  style={
+                    isHovered || isMobile
+                      ? {
+                          background:
+                            "linear-gradient(to right, #2987A6, #00804B)",
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                        }
+                      : { color: "#374151" }
+                  }
                 >
-                  <MessageCircle className="w-4 h-4 inline mr-3" style={{ color: colors.primary }} />
+                  <MessageCircle
+                    className="w-4 h-4 inline mr-3"
+                    style={{ color: colors.primary }}
+                  />
                   CONTACT
-                  <i className="fa-solid fa-bolt ml-3" style={{ color: colors.secondary }} />
+                  <i
+                    className="fa-solid fa-bolt ml-3"
+                    style={{ color: colors.secondary }}
+                  />
                 </span>
               </motion.h2>
 
@@ -325,11 +352,12 @@ const Contact = () => {
               <motion.form
                 onSubmit={handleSubmit}
                 className={`w-full flex flex-col gap-3 transition-all duration-700 overflow-y-auto p-3 custom-scrollbar
-                  ${isMobile
-                    ? 'opacity-100 visible translate-y-0 mt-12 max-h-[380px]'
-                    : isHovered
-                      ? 'opacity-100 visible translate-y-0 mt-12 max-h-[380px]'
-                      : 'opacity-0 invisible translate-y-8 max-h-96'
+                  ${
+                    isMobile
+                      ? "opacity-100 visible translate-y-0 mt-12 max-h-[380px]"
+                      : isHovered
+                      ? "opacity-100 visible translate-y-0 mt-12 max-h-[380px]"
+                      : "opacity-0 invisible translate-y-8 max-h-96"
                   }`}
                 variants={staggerContainer}
               >
@@ -363,10 +391,18 @@ const Contact = () => {
                 </motion.div>
 
                 {/* Section reCAPTCHA améliorée et responsive */}
-                <motion.div variants={fadeInUp} className="bg-gray-100 p-3 rounded-xl border border-gray-300">
+                <motion.div
+                  variants={fadeInUp}
+                  className="bg-gray-100 p-3 rounded-xl border border-gray-300"
+                >
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm font-medium text-gray-700">Vérification de sécurité</span>
-                    <i className="fa-solid fa-shield-alt" style={{ color: colors.primary }}></i>
+                    <span className="text-sm font-medium text-gray-700">
+                      Vérification de sécurité
+                    </span>
+                    <i
+                      className="fa-solid fa-shield-alt"
+                      style={{ color: colors.primary }}
+                    ></i>
                   </div>
 
                   {/* reCAPTCHA Google avec container responsive */}
@@ -394,19 +430,24 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={!isCaptchaValid || isSubmitting}
-                    className={`w-full px-4 py-3 text-white font-semibold rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] active:scale-95 text-sm md:text-base ${!isCaptchaValid || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                      }`}
+                    className={`w-full px-4 py-3 text-white font-semibold rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] active:scale-95 text-sm md:text-base ${
+                      !isCaptchaValid || isSubmitting
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
                     style={{
-                      background: 'linear-gradient(to right, #2987A6, #00804B)'
+                      background: "linear-gradient(to right, #2987A6, #00804B)",
                     }}
                     onMouseEnter={(e) => {
                       if (isCaptchaValid && !isSubmitting) {
-                        e.currentTarget.style.background = 'linear-gradient(to right, #005F7F, #A65329)';
+                        e.currentTarget.style.background =
+                          "linear-gradient(to right, #005F7F, #A65329)";
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (isCaptchaValid && !isSubmitting) {
-                        e.currentTarget.style.background = 'linear-gradient(to right, #2987A6, #00804B)';
+                        e.currentTarget.style.background =
+                          "linear-gradient(to right, #2987A6, #00804B)";
                       }
                     }}
                   >
@@ -418,7 +459,9 @@ const Contact = () => {
                     ) : (
                       <>
                         <i className="fa-solid fa-paper-plane mr-2" />
-                        {isCaptchaValid ? 'Envoyer le message' : 'Complétez la sécurité'}
+                        {isCaptchaValid
+                          ? "Envoyer le message"
+                          : "Complétez la sécurité"}
                       </>
                     )}
                   </button>
@@ -436,7 +479,10 @@ const Contact = () => {
         >
           <div className="bg-white rounded-2xl p-4 md:p-6 shadow-2xl border border-gray-200 w-full h-full flex flex-col">
             <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center justify-center">
-              <i className="fa-solid fa-location-dot mr-2" style={{ color: colors.primary }}></i>
+              <i
+                className="fa-solid fa-location-dot mr-2"
+                style={{ color: colors.primary }}
+              ></i>
               Notre siège
             </h3>
             <div className="w-full h-48 rounded-xl overflow-hidden border-2 border-gray-300 mb-4 shrink-0">
@@ -452,13 +498,19 @@ const Contact = () => {
               ></iframe>
             </div>
             <div className="text-sm text-gray-600 space-y-2 flex-1 flex flex-col justify-center">
-              <p className="font-medium text-center text-base" style={{ color: colors.primary }}>
+              <p
+                className="font-medium text-center text-base"
+                style={{ color: colors.primary }}
+              >
                 Antanimena
               </p>
               <p className="text-center">Antananarivo, 101</p>
               <p className="text-center">Madagascar</p>
               <div className="flex items-center justify-center gap-2 mt-3 pt-3 border-t border-gray-200">
-                <i className="fa-solid fa-clock" style={{ color: colors.secondary }}></i>
+                <i
+                  className="fa-solid fa-clock"
+                  style={{ color: colors.secondary }}
+                ></i>
                 <span className="text-xs text-gray-500">Lun-Ven: 9h-16h</span>
               </div>
             </div>
