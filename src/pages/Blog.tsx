@@ -37,6 +37,10 @@ const slideVariants = {
   })
 };
 
+// Durées des intervalles (en millisecondes)
+const HOVER_INTERVAL_MS = 3500; // délai sur hover avant de passer à la photo suivante
+const MODAL_INTERVAL_MS = 6000; // délai d'auto-scroll dans la modal
+
 interface Article {
   id: number;
   title: string;
@@ -185,6 +189,17 @@ const Blog = () => {
   const hoverIntervalRef = useRef<{ [key: number]: number }>({});
 
   const openModal = (article: Article) => {
+    // Clear any hover intervals for this article to avoid continued background cycling
+    if (hoverIntervalRef.current[article.id]) {
+      clearInterval(hoverIntervalRef.current[article.id]);
+      delete hoverIntervalRef.current[article.id];
+    }
+    // Also defensively clear any other lingering intervals
+    Object.values(hoverIntervalRef.current).forEach(intervalId => {
+      if (intervalId) clearInterval(intervalId);
+    });
+    hoverIntervalRef.current = {};
+
     setSelectedArticle(article);
     setCurrentImageIndex(0);
     setDirection(0);
@@ -215,21 +230,36 @@ const Blog = () => {
   // Gestion du survol des articles
   const handleArticleHover = (articleId: number, article: Article) => {
     if (article.images.length > 1) {
+      // Si un interval existe déjà pour cet article, ne pas en créer un autre.
+      // Cela évite la multiplication des intervalles lorsque on entre plusieurs fois
+      // (ou que des re-renders provoquent des créations supplémentaires).
+      if (hoverIntervalRef.current[articleId]) return;
+
       // Démarrer le défilement automatique pour cet article
       hoverIntervalRef.current[articleId] = window.setInterval(() => {
         setHoverImageIndex(prev => ({
           ...prev,
           [articleId]: ((prev[articleId] || 0) + 1) % article.images.length
         }));
-      }, 2000); // Change d'image toutes les 2 secondes
+      }, HOVER_INTERVAL_MS); // Change d'image toutes les X ms
     }
   };
 
   const handleArticleLeave = (articleId: number) => {
-    if (hoverIntervalRef.current[articleId]) {
-      clearInterval(hoverIntervalRef.current[articleId]);
+    // Clear the interval(s) related to this article.
+    const intervalId = hoverIntervalRef.current[articleId];
+    if (intervalId) {
+      clearInterval(intervalId);
       delete hoverIntervalRef.current[articleId];
     }
+    // Defensive: if for any reason other intervals linger, clear them too.
+    Object.keys(hoverIntervalRef.current).forEach(key => {
+      const id = hoverIntervalRef.current[Number(key)];
+      if (id) {
+        clearInterval(id);
+        delete hoverIntervalRef.current[Number(key)];
+      }
+    });
   };
 
   // Auto-scroll des images dans la modal
@@ -240,7 +270,7 @@ const Blog = () => {
       setCurrentImageIndex((prev) =>
         prev === selectedArticle.images.length - 1 ? 0 : prev + 1
       );
-    }, 5000);
+    }, MODAL_INTERVAL_MS);
     return () => clearInterval(interval);
   }, [selectedArticle]);
 

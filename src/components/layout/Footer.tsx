@@ -27,6 +27,8 @@ const Footer = () => {
     { label: 'Événementiel', url: '/events' },
     { label: 'Appui à l\'Entrepreneuriat', url: '/enterprise' },
     { label: 'Accompagnement RSE', url: '/rse' },
+    { label: 'Actualités', url: '/blog' },
+    { label: 'Contact', url: '/contact' },
     { label: 'Mentions légales', url: '/legal' },
     { label: 'Politique de confidentialité', url: '/privacy' },
   ];
