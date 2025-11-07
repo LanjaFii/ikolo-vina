@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './routes/AppRoutes';
 import ScrollToTop from "./components/ScrollToTop";
 import Layout from './components/layout/Layout';
+import { Toaster } from 'sonner';
 
 import './index.css';
 import useDynamicTitle from './hooks/useDynamicTitle';
@@ -12,7 +13,6 @@ const TitleHandler = () => {
   return null;
 };
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +21,7 @@ function App() {
       <Layout>
         <AppRoutes />
       </Layout>
+      <Toaster position="top-right" richColors />
     </BrowserRouter>
   );
 }

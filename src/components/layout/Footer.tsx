@@ -3,15 +3,46 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, ExternalLink, Facebook, Twitter, Instagram, Linkedin, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Email submitted:', email);
-    setEmail('');
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!email) return;
+
+  try {
+    toast.info("Envoi en cours...");
+
+    const response = await fetch("https://api.brevo.com/v3/contacts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": import.meta.env.VITE_BREVO_API_KEY,
+      },
+      body: JSON.stringify({
+        email: email,
+        listIds: [4],
+        updateEnabled: false
+      })
+    });
+
+    if (response.ok) {
+      setEmail("");
+      toast.success("Merci ! Vous êtes bien inscrit à la newsletter 🎉");
+    } else {
+      const error = await response.json();
+      console.error("Erreur Brevo:", error);
+      toast.error("Erreur lors de l'inscription 😕");
+    }
+  } catch (err) {
+    console.error(err);
+    toast.error("Erreur réseau, réessayez plus tard.");
+  }
+};
+
 
   const socialLinks = [
     { icon: <Facebook size={16} />, url: '#', label: 'Facebook' },
