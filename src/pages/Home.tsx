@@ -413,7 +413,7 @@ const Home = () => {
                     Ils nous ont <span className="text-special-1">fait confiance</span>
                   </h2>
                   <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Découvrez les entreprises et organisations qui nous ont collaboré avec nous
+                    Découvrez les entreprises et organisations qui ont collaboré avec nous
                   </p>
                 </div>
 
