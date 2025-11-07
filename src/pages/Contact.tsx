@@ -83,7 +83,7 @@ const Contact = () => {
   // Couleurs de la palette pour le formulaire
   const colors = {
     primary: '#2987A6',
-    secondary: '#A65329', 
+    secondary: '#A65329',
     accent1: '#005F7F',
     accent2: '#00804B',
   };
@@ -93,10 +93,10 @@ const Contact = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -138,18 +138,18 @@ const Contact = () => {
     try {
       // Simulation d'envoi - À adapter selon vos besoins
       console.log('Données du formulaire:', data);
-      
+
       // Pour l'instant, on simule juste un envoi réussi
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulation délai
-      
+
       alert('Message envoyé avec succès ! Nous vous recontacterons rapidement.');
-      
+
       // Réinitialiser le formulaire
       (e.target as HTMLFormElement).reset();
       recaptchaRef.current?.reset();
       setRecaptchaValue(null);
       setIsCaptchaValid(false);
-      
+
     } catch (error) {
       console.error('Erreur lors de l\'envoi:', error);
       alert('Une erreur est survenue. Veuillez réessayer.');
@@ -186,9 +186,9 @@ const Contact = () => {
     // Desktop: w-[450px] (taille survolée), Mobile: w-full max-w-md
     width: isMobile ? 'w-full max-w-md' : 'w-[450px]',
     // Desktop: h-[500px] (taille survolée/ouverte), Mobile: h-[500px]
-    height: 'h-[500px]' 
+    height: 'h-[500px]'
   };
-  
+
   // Le formulaire change désormais de taille au survol pour créer l'effet d'expansion
   const formDimensions = {
     // Desktop: w-450px (hover) ou w-400px (initial), Mobile: w-full max-w-md
@@ -196,12 +196,12 @@ const Contact = () => {
     // Desktop: h-500px (hover) ou h-200px (initial), Mobile: h-500px
     height: isMobile ? 'h-[500px]' : (isHovered ? 'h-[500px]' : 'h-[200px]')
   };
-  
+
   // Pour le formulaire, nous devons utiliser les dimensions qui changent (formDimensions)
   // Pour les autres, nous utilisons fixedDimensions pour qu'ils soient grands et fixes.
-  
+
   return (
-    <motion.div 
+    <motion.div
       className="flex justify-center items-center min-h-screen p-4 md:p-5 relative overflow-x-hidden"
       initial="initial"
       animate="animate"
@@ -214,12 +214,12 @@ const Contact = () => {
         backgroundAttachment: 'fixed'
       }}
     >
-      
+
       {/* Layout principal responsive */}
       <div className="relative w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-8">
-        
+
         {/* Section réseaux sociaux - UTILISE fixedDimensions (grande taille) */}
-        <motion.div 
+        <motion.div
           // Utilise fixedDimensions pour avoir une taille fixe et grande (450x500 sur desktop)
           className={`${fixedDimensions.width} ${fixedDimensions.height} order-2 lg:order-1`}
           variants={fadeInScale}
@@ -229,7 +229,7 @@ const Contact = () => {
               <MessageCircle className="w-5 h-5 mr-2" style={{ color: colors.primary }} />
               Suivez-nous
             </h3>
-            
+
             <div className="flex flex-col gap-3 md:gap-4 flex-1">
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -260,7 +260,7 @@ const Contact = () => {
         </motion.div>
 
         {/* Box principal du formulaire - CENTRE - UTILISE formDimensions (taille variable) */}
-        <motion.div 
+        <motion.div
           className={`relative rounded-3xl flex justify-center items-center transition-all duration-700 overflow-hidden cursor-pointer group
             ${formDimensions.width} ${formDimensions.height} // Utilise la taille qui varie
             bg-linear-to-br from-blue-700 to-green-500 border-2 border-blue-900 shadow-2xl z-10 order-1 lg:order-2`}
@@ -268,43 +268,43 @@ const Contact = () => {
           onMouseLeave={handleMouseLeave}
           variants={fadeInScale}
         >
-          
+
           {/* Effet de bordure colorée au survol */}
-          <motion.div 
+          <motion.div
             className={`absolute inset-0 rounded-3xl transition-all duration-1000
               ${isHovered ? 'opacity-20 blur-sm' : 'opacity-0'}`}
             style={{
               background: 'linear-gradient(135deg, #2987A6, #005F7F)'
             }}
           />
-          
+
           {/* Fond intérieur */}
           <div className="absolute inset-0.5 bg-white rounded-2xl z-10" />
-          
+
           {/* Contenu avec bordure et effet glass */}
-          <motion.div 
+          <motion.div
             className={`absolute transition-all duration-700 rounded-2xl bg-linear-to-br from-gray-300 to-gray-400 text-gray-800 z-20 overflow-visible backdrop-blur-sm border border-gray-200
-              ${isMobile 
-                ? 'inset-4' 
-                : isHovered 
-                  ? 'inset-4' 
+              ${isMobile
+                ? 'inset-4'
+                : isHovered
+                  ? 'inset-4'
                   : 'inset-8'
               }`}
             variants={fadeInUp}
           >
-            
+
             <div className="relative flex flex-col items-center justify-start w-full h-full gap-3 p-2">
-              
+
               {/* Titre avec les nouvelles couleurs */}
-              <motion.h2 
+              <motion.h2
                 className={`absolute text-center whitespace-nowrap transition-all duration-700 font-light tracking-widest
-                  ${isMobile || isHovered 
-                    ? 'top-3 left-1/2 transform -translate-x-1/2 text-base z-30' 
+                  ${isMobile || isHovered
+                    ? 'top-3 left-1/2 transform -translate-x-1/2 text-base z-30'
                     : 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl'
                   }`}
                 variants={fadeInUp}
               >
-                <span 
+                <span
                   className={`transition-all duration-700 inline-block font-light
                     ${isHovered || isMobile ? 'font-medium' : ''}
                   `}
@@ -322,42 +322,42 @@ const Contact = () => {
               </motion.h2>
 
               {/* Champs de formulaire avec animation stagger */}
-              <motion.form 
+              <motion.form
                 onSubmit={handleSubmit}
                 className={`w-full flex flex-col gap-3 transition-all duration-700 overflow-y-auto p-3 custom-scrollbar
-                  ${isMobile 
-                    ? 'opacity-100 visible translate-y-0 mt-12 max-h-[380px]' 
-                    : isHovered 
-                      ? 'opacity-100 visible translate-y-0 mt-12 max-h-[380px]' 
+                  ${isMobile
+                    ? 'opacity-100 visible translate-y-0 mt-12 max-h-[380px]'
+                    : isHovered
+                      ? 'opacity-100 visible translate-y-0 mt-12 max-h-[380px]'
                       : 'opacity-0 invisible translate-y-8 max-h-96'
                   }`}
                 variants={staggerContainer}
               >
                 <motion.div variants={fadeInUp}>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="nom"
-                    placeholder="Nom complet" 
-                    required 
+                    placeholder="Nom complet"
+                    required
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 transition-all duration-300 focus:border-[#2987A6] focus:ring-2 focus:ring-[#2987A6]/20 text-sm md:text-base"
                   />
                 </motion.div>
-                
+
                 <motion.div variants={fadeInUp}>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     name="email"
-                    placeholder="Adresse email" 
-                    required 
+                    placeholder="Adresse email"
+                    required
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 transition-all duration-300 focus:border-[#A65329] focus:ring-2 focus:ring-[#A65329]/20 text-sm md:text-base"
                   />
                 </motion.div>
-                
+
                 <motion.div variants={fadeInUp}>
-                  <textarea 
+                  <textarea
                     name="message"
-                    placeholder="Votre message" 
-                    required 
+                    placeholder="Votre message"
+                    required
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 resize-vertical min-h-20 transition-all duration-300 focus:border-[#A65329] focus:ring-2 focus:ring-[#A65329]/20 text-sm md:text-base"
                   />
                 </motion.div>
@@ -368,7 +368,7 @@ const Contact = () => {
                     <span className="text-sm font-medium text-gray-700">Vérification de sécurité</span>
                     <i className="fa-solid fa-shield-alt" style={{ color: colors.primary }}></i>
                   </div>
-                  
+
                   {/* reCAPTCHA Google avec container responsive */}
                   <div className="flex justify-center overflow-hidden">
                     <div className="transform scale-90 md:scale-100 origin-center">
@@ -381,7 +381,7 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  
+
                   {!isCaptchaValid && (
                     <p className="text-red-500 text-xs mt-2 flex items-center justify-center text-center">
                       <i className="fa-solid fa-exclamation-triangle mr-1" />
@@ -391,12 +391,11 @@ const Contact = () => {
                 </motion.div>
 
                 <motion.div variants={fadeInUp} className="mt-2">
-                  <button 
+                  <button
                     type="submit"
                     disabled={!isCaptchaValid || isSubmitting}
-                    className={`w-full px-4 py-3 text-white font-semibold rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] active:scale-95 text-sm md:text-base ${
-                      !isCaptchaValid || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                    }`}
+                    className={`w-full px-4 py-3 text-white font-semibold rounded-xl cursor-pointer transition-all duration-300 hover:shadow-lg transform hover:scale-[1.02] active:scale-95 text-sm md:text-base ${!isCaptchaValid || isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
                     style={{
                       background: 'linear-gradient(to right, #2987A6, #00804B)'
                     }}
@@ -430,7 +429,7 @@ const Contact = () => {
         </motion.div>
 
         {/* Carte Google Maps - UTILISE fixedDimensions (grande taille) */}
-        <motion.div 
+        <motion.div
           // Utilise fixedDimensions pour avoir une taille fixe et grande (450x500 sur desktop)
           className={`${fixedDimensions.width} ${fixedDimensions.height} order-3`}
           variants={fadeInScale}
@@ -454,13 +453,13 @@ const Contact = () => {
             </div>
             <div className="text-sm text-gray-600 space-y-2 flex-1 flex flex-col justify-center">
               <p className="font-medium text-center text-base" style={{ color: colors.primary }}>
-                5 Rue Pasteur
+                Antanimena
               </p>
-              <p className="text-center">Douanes Magasins Généraux</p>
-              <p className="text-center">Antananarivo, Madagascar</p>
+              <p className="text-center">Antananarivo, 101</p>
+              <p className="text-center">Madagascar</p>
               <div className="flex items-center justify-center gap-2 mt-3 pt-3 border-t border-gray-200">
                 <i className="fa-solid fa-clock" style={{ color: colors.secondary }}></i>
-                <span className="text-xs text-gray-500">Lun-Ven: 8h-18h</span>
+                <span className="text-xs text-gray-500">Lun-Ven: 9h-16h</span>
               </div>
             </div>
           </div>
