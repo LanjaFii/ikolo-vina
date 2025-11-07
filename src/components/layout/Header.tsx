@@ -10,7 +10,6 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const activeColor = 'text-special-1'
 
   const lastScrollY = useRef(0);
   const scrollThreshold = 10; // Seuil de détection du scroll

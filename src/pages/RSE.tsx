@@ -99,30 +99,6 @@ const Rse = () => {
     }
   ];
 
-  const engagements = [
-    {
-      icon: <Globe className="w-8 h-8" />,
-      title: "Vision Globale",
-      description: "Une approche intégrée qui considère l'ensemble des impacts environnementaux, sociaux et économiques de votre entreprise.",
-      stat: "360°",
-      statLabel: "Analyse complète"
-    },
-    {
-      icon: <Sparkles className="w-8 h-8" />,
-      title: "Innovation Continue",
-      description: "Des solutions créatives et adaptées aux spécificités du marché malgache pour une RSE véritablement transformative.",
-      stat: "15+",
-      statLabel: "Projets innovants"
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: "Accompagnement Sur-Mesure",
-      description: "Un suivi personnalisé tout au long de votre transformation RSE pour garantir des résultats durables et pérennes.",
-      stat: "100%",
-      statLabel: "Satisfaction client"
-    }
-  ];
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
