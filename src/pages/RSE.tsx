@@ -13,7 +13,10 @@ import {
   Target,
   Award,
   TrendingUp,
-  ArrowRight
+  ArrowRight,
+  Globe,
+  Shield,
+  Sparkles
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -93,6 +96,30 @@ const Rse = () => {
       image: "/assets/rse/valeur-communautaire.png",
       alt: "Communauté locale collaborant sur un projet RSE",
       color: "from-purple-500 to-pink-400"
+    }
+  ];
+
+  const engagements = [
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: "Vision Globale",
+      description: "Une approche intégrée qui considère l'ensemble des impacts environnementaux, sociaux et économiques de votre entreprise.",
+      stat: "360°",
+      statLabel: "Analyse complète"
+    },
+    {
+      icon: <Sparkles className="w-8 h-8" />,
+      title: "Innovation Continue",
+      description: "Des solutions créatives et adaptées aux spécificités du marché malgache pour une RSE véritablement transformative.",
+      stat: "15+",
+      statLabel: "Projets innovants"
+    },
+    {
+      icon: <Shield className="w-8 h-8" />,
+      title: "Accompagnement Sur-Mesure",
+      description: "Un suivi personnalisé tout au long de votre transformation RSE pour garantir des résultats durables et pérennes.",
+      stat: "100%",
+      statLabel: "Satisfaction client"
     }
   ];
 
@@ -297,82 +324,52 @@ const Rse = () => {
             </p>
           </motion.div>
 
-          {/* Section Solutions */}
-          <section className="py-16 bg-gradient-to-br from-special-2/5 to-white">
+          {/* Section Engagements - Steps Vertical */}
+          <section className="py-10 bg-linear-to-br from-white to-gray-50/30">
             <div className="container mx-auto px-4">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4">
-                  Nos <span className="text-special-2">Domaines</span> d'Expertise RSE
-                </h2>
-                <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                  Une approche complète couvrant tous les aspects de la responsabilité sociétale
-                </p>
-              </motion.div>
-
-              <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {solutions.map((solution, index) => (
+              <div className="max-w-4xl mx-auto">
+                <div className="space-y-8">
+                  {engagements.map((engagement, index) => (
                     <motion.div
-                      key={solution.title}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className={`group ${
-                        // Centrer le dernier élément si nombre impair
-                        index === solutions.length - 1 && solutions.length % 2 !== 0
-                          ? 'md:col-span-2 flex justify-center'
-                          : ''
-                        }`}
+                      key={engagement.title}
+                      initial={{ opacity: 0, x: -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.2 }}
+                      className="flex items-start space-x-6 group cursor-pointer"
                     >
-                      <div className={
-                        index === solutions.length - 1 && solutions.length % 2 !== 0
-                          ? 'w-full max-w-2xl'  // Limiter la largeur pour le dernier élément centré
-                          : 'w-full'
-                      }>
-                        <Card className="h-full border-0 bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden group-hover:shadow-xl transition-all duration-500 border border-special-2/20">
-                          <div className="flex flex-col md:flex-row h-full">
-                            <div className="md:w-2/5">
-                              <div className="relative h-48 md:h-full">
-                                <img
-                                  src={solution.image}
-                                  alt={solution.alt}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                />
-                                <div className="absolute top-4 right-4 w-12 h-12 rounded-xl bg-gradient-to-r from-special-2 to-special-1 flex items-center justify-center shadow-lg">
-                                  <div className="text-white">
-                                    {solution.icon}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                      {/* Numéro d'étape */}
+                      <div className="shrink-0 w-16 h-16 bg-linear-to-r from-special-2 to-special-1 rounded-2xl flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform duration-300">
+                        {index + 1}
+                      </div>
 
-                            <div className="md:w-3/5">
-                              <CardContent className="p-6 h-full flex flex-col">
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                                  {solution.title}
-                                </h3>
+                      {/* Ligne de connexion (sauf pour le dernier) */}
+                      {index < engagements.length - 1 && (
+                        <div className="absolute left-8 top-16 w-0.5 h-16 bg-linear-to-b from-special-2 to-special-1 transform translate-y-16"></div>
+                      )}
 
-                                <p className="text-gray-600 text-sm mb-4 leading-relaxed flex-grow">
-                                  {solution.description}
-                                </p>
-
-                                <div className="space-y-2">
-                                  {solution.benefits.map((benefit, idx) => (
-                                    <div key={idx} className="flex items-start space-x-2">
-                                      <CheckCircle className="w-4 h-4 text-special-2 mt-0.5 shrink-0" />
-                                      <span className="text-gray-700 text-sm leading-relaxed">{benefit}</span>
-                                    </div>
-                                  ))}
-                                </div>
-                              </CardContent>
-                            </div>
+                      {/* Contenu */}
+                      <div className="grow">
+                        <div className="flex items-center mb-3">
+                          <div className="text-special-2 mr-3">
+                            {engagement.icon}
                           </div>
-                        </Card>
+                          <h3 className="text-xl font-bold text-gray-900">
+                            {engagement.title}
+                          </h3>
+                        </div>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                          {engagement.description}
+                        </p>
+
+                        {/* Statistique en badge */}
+                        <div className="inline-flex items-center space-x-2 bg-special-2/10 px-4 py-2 rounded-full border border-special-2/20">
+                          <span className="text-special-2 font-bold text-lg">
+                            {engagement.stat}
+                          </span>
+                          <span className="text-gray-700 text-sm">
+                            {engagement.statLabel}
+                          </span>
+                        </div>
                       </div>
                     </motion.div>
                   ))}
