@@ -13,9 +13,6 @@ import {
   Target,
   Award,
   TrendingUp,
-  Sparkles,
-  Globe,
-  Shield,
   ArrowRight
 } from "lucide-react";
 import { Link } from "react-router-dom";
