@@ -6,6 +6,7 @@ import Layout from './components/layout/Layout';
 
 import './index.css';
 import useDynamicTitle from './hooks/useDynamicTitle';
+import LanguageFloatingButton from './components/ui/language-floating-button';
 
 const TitleHandler = () => {
   useDynamicTitle();
@@ -17,6 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <LanguageFloatingButton />
       <TitleHandler />
       <Layout>
         <AppRoutes />
