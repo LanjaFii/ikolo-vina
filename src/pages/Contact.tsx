@@ -25,7 +25,7 @@ const fadeInScale = {
   transition: { duration: 0.6, ease: "easeOut" }
 };
 
-// Configuration des réseaux sociaux (non modifiée)
+// Configuration des réseaux sociaux AVEC BONS LOGOS
 const socialLinks = [
   {
     label: 'Facebook',
@@ -48,16 +48,6 @@ const socialLinks = [
     borderColor: 'border-purple-200'
   },
   {
-    label: 'TikTok',
-    url: 'https://tiktok.com',
-    icon: <MessageCircle className="w-5 h-5" />,
-    color: 'bg-black',
-    hoverColor: 'bg-gray-800',
-    textColor: 'text-gray-800',
-    bgColor: 'bg-gray-50',
-    borderColor: 'border-gray-200'
-  },
-  {
     label: 'LinkedIn',
     url: 'https://linkedin.com',
     icon: <Linkedin className="w-5 h-5" />,
@@ -66,6 +56,16 @@ const socialLinks = [
     textColor: 'text-blue-700',
     bgColor: 'bg-blue-50',
     borderColor: 'border-blue-200'
+  },
+  {
+    label: 'WhatsApp',
+    url: 'https://wa.me',
+    icon: <MessageCircle className="w-5 h-5" />,
+    color: 'bg-green-500',
+    hoverColor: 'bg-green-600',
+    textColor: 'text-green-600',
+    bgColor: 'bg-green-50',
+    borderColor: 'border-green-200'
   }
 ];
 
@@ -89,7 +89,7 @@ const Contact = () => {
     accent2: "#00804B",
   };
 
-  // Détection mobile (non modifiée)
+  // Détection mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -101,7 +101,7 @@ const Contact = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Gestion du reCAPTCHA (non modifiée)
+  // Gestion du reCAPTCHA
   const handleRecaptchaChange = (value: string | null) => {
     setRecaptchaValue(value);
     setIsCaptchaValid(!!value);
@@ -172,7 +172,7 @@ const Contact = () => {
     }
   };
 
-  // NOUVELLE LOGIQUE SIMPLIFIÉE : Le cadre reste ouvert tant que la souris est dessus
+  // Gestion du survol adapté au mobile
   const handleMouseEnter = () => {
     if (!isMobile) {
       setIsHovered(true);
@@ -189,7 +189,7 @@ const Contact = () => {
     }
   };
 
-  // Sur mobile, le formulaire est toujours ouvert (non modifiée)
+  // Sur mobile, le formulaire est toujours ouvert
   useEffect(() => {
     if (isMobile) {
       setIsHovered(true);
@@ -210,13 +210,10 @@ const Contact = () => {
   // Le formulaire change désormais de taille au survol pour créer l'effet d'expansion
   const formDimensions = {
     // Desktop: w-450px (hover) ou w-400px (initial), Mobile: w-full max-w-md
-    width: isMobile ? "w-full max-w-md" : isHovered ? "w-[450px]" : "w-[400px]",
-    // Desktop: h-500px (hover) ou h-200px (initial), Mobile: h-500px
-    height: isMobile ? "h-[500px]" : isHovered ? "h-[500px]" : "h-[200px]",
+    width: isMobile ? 'w-full max-w-md' : (isHovered ? 'w-[450px]' : 'w-[400px]'),
+    // Desktop: h-500px (hover) ou h-200px (initial), Mobile: h-[500px]
+    height: isMobile ? 'h-[500px]' : (isHovered ? 'h-[500px]' : 'h-[200px]')
   };
-
-  // Pour le formulaire, nous devons utiliser les dimensions qui changent (formDimensions)
-  // Pour les autres, nous utilisons fixedDimensions pour qu'ils soient grands et fixes.
 
   return (
     <motion.div
@@ -234,9 +231,9 @@ const Contact = () => {
     >
       {/* Layout principal responsive */}
       <div className="relative w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-8">
-        {/* Section réseaux sociaux - UTILISE fixedDimensions (grande taille) */}
+
+        {/* Section réseaux sociaux - AVEC BONS LOGOS */}
         <motion.div
-          // Utilise fixedDimensions pour avoir une taille fixe et grande (450x500 sur desktop)
           className={`${fixedDimensions.width} ${fixedDimensions.height} order-2 lg:order-1`}
           variants={fadeInScale}
         >
@@ -287,11 +284,11 @@ const Contact = () => {
           </div>
         </motion.div>
 
-        {/* Box principal du formulaire - CENTRE - UTILISE formDimensions (taille variable) */}
+        {/* Box principal du formulaire - CENTRE */}
         <motion.div
           ref={formContainerRef}
           className={`relative rounded-3xl flex justify-center items-center transition-all duration-700 overflow-hidden cursor-pointer group
-            ${formDimensions.width} ${formDimensions.height} // Utilise la taille qui varie
+            ${formDimensions.width} ${formDimensions.height}
             bg-linear-to-br from-blue-700 to-green-500 border-2 border-blue-900 shadow-2xl z-10 order-1 lg:order-2`}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -477,9 +474,8 @@ const Contact = () => {
           </motion.div>
         </motion.div>
 
-        {/* Carte Google Maps - UTILISE fixedDimensions (grande taille) */}
+        {/* Carte Google Maps */}
         <motion.div
-          // Utilise fixedDimensions pour avoir une taille fixe et grande (450x500 sur desktop)
           className={`${fixedDimensions.width} ${fixedDimensions.height} order-3`}
           variants={fadeInScale}
         >
