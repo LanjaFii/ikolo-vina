@@ -79,6 +79,7 @@ const Contact = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const formContainerRef = useRef<HTMLDivElement>(null);
 
   // Couleurs de la palette pour le formulaire
   const colors = {
@@ -115,23 +116,23 @@ const Contact = () => {
   // --------------------------------------------------------------
   // Cette fonction est déclenchée lorsqu'un utilisateur envoie le formulaire.
   // Elle vérifie le reCAPTCHA, récupère les données du formulaire,
-  // et les envoie à ton backend via l’API "/api/contact".
+  // et les envoie à ton backend via l'API "/api/contact".
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); // Empêche le rechargement automatique de la page
-    setIsSubmitting(true); // Active l’état "en cours d’envoi" pour désactiver le bouton
+    setIsSubmitting(true); // Active l'état "en cours d'envoi" pour désactiver le bouton
 
-    // Vérifie que l'utilisateur a bien validé le reCAPTCHA avant d’envoyer
+    // Vérifie que l'utilisateur a bien validé le reCAPTCHA avant d'envoyer
     if (!recaptchaValue) {
       alert(" Veuillez compléter la vérification de sécurité");
-      setIsSubmitting(false); // Réactive le bouton si le reCAPTCHA n’est pas validé
+      setIsSubmitting(false); // Réactive le bouton si le reCAPTCHA n'est pas validé
       return;
     }
 
     // Récupère les données saisies dans le formulaire
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const data = {
-      nom: formData.get("nom"), // Nom de l’utilisateur
+      nom: formData.get("nom"), // Nom de l'utilisateur
       email: formData.get("email"), // Adresse email
       // telephone: formData.get("telephone") as string,
       // type: formData.get("type") as string,
@@ -141,11 +142,11 @@ const Contact = () => {
 
     try {
       //  Envoie les données au serveur backend
-      //  L’URL "http://localhost:5000/api/contact" doit pointer vers ton serveur backend.
+      //  L'URL "http://localhost:5000/api/contact" doit pointer vers ton serveur backend.
       // En production (sur Vercel ou autre hébergeur), remplace par "/api/contact".
       const response = await fetch("http://localhost:5000/api/contact", {
         method: "POST", // Méthode HTTP POST pour envoyer les données
-        headers: { "Content-Type": "application/json" }, // Indique qu’on envoie du JSON
+        headers: { "Content-Type": "application/json" }, // Indique qu'on envoie du JSON
         body: JSON.stringify(data), // Convertit les données en chaîne JSON
       });
 
@@ -157,30 +158,34 @@ const Contact = () => {
         (e.target as HTMLFormElement).reset(); // Réinitialise le formulaire
         recaptchaRef.current?.reset(); // Réinitialise le reCAPTCHA
         setRecaptchaValue(null); // Vide la valeur du reCAPTCHA
-        setIsCaptchaValid(false); // Indique que le captcha n’est plus valide
+        setIsCaptchaValid(false); // Indique que le captcha n'est plus valide
       } else {
         // Si le serveur renvoie une erreur (ex : champs manquants)
-        alert(result.error || "Erreur d’envoi");
+        alert(result.error || "Erreur d'envoi");
       }
     } catch (error) {
       // Si le serveur ne répond pas ou erreur réseau
       console.error("Erreur:", error);
-      alert("Une erreur est survenue lors de l’envoi.");
+      alert("Une erreur est survenue lors de l'envoi.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Gestion du survol adapté au mobile (non modifiée)
+  // NOUVELLE LOGIQUE SIMPLIFIÉE : Le cadre reste ouvert tant que la souris est dessus
   const handleMouseEnter = () => {
     if (!isMobile) {
       setIsHovered(true);
     }
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (e: React.MouseEvent) => {
     if (!isMobile) {
-      setIsHovered(false);
+      // Vérifie si la souris quitte vraiment le conteneur principal
+      const relatedTarget = e.relatedTarget as Node;
+      if (formContainerRef.current && !formContainerRef.current.contains(relatedTarget)) {
+        setIsHovered(false);
+      }
     }
   };
 
@@ -284,6 +289,7 @@ const Contact = () => {
 
         {/* Box principal du formulaire - CENTRE - UTILISE formDimensions (taille variable) */}
         <motion.div
+          ref={formContainerRef}
           className={`relative rounded-3xl flex justify-center items-center transition-all duration-700 overflow-hidden cursor-pointer group
             ${formDimensions.width} ${formDimensions.height} // Utilise la taille qui varie
             bg-linear-to-br from-blue-700 to-green-500 border-2 border-blue-900 shadow-2xl z-10 order-1 lg:order-2`}
