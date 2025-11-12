@@ -6,6 +6,7 @@ import { ArrowRight, Calendar, Clock, X, ChevronLeft, ChevronRight, Target, Puzz
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import type { ComponentType, SVGProps } from 'react';
+import { useTranslation } from "react-i18next";
 
 // Animations
 const fadeInUp = {
@@ -52,141 +53,83 @@ interface Article {
   content: string;
 }
 
-// Données des articles
-const articlesData: Article[] = [
-  {
-    id: 1,
-    title: "HOLINIAINA RAKOTOMALALA NOROHARILIVA : UNE ARCHITECTE DE SYNERGIES AU CŒUR DU SALON INTERNATIONAL DES ACTEURS ÉCONOMIQUES",
-    excerpt: "Rôle central dans la conception, coordination et rayonnement du SIAE 2022-2023 en tant que Directrice des relations extérieures et Coordinatrice générale.",
-    category: "Leadership Événementiel",
-    date: "2022-2023",
-    readTime: "5 min",
-    images: [
-      "/assets/blog/SIAE 1.jpg",
-      "/assets/blog/SIAE 2.jpg",
-      "/assets/blog/SIAE 3.jpg",
-      "/assets/blog/SIAE 4.jpg",
-      "/assets/blog/SIAE 5.jpg",
-      "/assets/blog/SIAE 6.jpg",
-      "/assets/blog/SIAE 7.jpg",
-      "/assets/blog/SIAE 8.jpg"
-    ],
-    content: `
-      Depuis sa création, le Salon International des Acteurs Économiques (SIAE) s'est imposé comme une plateforme incontournable de rencontres, de réflexion et de collaboration entre les forces vives de l'économie malgache. Lors de ses deux premières éditions — en 2022 et en 2023 — Holiniaina Rakotomalala Norohariliva, fondatrice d'IKOLO, a joué un rôle central dans la conception, la coordination et le rayonnement de cet événement d'envergure, au niveau national comme au niveau international.
-
-      🎯 **Une direction stratégique au service de l'ouverture**
-      En tant que Directrice des relations extérieures du SIAE sur les deux éditions, Holiniaina a orchestré les liens institutionnels, diplomatiques et sectoriels qui ont permis au salon de s'ancrer dans les dynamiques nationales et régionales. Grâce à son sens aigu de la diplomatie et sa capacité à valoriser les talents locaux, elle a su positionner le SIAE comme un espace de convergence entre acteurs publics, privés et internationaux.
-
-      🧩 **Une coordination rigoureuse et inclusive**
-      En parallèle, elle a assumé la fonction de Coordinatrice générale de l'organisation, veillant à la cohérence logistique, à la fluidité des plannings et à l'implication active des partenaires. Son approche inclusive a permis de mobiliser une diversité d'acteurs économiques — entrepreneurs, institutions, coopératives, bailleurs — autour d'une vision partagée : celle d'une économie malgache refondée par ses propres forces.
-
-      📣 **Une stratégie de communication à fort impact**
-      Holiniaina a également supervisé la stratégie de communication du salon, en mettant en avant les valeurs d'innovation, de collaboration et de valorisation des initiatives locales. Grâce à une narration sensible et stratégique, elle a su faire rayonner le SIAE bien au-delà des murs du salon, dans les médias, les réseaux sociaux et les cercles d'influence.
-
-      🤝 **Une ambassadrice du réseautage économique**
-      Enfin, en tant qu'organisatrice des rencontres B to B, des ateliers et ambassadrice du SIAE, elle a créé des ponts entre les entrepreneurs, les investisseurs et les institutions. Ces rencontres ont permis de générer des opportunités concrètes de partenariat, de financement et de croissance pour de nombreux porteurs de projets.
-    `
-  },
-  {
-    id: 2,
-    title: "INIM : CONGRES SUR LA VALORISATION DES MATIERES PREMIERES VEGETALES",
-    excerpt: "Coordination du Congrès INIM 2022-2023 pour valoriser les ingrédients naturels malgaches dans les filières santé, cosmétique et alimentation.",
-    category: "Innovation Naturelle",
-    date: "2022-2023",
-    readTime: "6 min",
-    images: [
-      "/assets/blog/inim1.jpeg.jpg",
-      "/assets/blog/inim2.JPG",
-      "/assets/blog/inim3.JPG"
-    ],
-    content: `
-      🌿 **INIM : CONGRES SUR LA VALORISATION DES MATIERES PREMIERES VEGETALES ISSUES DES TERRES MALGACHES ET LA VALORISATION DE LEURS ECHANGES COMMERCIAUX NATIONAUX ET INTERNATIONAUX**
-
-      Le Congrès INIM – Innovative Natural Ingredients Madagascar s'est imposé, dès ses deux premières éditions en 2022 et en 2023, comme un rendez-vous incontournable pour les acteurs de la valorisation des ingrédients naturels malgaches (dans la filière santé, aromathérapie, cosmétique, alimentation et bio-construction). À la croisée de la biodiversité, de la recherche, de l'entrepreneuriat et du développement durable, cet événement a réuni opérateurs économiques, institutions, bailleurs et experts autour d'une ambition commune : faire de Madagascar un leader régional en innovation botanique et en transformation responsable.
-
-      🤝 **Une coordination féminine au service de l'impact**
-      Au cœur de cette dynamique, Anna et Holy, deux entrepreneures visionnaires ont eu l'opportunité de porter le congrès avec rigueur, créativité et engagement :
-
-      • **Anna**, fondatrice de Vina Consulting, a assuré la coordination globale du projet, en pilotant la stratégie de communication multi-canal auprès des partenaires institutionnels, des PTF et des opérateurs économiques. De la préparation logistique à la mobilisation des équipes techniques, en passant par l'organisation de webinaires, la gestion des prestataires et l'élaboration du rapport final, elle a su orchestrer chaque édition avec une précision remarquable.
-
-      • **Holy Rakotomalala**, fondatrice d'IKOLO, étant experte dans la valorisation des ressources naturelles, a quant à elle assumé le rôle de responsable innovation et de responsable des panélistes. Elle a conçu les contenus thématiques, sélectionné les intervenants, assuré le suivi-évaluation des panels, et veillé à ce que chaque prise de parole contribue à une vision cohérente et inspirante de l'innovation naturelle à Madagascar.
-
-      🌱 **Un congrès au service de la transformation**
-      Les deux éditions du Congrès INIM ont permis :
-      • De valoriser les filières locales : huiles essentielles, extraits végétaux, actifs cosmétiques et nutraceutiques
-      • De connecter les producteurs aux marchés internationaux
-      • De favoriser les partenariats public-privé pour structurer les chaînes de valeur
-      • De sensibiliser à la traçabilité, à la qualité et à l'éthique dans l'exploitation des ressources naturelles
-
-      Grâce à une programmation riche en panels, ateliers, expositions et rencontres B2B, le congrès a posé les bases d'un écosystème d'innovation enraciné dans la biodiversité malgache et ouvert sur le monde.
-    `
-  },
-  {
-    id: 3,
-    title: "DESIGN THINKING : IMMERSION COLLABORATIVE ENTRE 2M CONSULTING, IKOLO ET VINA",
-    excerpt: "Atelier collaboratif du 8 février 2025 réunissant entrepreneurs pour concevoir des produits innovants adaptés aux besoins clients.",
-    category: "Innovation Collaborative",
-    date: "8 Février 2025",
-    readTime: "4 min",
-    images: [
-      "/assets/blog/DT1.jpg",
-      "/assets/blog/DT2.jpg",
-      "/assets/blog/DT3.jpg",
-      "/assets/blog/DT4.jpg"
-    ],
-    content: `
-      🌿 **Atelier Design Thinking : une immersion collaborative entre 2M Consulting, IKOLO et VINA**
-
-      Le 8 février dernier, une vingtaine d'entrepreneurs se sont réunis pour une journée d'immersion au Design Thinking produit, organisée par 2M Consulting en partenariat avec le Département Appui aux Entreprises de la CCIA. Cet atelier, placé sous le signe de l'innovation collaborative, a permis aux participants de s'approprier les outils du Design Thinking pour concevoir ou améliorer leurs produits en phase avec les besoins réels de leurs clients.
-
-      Pour **Holy Rakotomalala**, fondatrice d'IKOLO, cette journée a eu une résonance particulière. Après plus d'un an de consultance active au sein de 2M Consulting, elle a contribué à la conception et à l'animation de plusieurs ateliers stratégiques, dont celui-ci. Cette expérience lui a permis de renforcer ses compétences en facilitation, en accompagnement entrepreneurial et en structuration de parcours d'innovation.
-
-      L'atelier a également été marqué par la participation de **VINA**, représentée par sa fondatrice **Anna**. Cette synergie entre IKOLO et VINA illustre parfaitement l'esprit de co-création et de sororité entrepreneuriale que nous défendons : des femmes leaders qui s'unissent pour faire émerger des solutions durables et adaptées aux réalités locales.
-
-      Dans la continuité de cette dynamique, IKOLO-VINA s'engage à promouvoir des espaces d'apprentissage et de collaboration où les entrepreneures peuvent expérimenter, échanger et grandir ensemble.
-    `
-  },
-  {
-    id: 4,
-    title: "KENGO KUMA DAY : UNE JOURNEE DEDIEE AU CELEBRE ARCHITECTE JAPONAIS",
-    excerpt: "Événement exceptionnel du 24 juin 2025 pour présenter le projet d'aménagement durable du site d'Ambalakalanoro.",
-    category: "Architecture Durable",
-    date: "24 Juin 2025",
-    readTime: "5 min",
-    images: [
-      "/assets/blog/kengo1.jpeg",
-      "/assets/blog/kengo2.jpeg",
-      "/assets/blog/kengo3.jpeg",
-      "/assets/blog/kengo4.jpeg",
-      "/assets/blog/kengo5.jpeg",
-      "/assets/blog/kengo6.jpeg",
-      "/assets/blog/kengo7.jpg"
-    ],
-    content: `
-      **KENGO KUMA DAY : UNE JOURNEE DEDIEE AU CELEBRE ARCHITECTE JAPONAIS KENGO KUMA**
-
-      Le 24 juin 2025 dernier, le Bois Vert Antananarivo a accueilli un événement d'exception : le Kengo Kuma Day, une journée dédiée à la présentation officielle du projet d'aménagement durable du site d'Ambalakalanoro, en présence du célèbre architecte japonais Kengo Kuma. Ce moment fort a réuni des représentants d'ambassades, du Ministère du Tourisme et de l'Artisanat, d'associations, d'acteurs privés et de défenseurs de l'environnement, tous mobilisés autour d'une même ambition : poser les fondations d'un tourisme plus vertueux à Madagascar.
-
-      Ce projet, porté par l'ONG L'Homme et L'Environnement Madagascar et coordonné par Label CBD Consulting a rassemblé encore une fois les deux entrepreneures engagées : **Anna**, Fondatrice de Vina Consulting et **Holy Rakotomalala**, fondatrice d'IKOLO.
-
-      🤝 **Une coordination féminine au service d'une vision partagée**
-
-      **Anna** a assuré la co-coordination générale de l'événement avec le Label CBD, de la logistique à la communication, en passant par la mobilisation des équipes et la gestion des prestataires. Sa rigueur et sa capacité à fédérer ont permis de relever ce défi en un temps record.
-
-      **Holy**, quant à elle, a pris en charge la coordination technique, la gestion de l'accueil des invités VIP et les relations presse. Son sens du détail, son énergie fédératrice et son expertise en gestion d'événements ont largement contribué à la fluidité et à la visibilité de cette journée.
-
-      🌱 **Ambalakalanoro : un joyau à préserver**
-      Le site d'Ambalakalanoro, porté par l'ONG L'Homme et l'Environnement, a été au cœur des échanges. Véritable écrin de biodiversité, il incarne le potentiel d'un tourisme responsable, enraciné dans la nature et respectueux des communautés locales. Le Kengo Kuma Day a permis d'initier une réflexion collective sur son aménagement, en lien avec les principes de durabilité, d'architecture bioclimatique et de valorisation du patrimoine naturel malgache.
-    `
-  }
-];
-
 const Blog = () => {
+  const { t } = useTranslation();
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [direction, setDirection] = useState<number>(0);
   const [hoverImageIndex, setHoverImageIndex] = useState<{ [key: number]: number }>({});
   const hoverIntervalRef = useRef<{ [key: number]: number }>({});
+
+  // Charger les données des articles depuis les traductions
+  const articlesData: Article[] = [
+    {
+      id: 1,
+      title: t('blog.articles.0.title'),
+      excerpt: t('blog.articles.0.excerpt'),
+      category: t('blog.articles.0.category'),
+      date: t('blog.articles.0.date'),
+      readTime: t('blog.articles.0.readTime'),
+      images: [
+        "/assets/blog/SIAE 1.jpg",
+        "/assets/blog/SIAE 2.jpg",
+        "/assets/blog/SIAE 3.jpg",
+        "/assets/blog/SIAE 4.jpg",
+        "/assets/blog/SIAE 5.jpg",
+        "/assets/blog/SIAE 6.jpg",
+        "/assets/blog/SIAE 7.jpg",
+        "/assets/blog/SIAE 8.jpg"
+      ],
+      content: t('blog.articles.0.content')
+    },
+    {
+      id: 2,
+      title: t('blog.articles.1.title'),
+      excerpt: t('blog.articles.1.excerpt'),
+      category: t('blog.articles.1.category'),
+      date: t('blog.articles.1.date'),
+      readTime: t('blog.articles.1.readTime'),
+      images: [
+        "/assets/blog/inim1.jpeg.jpg",
+        "/assets/blog/inim2.JPG",
+        "/assets/blog/inim3.JPG"
+      ],
+      content: t('blog.articles.1.content')
+    },
+    {
+      id: 3,
+      title: t('blog.articles.2.title'),
+      excerpt: t('blog.articles.2.excerpt'),
+      category: t('blog.articles.2.category'),
+      date: t('blog.articles.2.date'),
+      readTime: t('blog.articles.2.readTime'),
+      images: [
+        "/assets/blog/DT1.jpg",
+        "/assets/blog/DT2.jpg",
+        "/assets/blog/DT3.jpg",
+        "/assets/blog/DT4.jpg"
+      ],
+      content: t('blog.articles.2.content')
+    },
+    {
+      id: 4,
+      title: t('blog.articles.3.title'),
+      excerpt: t('blog.articles.3.excerpt'),
+      category: t('blog.articles.3.category'),
+      date: t('blog.articles.3.date'),
+      readTime: t('blog.articles.3.readTime'),
+      images: [
+        "/assets/blog/kengo1.jpeg",
+        "/assets/blog/kengo2.jpeg",
+        "/assets/blog/kengo3.jpeg",
+        "/assets/blog/kengo4.jpeg",
+        "/assets/blog/kengo5.jpeg",
+        "/assets/blog/kengo6.jpeg",
+        "/assets/blog/kengo7.jpg"
+      ],
+      content: t('blog.articles.3.content')
+    }
+  ];
 
   const openModal = (article: Article) => {
     // Clear any hover intervals for this article to avoid continued background cycling
@@ -289,7 +232,7 @@ const Blog = () => {
         <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent z-20"></div>
         <img
           src="/assets/blog/banniere.png"
-          alt="Blog Ikolo Vina"
+          alt={t('blog.hero.imageAlt')}
           className="w-full h-full object-cover absolute inset-0 blur-[1px]"
         />
         <div className="container mx-auto px-4 relative z-30">
@@ -306,11 +249,10 @@ const Blog = () => {
             >
             </motion.div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
-              Nos <span className="text-special-3 drop-shadow-lg">Articles</span>
+              {t('blog.hero.title')}
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl mb-8 text-gray-100 leading-relaxed font-light max-w-3xl mx-auto">
-              Découvrez les événements marquants qui ont façonné notre expertise 
-              en organisation et coordination d'événements d'exception.
+              {t('blog.hero.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -390,7 +332,7 @@ const Blog = () => {
                     
                     <div className="flex items-center justify-between pt-4 border-t border-gray-100 group-hover:border-special-1/30 transition-colors duration-300 mt-auto">
                       <span className="text-special-1 font-semibold group-hover:translate-x-2 transition-transform duration-300 flex items-center">
-                        Lire la suite
+                        {t('blog.readMore')}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </span>
                       <div className="flex space-x-1">
@@ -464,7 +406,7 @@ const Blog = () => {
                     <motion.img
                       key={currentImageIndex}
                       src={selectedArticle.images[currentImageIndex]}
-                      alt={`${selectedArticle.title} - Image ${currentImageIndex + 1}`}
+                      alt={`${selectedArticle.title} - ${t('blog.modal.imageAlt', { number: currentImageIndex + 1 })}`}
                       className="w-full h-full object-cover absolute inset-0"
                       custom={direction}
                       variants={slideVariants}

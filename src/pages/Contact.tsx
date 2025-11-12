@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { useTranslation } from 'react-i18next';
 
 // Animations
 const fadeInUp = {
@@ -25,54 +26,22 @@ const fadeInScale = {
   transition: { duration: 0.6, ease: "easeOut" }
 };
 
-// Configuration des réseaux sociaux AVEC BONS LOGOS
-const socialLinks = [
-  {
-    label: 'Facebook',
-    url: 'https://facebook.com',
-    icon: <Facebook className="w-5 h-5" />,
-    color: 'bg-blue-600',
-    hoverColor: 'bg-blue-700',
-    textColor: 'text-blue-600',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200'
-  },
-  {
-    label: 'Instagram',
-    url: 'https://instagram.com',
-    icon: <Instagram className="w-5 h-5" />,
-    color: 'bg-gradient-to-r from-purple-500 to-pink-500',
-    hoverColor: 'bg-gradient-to-r from-purple-600 to-pink-600',
-    textColor: 'text-purple-600',
-    bgColor: 'bg-gradient-to-r from-purple-50 to-pink-50',
-    borderColor: 'border-purple-200'
-  },
-  {
-    label: 'LinkedIn',
-    url: 'https://linkedin.com',
-    icon: <Linkedin className="w-5 h-5" />,
-    color: 'bg-blue-700',
-    hoverColor: 'bg-blue-800',
-    textColor: 'text-blue-700',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200'
-  },
-  {
-    label: 'WhatsApp',
-    url: 'https://wa.me',
-    icon: <MessageCircle className="w-5 h-5" />,
-    color: 'bg-green-500',
-    hoverColor: 'bg-green-600',
-    textColor: 'text-green-600',
-    bgColor: 'bg-green-50',
-    borderColor: 'border-green-200'
-  }
-];
+// Composant personnalisé pour l'icône TikTok
+const TikTokIcon = ({ className = "w-5 h-5" }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+  </svg>
+);
 
 // Clé reCAPTCHA de test (fonctionne en localhost) - À remplacer par le clé de production
 const RECAPTCHA_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"; // Clé de test Google
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
@@ -80,6 +49,50 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const formContainerRef = useRef<HTMLDivElement>(null);
+
+  // Configuration des réseaux sociaux avec traductions
+  const socialLinks = [
+    {
+      label: t('contact.social.facebook'),
+      url: 'https://facebook.com',
+      icon: <Facebook className="w-5 h-5" />,
+      color: 'bg-blue-600',
+      hoverColor: 'bg-blue-700',
+      textColor: 'text-blue-600',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-blue-200'
+    },
+    {
+      label: t('contact.social.instagram'),
+      url: 'https://instagram.com',
+      icon: <Instagram className="w-5 h-5" />,
+      color: 'bg-gradient-to-r from-purple-500 to-pink-500',
+      hoverColor: 'bg-gradient-to-r from-purple-600 to-pink-600',
+      textColor: 'text-purple-600',
+      bgColor: 'bg-gradient-to-r from-purple-50 to-pink-50',
+      borderColor: 'border-purple-200'
+    },
+    {
+      label: t('contact.social.tiktok'),
+      url: 'https://tiktok.com',
+      icon: <TikTokIcon className="w-5 h-5" />,
+      color: 'bg-black',
+      hoverColor: 'bg-gray-800',
+      textColor: 'text-gray-800',
+      bgColor: 'bg-gray-50',
+      borderColor: 'border-gray-200'
+    },
+    {
+      label: t('contact.social.linkedin'),
+      url: 'https://linkedin.com',
+      icon: <Linkedin className="w-5 h-5" />,
+      color: 'bg-blue-700',
+      hoverColor: 'bg-blue-800',
+      textColor: 'text-blue-700',
+      bgColor: 'bg-blue-50',
+      borderColor: 'border-blue-200'
+    }
+  ];
 
   // Couleurs de la palette pour le formulaire
   const colors = {
@@ -112,67 +125,52 @@ const Contact = () => {
     setIsCaptchaValid(false);
   };
 
-  //  Fonction pour gérer la soumission du formulaire de contact
-  // --------------------------------------------------------------
-  // Cette fonction est déclenchée lorsqu'un utilisateur envoie le formulaire.
-  // Elle vérifie le reCAPTCHA, récupère les données du formulaire,
-  // et les envoie à ton backend via l'API "/api/contact".
-
+  // Fonction pour gérer la soumission du formulaire de contact
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Empêche le rechargement automatique de la page
-    setIsSubmitting(true); // Active l'état "en cours d'envoi" pour désactiver le bouton
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    // Vérifie que l'utilisateur a bien validé le reCAPTCHA avant d'envoyer
     if (!recaptchaValue) {
-      alert(" Veuillez compléter la vérification de sécurité");
-      setIsSubmitting(false); // Réactive le bouton si le reCAPTCHA n'est pas validé
+      alert(t('contact.form.recaptchaError'));
+      setIsSubmitting(false);
       return;
     }
 
-    // Récupère les données saisies dans le formulaire
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const data = {
-      nom: formData.get("nom"), // Nom de l'utilisateur
-      email: formData.get("email"), // Adresse email
-      // telephone: formData.get("telephone") as string,
-      // type: formData.get("type") as string,
-      message: formData.get("message"), // Contenu du message
-      recaptcha: recaptchaValue, // Valeur du reCAPTCHA pour vérification
+      nom: formData.get("nom"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+      recaptcha: recaptchaValue,
     };
 
     try {
-      //  Envoie les données au serveur backend
-      //  L'URL "http://localhost:5000/api/contact" doit pointer vers ton serveur backend.
-      // En production (sur Vercel ou autre hébergeur), remplace par "/api/contact".
       const response = await fetch("http://localhost:5000/api/contact", {
-        method: "POST", // Méthode HTTP POST pour envoyer les données
-        headers: { "Content-Type": "application/json" }, // Indique qu'on envoie du JSON
-        body: JSON.stringify(data), // Convertit les données en chaîne JSON
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
 
-      const result = await response.json(); // Récupère la réponse JSON du serveur
+      const result = await response.json();
 
-      // Si le message a bien été envoyé
       if (response.ok) {
-        alert(result.message); // Affiche le message de succès
-        (e.target as HTMLFormElement).reset(); // Réinitialise le formulaire
-        recaptchaRef.current?.reset(); // Réinitialise le reCAPTCHA
-        setRecaptchaValue(null); // Vide la valeur du reCAPTCHA
-        setIsCaptchaValid(false); // Indique que le captcha n'est plus valide
+        alert(result.message);
+        (e.target as HTMLFormElement).reset();
+        recaptchaRef.current?.reset();
+        setRecaptchaValue(null);
+        setIsCaptchaValid(false);
       } else {
-        // Si le serveur renvoie une erreur (ex : champs manquants)
-        alert(result.error || "Erreur d'envoi");
+        alert(result.error || t('contact.form.submitError'));
       }
     } catch (error) {
-      // Si le serveur ne répond pas ou erreur réseau
       console.error("Erreur:", error);
-      alert("Une erreur est survenue lors de l'envoi.");
+      alert(t('contact.form.networkError'));
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Gestion du survol adapté au mobile
+  // Logique pour le survol du formulaire
   const handleMouseEnter = () => {
     if (!isMobile) {
       setIsHovered(true);
@@ -181,7 +179,6 @@ const Contact = () => {
 
   const handleMouseLeave = (e: React.MouseEvent) => {
     if (!isMobile) {
-      // Vérifie si la souris quitte vraiment le conteneur principal
       const relatedTarget = e.relatedTarget as Node;
       if (formContainerRef.current && !formContainerRef.current.contains(relatedTarget)) {
         setIsHovered(false);
@@ -196,23 +193,16 @@ const Contact = () => {
     }
   }, [isMobile]);
 
-  /**
-   * NOUVELLE LOGIQUE POUR RESPECTER LA CONTRAINTE
-   * Dimensions communes pour les trois blocs, basées sur l'état "survolé" (ouvert) du formulaire.
-   */
+  // Dimensions communes pour les trois blocs
   const fixedDimensions = {
-    // Desktop: w-[450px] (taille survolée), Mobile: w-full max-w-md
     width: isMobile ? "w-full max-w-md" : "w-[450px]",
-    // Desktop: h-[500px] (taille survolée/ouverte), Mobile: h-[500px]
     height: "h-[500px]",
   };
 
-  // Le formulaire change désormais de taille au survol pour créer l'effet d'expansion
+  // Le formulaire change de taille au survol
   const formDimensions = {
-    // Desktop: w-450px (hover) ou w-400px (initial), Mobile: w-full max-w-md
-    width: isMobile ? 'w-full max-w-md' : (isHovered ? 'w-[450px]' : 'w-[400px]'),
-    // Desktop: h-500px (hover) ou h-200px (initial), Mobile: h-[500px]
-    height: isMobile ? 'h-[500px]' : (isHovered ? 'h-[500px]' : 'h-[200px]')
+    width: isMobile ? "w-full max-w-md" : isHovered ? "w-[450px]" : "w-[400px]",
+    height: isMobile ? "h-[500px]" : isHovered ? "h-[500px]" : "h-[200px]",
   };
 
   return (
@@ -231,8 +221,7 @@ const Contact = () => {
     >
       {/* Layout principal responsive */}
       <div className="relative w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-8">
-
-        {/* Section réseaux sociaux - AVEC BONS LOGOS */}
+        {/* Section réseaux sociaux */}
         <motion.div
           className={`${fixedDimensions.width} ${fixedDimensions.height} order-2 lg:order-1`}
           variants={fadeInScale}
@@ -243,7 +232,7 @@ const Contact = () => {
                 className="w-5 h-5 mr-2"
                 style={{ color: colors.primary }}
               />
-              Suivez-nous
+              {t('contact.social.title')}
             </h3>
 
             <div className="flex flex-col gap-3 md:gap-4 flex-1">
@@ -278,13 +267,13 @@ const Contact = () => {
 
             <div className="mt-4 pt-4 border-t border-gray-200">
               <p className="text-xs text-gray-500 text-center">
-                Rejoignez notre communauté
+                {t('contact.social.community')}
               </p>
             </div>
           </div>
         </motion.div>
 
-        {/* Box principal du formulaire - CENTRE */}
+        {/* Box principal du formulaire */}
         <motion.div
           ref={formContainerRef}
           className={`relative rounded-3xl flex justify-center items-center transition-all duration-700 overflow-hidden cursor-pointer group
@@ -313,7 +302,7 @@ const Contact = () => {
             variants={fadeInUp}
           >
             <div className="relative flex flex-col items-center justify-start w-full h-full gap-3 p-2">
-              {/* Titre avec les nouvelles couleurs */}
+              {/* Titre */}
               <motion.h2
                 className={`absolute text-center whitespace-nowrap transition-all duration-700 font-light tracking-widest
                   ${
@@ -343,7 +332,7 @@ const Contact = () => {
                     className="w-4 h-4 inline mr-3"
                     style={{ color: colors.primary }}
                   />
-                  CONTACT
+                  {t('contact.form.title')}
                   <i
                     className="fa-solid fa-bolt ml-3"
                     style={{ color: colors.secondary }}
@@ -351,7 +340,7 @@ const Contact = () => {
                 </span>
               </motion.h2>
 
-              {/* Champs de formulaire avec animation stagger */}
+              {/* Champs de formulaire */}
               <motion.form
                 onSubmit={handleSubmit}
                 className={`w-full flex flex-col gap-3 transition-all duration-700 overflow-y-auto p-3 custom-scrollbar
@@ -368,7 +357,7 @@ const Contact = () => {
                   <input
                     type="text"
                     name="nom"
-                    placeholder="Nom complet"
+                    placeholder={t('contact.form.name.placeholder')}
                     required
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 transition-all duration-300 focus:border-[#2987A6] focus:ring-2 focus:ring-[#2987A6]/20 text-sm md:text-base"
                   />
@@ -378,7 +367,7 @@ const Contact = () => {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Adresse email"
+                    placeholder={t('contact.form.email.placeholder')}
                     required
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 transition-all duration-300 focus:border-[#A65329] focus:ring-2 focus:ring-[#A65329]/20 text-sm md:text-base"
                   />
@@ -387,20 +376,20 @@ const Contact = () => {
                 <motion.div variants={fadeInUp}>
                   <textarea
                     name="message"
-                    placeholder="Votre message"
+                    placeholder={t('contact.form.message.placeholder')}
                     required
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-800 placeholder-gray-500 resize-vertical min-h-20 transition-all duration-300 focus:border-[#A65329] focus:ring-2 focus:ring-[#A65329]/20 text-sm md:text-base"
                   />
                 </motion.div>
 
-                {/* Section reCAPTCHA améliorée et responsive */}
+                {/* Section reCAPTCHA */}
                 <motion.div
                   variants={fadeInUp}
                   className="bg-gray-100 p-3 rounded-xl border border-gray-300"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-medium text-gray-700">
-                      Vérification de sécurité
+                      {t('contact.form.recaptcha.title')}
                     </span>
                     <i
                       className="fa-solid fa-shield-alt"
@@ -408,7 +397,6 @@ const Contact = () => {
                     ></i>
                   </div>
 
-                  {/* reCAPTCHA Google avec container responsive */}
                   <div className="flex justify-center overflow-hidden">
                     <div className="transform scale-90 md:scale-100 origin-center">
                       <ReCAPTCHA
@@ -424,7 +412,7 @@ const Contact = () => {
                   {!isCaptchaValid && (
                     <p className="text-red-500 text-xs mt-2 flex items-center justify-center text-center">
                       <i className="fa-solid fa-exclamation-triangle mr-1" />
-                      Veuillez compléter la vérification de sécurité
+                      {t('contact.form.recaptcha.error')}
                     </p>
                   )}
                 </motion.div>
@@ -457,14 +445,14 @@ const Contact = () => {
                     {isSubmitting ? (
                       <>
                         <i className="fa-solid fa-spinner fa-spin mr-2" />
-                        Envoi en cours...
+                        {t('contact.form.submitting')}
                       </>
                     ) : (
                       <>
                         <i className="fa-solid fa-paper-plane mr-2" />
                         {isCaptchaValid
-                          ? "Envoyer le message"
-                          : "Complétez la sécurité"}
+                          ? t('contact.form.submit')
+                          : t('contact.form.completeSecurity')}
                       </>
                     )}
                   </button>
@@ -485,7 +473,7 @@ const Contact = () => {
                 className="fa-solid fa-location-dot mr-2"
                 style={{ color: colors.primary }}
               ></i>
-              Notre siège
+              {t('contact.location.title')}
             </h3>
             <div className="w-full h-48 rounded-xl overflow-hidden border-2 border-gray-300 mb-4 shrink-0">
               <iframe
@@ -496,7 +484,7 @@ const Contact = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Siège de l'entreprise - 5 Rue Pasteur, Douanes Magasins Généraux, Antananarivo, Madagascar"
+                title={t('contact.location.mapTitle')}
               ></iframe>
             </div>
             <div className="text-sm text-gray-600 space-y-2 flex-1 flex flex-col justify-center">
@@ -504,16 +492,17 @@ const Contact = () => {
                 className="font-medium text-center text-base"
                 style={{ color: colors.primary }}
               >
-                Antanimena
+                {t('contact.location.area')}
               </p>
-              <p className="text-center">Antananarivo, 101</p>
-              <p className="text-center">Madagascar</p>
+              <p className="text-center">{t('contact.location.address')}</p>
+              <p className="text-center">{t('contact.location.city')}</p>
+              <p className="text-center">{t('contact.location.country')}</p>
               <div className="flex items-center justify-center gap-2 mt-3 pt-3 border-t border-gray-200">
                 <i
                   className="fa-solid fa-clock"
                   style={{ color: colors.secondary }}
                 ></i>
-                <span className="text-xs text-gray-500">Lun-Ven: 9h-16h</span>
+                <span className="text-xs text-gray-500">{t('contact.location.hours')}</span>
               </div>
             </div>
           </div>

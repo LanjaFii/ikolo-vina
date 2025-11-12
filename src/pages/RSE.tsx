@@ -19,82 +19,110 @@ import {
   Sparkles
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Rse = () => {
+  const { t } = useTranslation();
+
   const solutions = [
     {
       icon: <Zap className="w-8 h-8" />,
-      title: "Optimisation Énergétique",
-      description: "Audits énergétiques et solutions renouvelables pour réduire votre empreinte carbone et vos coûts.",
-      benefits: ["Audit énergétique complet", "Solutions solaires et renouvelables", "Réduction empreinte carbone", "Économies durables"],
+      title: t('rse.solutions.0.title'),
+      description: t('rse.solutions.0.description'),
+      benefits: [
+        t('rse.solutions.0.benefits.0'),
+        t('rse.solutions.0.benefits.1'),
+        t('rse.solutions.0.benefits.2'),
+        t('rse.solutions.0.benefits.3')
+      ],
       image: "/assets/rse/service-energie.png",
-      alt: "Installation de panneaux solaires sur le toit d'une entreprise malgache"
+      alt: t('rse.solutions.0.alt')
     },
     {
       icon: <Recycle className="w-8 h-8" />,
-      title: "Gestion des Déchets",
-      description: "Stratégie zéro déchet et valorisation des ressources dans une logique d'économie circulaire.",
-      benefits: ["Stratégie zéro déchet", "Recyclage et valorisation", "Réduction des plastiques", "Économie circulaire"],
+      title: t('rse.solutions.1.title'),
+      description: t('rse.solutions.1.description'),
+      benefits: [
+        t('rse.solutions.1.benefits.0'),
+        t('rse.solutions.1.benefits.1'),
+        t('rse.solutions.1.benefits.2'),
+        t('rse.solutions.1.benefits.3')
+      ],
       image: "/assets/rse/service-dechets.png",
-      alt: "Système de tri et recyclage des déchets dans une entreprise malgache"
+      alt: t('rse.solutions.1.alt')
     },
     {
       icon: <Heart className="w-8 h-8" />,
-      title: "Bien-Être au Travail",
-      description: "Programmes de wellness et amélioration de la qualité de vie pour vos collaborateurs.",
-      benefits: ["Programmes de wellness", "Qualité de vie au travail", "Équilibre vie pro/perso", "Environnement de travail sain"],
+      title: t('rse.solutions.2.title'),
+      description: t('rse.solutions.2.description'),
+      benefits: [
+        t('rse.solutions.2.benefits.0'),
+        t('rse.solutions.2.benefits.1'),
+        t('rse.solutions.2.benefits.2'),
+        t('rse.solutions.2.benefits.3')
+      ],
       image: "/assets/rse/service-bienetre.png",
-      alt: "Espace de bien-être et détente pour employés dans une entreprise"
+      alt: t('rse.solutions.2.alt')
     },
     {
       icon: <Building className="w-8 h-8" />,
-      title: "Développement Local",
-      description: "Soutien aux AGR et création de partenariats inclusifs avec les communautés malgaches.",
-      benefits: ["Soutien aux petits producteurs", "Circuits courts et équitables", "Développement communautaire", "Partenariats inclusifs"],
+      title: t('rse.solutions.3.title'),
+      description: t('rse.solutions.3.description'),
+      benefits: [
+        t('rse.solutions.3.benefits.0'),
+        t('rse.solutions.3.benefits.1'),
+        t('rse.solutions.3.benefits.2'),
+        t('rse.solutions.3.benefits.3')
+      ],
       image: "/assets/rse/service-agriculture.png",
-      alt: "Projet d'agriculture durable avec communauté locale malgache"
+      alt: t('rse.solutions.3.alt')
     },
     {
       icon: <Coins className="w-8 h-8" />,
-      title: "Ressources Locales",
-      description: "Intégration des ressources naturelles malgaches dans votre chaîne de valeur durable.",
-      benefits: ["Chaînes d'approvisionnement durables", "Produits locaux et bio", "Préservation biodiversité", "Innovation éco-responsable"],
+      title: t('rse.solutions.4.title'),
+      description: t('rse.solutions.4.description'),
+      benefits: [
+        t('rse.solutions.4.benefits.0'),
+        t('rse.solutions.4.benefits.1'),
+        t('rse.solutions.4.benefits.2'),
+        t('rse.solutions.4.benefits.3')
+      ],
       image: "/assets/rse/service-ressources.png",
-      alt: "Valorisation des produits locaux malgaches dans une chaîne de valeur durable"
+      alt: t('rse.solutions.4.alt')
     }
   ];
 
   const valeurs = [
     {
       icon: <Target className="w-10 h-10" />,
-      title: "Impact Concret",
-      description: "Des résultats mesurables qui transforment votre entreprise et son environnement",
+      title: t('rse.values.0.title'),
+      description: t('rse.values.0.description'),
       image: "/assets/rse/valeur-impact.png",
-      alt: "Projet RSE montrant des résultats concrets de transformation",
+      alt: t('rse.values.0.alt'),
       color: "from-blue-500 to-cyan-400"
     },
     {
       icon: <Award className="w-10 h-10" />,
-      title: "Excellence Durable",
-      description: "Une approche qualité qui garantit la pérennité de vos initiatives RSE",
+      title: t('rse.values.1.title'),
+      description: t('rse.values.1.description'),
       image: "/assets/rse/valeur-excellence.png",
-      alt: "Certification et reconnaissance de l'excellence durable",
+      alt: t('rse.values.1.alt'),
       color: "from-emerald-500 to-green-400"
     },
     {
       icon: <TrendingUp className="w-10 h-10" />,
-      title: "Croissance Responsable",
-      description: "Allier performance économique et responsabilité sociétale pour un développement harmonieux",
+      title: t('rse.values.2.title'),
+      description: t('rse.values.2.description'),
       image: "/assets/rse/valeur-croissance.png",
-      alt: "Graphique montrant une croissance économique responsable",
+      alt: t('rse.values.2.alt'),
       color: "from-amber-500 to-orange-400"
     },
     {
       icon: <Users className="w-10 h-10" />,
-      title: "Engagement Communautaire",
-      description: "Créer de la valeur partagée avec les communautés locales malgaches",
+      title: t('rse.values.3.title'),
+      description: t('rse.values.3.description'),
       image: "/assets/rse/valeur-communautaire.png",
-      alt: "Communauté locale collaborant sur un projet RSE",
+      alt: t('rse.values.3.alt'),
       color: "from-purple-500 to-pink-400"
     }
   ];
@@ -102,24 +130,24 @@ const Rse = () => {
   const engagements = [
     {
       icon: <Globe className="w-8 h-8" />,
-      title: "Vision Globale",
-      description: "Une approche intégrée qui considère l'ensemble des impacts environnementaux, sociaux et économiques de votre entreprise.",
-      stat: "360°",
-      statLabel: "Analyse complète"
+      title: t('rse.commitments.0.title'),
+      description: t('rse.commitments.0.description'),
+      stat: t('rse.commitments.0.stat'),
+      statLabel: t('rse.commitments.0.statLabel')
     },
     {
       icon: <Sparkles className="w-8 h-8" />,
-      title: "Innovation Continue",
-      description: "Des solutions créatives et adaptées aux spécificités du marché malgache pour une RSE véritablement transformative.",
-      stat: "15+",
-      statLabel: "Projets innovants"
+      title: t('rse.commitments.1.title'),
+      description: t('rse.commitments.1.description'),
+      stat: t('rse.commitments.1.stat'),
+      statLabel: t('rse.commitments.1.statLabel')
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: "Accompagnement Sur-Mesure",
-      description: "Un suivi personnalisé tout au long de votre transformation RSE pour garantir des résultats durables et pérennes.",
-      stat: "100%",
-      statLabel: "Satisfaction client"
+      title: t('rse.commitments.2.title'),
+      description: t('rse.commitments.2.description'),
+      stat: t('rse.commitments.2.stat'),
+      statLabel: t('rse.commitments.2.statLabel')
     }
   ];
 
@@ -130,7 +158,7 @@ const Rse = () => {
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img
           src="/assets/rse/hero-rse.png"
-          alt="Équipe IKOLO-VINA en projet RSE de reforestation avec communauté locale malgache"
+          alt={t('rse.hero.imageAlt')}
           className="w-full h-full object-cover absolute inset-0 blur-[1px]"
         />
         <div className="container mx-auto px-4 relative z-20">
@@ -141,14 +169,13 @@ const Rse = () => {
             className="text-center max-w-4xl mx-auto"
           >
             <Badge variant="secondary" className="mb-4 bg-special-2/80 backdrop-blur-sm text-white border-none">
-              Accompagnement RSE
+              {t('rse.hero.badge')}
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              Responsabilité Sociétale des Entreprises
+              {t('rse.hero.title')}
             </h1>
             <p className="text-base md:text-lg lg:text-xl mb-6 text-gray-100 leading-relaxed">
-              Donnez du sens à votre entreprise avec une stratégie RSE qui crée de la valeur
-              durable pour votre business, vos collaborateurs et Madagascar
+              {t('rse.hero.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -165,12 +192,10 @@ const Rse = () => {
           >
             <div className="text-center mb-12">
               <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
-                La RSE, une <span className="text-special-2">vision transformative</span>
+                {t('rse.vision.title')}
               </h2>
               <p className="text-base text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-                Chez IKOLO-VINA, nous voyons la RSE comme une opportunité stratégique de réinventer
-                votre entreprise. Notre approche unique combine innovation durable, expertise locale
-                et création de valeur partagée.
+                {t('rse.vision.description')}
               </p>
             </div>
 
@@ -217,14 +242,12 @@ const Rse = () => {
                 </div>
               </div>
             </section>
-
-
           </motion.div>
         </div>
       </section>
 
       {/* Section Solutions */}
-      <section className="py-16 bg-gradient-to-br from-special-2/5 to-white">
+      <section className="py-16 bg-linear-to-br from-special-2/5 to-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -233,10 +256,10 @@ const Rse = () => {
             className="text-center mb-12"
           >
             <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4">
-              Nos <span className="text-special-2">Domaines</span> d'Expertise RSE
+              {t('rse.solutions.title')}
             </h2>
             <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Une approche complète couvrant tous les aspects de la responsabilité sociétale
+              {t('rse.solutions.subtitle')}
             </p>
           </motion.div>
 
@@ -249,10 +272,9 @@ const Rse = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className={`group ${
-                    // Tous les éléments prennent 50% sauf le dernier si impair
                     index === solutions.length - 1 && solutions.length % 2 !== 0
                       ? 'md:w-full flex justify-center'
-                      : 'md:w-[calc(50%-12px)]' // 50% moins la moitié du gap (24px/2 = 12px)
+                      : 'md:w-[calc(50%-12px)]'
                     }`}
                 >
                   <div className={
@@ -260,7 +282,7 @@ const Rse = () => {
                       ? 'w-full max-w-2xl'
                       : 'w-full'
                   }>
-                    <Card className="h-full border-0 bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden group-hover:shadow-xl transition-all duration-500 border border-special-2/20">
+                    <Card className="h-full border-0 bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden group-hover:shadow-xl transition-all duration-500 border-special-2/20">
                       <div className="flex flex-col md:flex-row h-full">
                         <div className="md:w-2/5">
                           <div className="relative h-48 md:h-full">
@@ -269,7 +291,7 @@ const Rse = () => {
                               alt={solution.alt}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />
-                            <div className="absolute top-4 right-4 w-12 h-12 rounded-xl bg-gradient-to-r from-special-2 to-special-1 flex items-center justify-center shadow-lg">
+                            <div className="absolute top-4 right-4 w-12 h-12 rounded-xl bg-linear-to-r from-special-2 to-special-1 flex items-center justify-center shadow-lg">
                               <div className="text-white">
                                 {solution.icon}
                               </div>
@@ -283,7 +305,7 @@ const Rse = () => {
                               {solution.title}
                             </h3>
 
-                            <p className="text-gray-600 text-sm mb-4 leading-relaxed flex-grow">
+                            <p className="text-gray-600 text-sm mb-4 leading-relaxed grow">
                               {solution.description}
                             </p>
 
@@ -307,7 +329,7 @@ const Rse = () => {
         </div>
       </section>
 
-      {/* Section Engagements - Design amélioré */}
+      {/* Section Engagements */}
       <section className="pt-10 pb-2 bg-linear-to-br from-white to-gray-50/30">
         <div className="container mx-auto px-4">
           <motion.div
@@ -317,10 +339,10 @@ const Rse = () => {
             className="text-center mb-12"
           >
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
-              Notre <span className="text-special-2">Engagement</span>
+              {t('rse.commitments.title')}
             </h2>
             <p className="text-base text-gray-600 max-w-2xl mx-auto">
-              Une approche responsable et durable au service de votre transformation RSE
+              {t('rse.commitments.subtitle')}
             </p>
           </motion.div>
 
@@ -387,19 +409,17 @@ const Rse = () => {
           >
             <div className="bg-linear-to-r from-special-2/10 to-special-1/10 rounded-2xl p-8 border border-special-2/20 max-w-3xl mx-auto">
               <h4 className="text-lg font-bold text-gray-900 mb-4">
-                Notre mission
+                {t('rse.mission.title')}
               </h4>
               <p className="text-gray-700 text-base leading-relaxed">
-                Accompagner les entreprises malgaches dans leur transformation RSE pour créer
-                un impact positif durable sur l'environnement, la société et l'économie locale,
-                en construisant ensemble un avenir plus responsable et prospère pour Madagascar.
+                {t('rse.mission.description')}
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Section CTA Finale - Accompagnement RSE */}
+      {/* Section CTA Finale */}
       <section className="py-5 bg-linear-to-br from-white to-gray-50/30">
         <div className="container mx-auto px-4">
           <motion.div
@@ -412,14 +432,11 @@ const Rse = () => {
             <div className="bg-linear-to-r from-special-1/15 via-special-3/10 to-special-2/15 rounded-3xl p-8 lg:p-12 max-w-5xl mx-auto relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
-                  Prêt à <span className="text-special-1">agir</span> pour un impact{" "}
-                  <span className="text-special-2">durable</span> ?
+                  {t('rse.cta.title')}
                 </h3>
 
                 <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 lg:mb-10 max-w-3xl mx-auto leading-relaxed">
-                  Ensemble, faisons de votre stratégie RSE un levier concret de
-                  performance, d'engagement et de sens.
-                  Contactez notre équipe pour un accompagnement adapté à vos enjeux.
+                  {t('rse.cta.description')}
                 </p>
 
                 {/* Phrase clignotante */}
@@ -428,7 +445,7 @@ const Rse = () => {
                   animate={{ opacity: [1, 0.5, 1] }}
                   transition={{ duration: 1.2, repeat: Infinity, repeatType: "loop" }}
                 >
-                  Premier rendez-vous offert !
+                  {t('rse.cta.offer')}
                 </motion.p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -436,20 +453,19 @@ const Rse = () => {
                     to="/contact"
                     className="bg-linear-to-r from-special-1 to-special-2 hover:from-special-2 hover:to-special-3 text-black px-8 py-3 lg:px-10 lg:py-4 text-base lg:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center border border-black"
                   >
-                    Nous contacter
+                    {t('rse.cta.button')}
                     <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5" />
                   </Link>
                 </div>
 
                 <p className="text-gray-500 text-xs lg:text-sm mt-4 lg:mt-6">
-                  Diagnostic RSE • Conseils stratégiques • Solutions durables sur mesure
+                  {t('rse.cta.footer')}
                 </p>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
-
     </div>
   );
 };

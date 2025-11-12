@@ -2,7 +2,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Box, Leaf, Newspaper, Phone, CalendarDays, Briefcase, Globe2 } from 'lucide-react'; // icônes
+import { Home, Box, Leaf, Newspaper, Phone, CalendarDays, Briefcase, Globe2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import '@/index.css';
 
 const Header = () => {
@@ -10,24 +11,21 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const lastScrollY = useRef(0);
-  const scrollThreshold = 10; // Seuil de détection du scroll
+  const scrollThreshold = 10;
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Vérifier si on a dépassé le seuil pour considérer qu'on a scrollé
       setIsScrolled(currentScrollY > 20);
 
-      // Détection de la direction du scroll
       if (Math.abs(currentScrollY - lastScrollY.current) > scrollThreshold) {
         if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-          // Scroll vers le bas - cacher le header
           setIsVisible(false);
         } else if (currentScrollY < lastScrollY.current) {
-          // Scroll vers le haut - montrer le header
           setIsVisible(true);
         }
 
@@ -48,7 +46,6 @@ const Header = () => {
 
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Réinitialiser quand on change de page
     return () => {
       window.removeEventListener('scroll', onScroll);
       lastScrollY.current = 0;
@@ -61,14 +58,14 @@ const Header = () => {
   }, [location]);
 
   const navLinks = [
-    { path: '/', label: 'Accueil', icon: <Home size={18} /> },
-    { path: '/wellness', label: 'Nature Wellness', icon: <Leaf size={18} /> },
-    { path: '/digital', label: 'Communication Digitale', icon: <Box size={18} /> },
-    { path: '/events', label: 'Événementiel', icon: <CalendarDays size={18} /> },
-    { path: '/enterprise', label: "Appui à l'Entrepreneuriat", icon: <Briefcase size={18} /> },
-    { path: '/rse', label: 'Accompagnement RSE', icon: <Globe2 size={18} /> },
-    { path: '/blog', label: 'Actualités', icon: <Newspaper size={18} /> },
-    { path: '/contact', label: 'Contact', icon: <Phone size={18} /> },
+    { path: '/', label: t('header.links.home'), icon: <Home size={18} /> },
+    { path: '/wellness', label: t('header.links.wellness'), icon: <Leaf size={18} /> },
+    { path: '/digital', label: t('header.links.digital'), icon: <Box size={18} /> },
+    { path: '/events', label: t('header.links.events'), icon: <CalendarDays size={18} /> },
+    { path: '/enterprise', label: t('header.links.enterprise'), icon: <Briefcase size={18} /> },
+    { path: '/rse', label: t('header.links.rse'), icon: <Globe2 size={18} /> },
+    { path: '/blog', label: t('header.links.blog'), icon: <Newspaper size={18} /> },
+    { path: '/contact', label: t('header.links.contact'), icon: <Phone size={18} /> },
   ];
 
   const isActiveLink = (path: string) => location.pathname === path;

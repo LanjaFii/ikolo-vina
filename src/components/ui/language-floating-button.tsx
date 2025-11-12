@@ -29,28 +29,44 @@ const LanguageFloatingButton = () => {
   return (
     <div
       ref={langRef}
-      className="fixed left-6 top-1/2 -translate-y-1/2 z-[9999] cursor-pointer"
+      className="fixed right-0 bottom-0 z-[9999] cursor-pointer"
     >
       {/* Bouton principal */}
+      {/* Button rendered as a quarter-circle on desktop (clip-path) */}
       <motion.button
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setShowLangDropdown((prev) => !prev)}
-        className="bg-white shadow-md rounded-full p-3 hover:bg-gray-100 transition flex items-center justify-center"
+  className="bg-gray-300 shadow-md p-3 hover:bg-gray-100 transition flex items-center justify-center relative overflow-hidden"
         aria-label="Choisir la langue"
+        style={{
+          width: 102,
+          height: 102,
+          // clip to a quarter circle anchored on the bottom-right corner
+          clipPath: 'circle(60% at 100% 100%)',
+        }}
       >
-        <AiOutlineGlobal className="h-7 w-7 text-special-1" />
+        {/* decorative border for the quarter-circle (blue) */}
+        <span
+          className="absolute right-0 bottom-0 w-[102px] h-[102px] border-2 border-blue-500 pointer-events-none z-10"
+          style={{ clipPath: 'circle(60% at 100% 100%)' }}
+        />
+
+        {/* place the icon in the visible bottom-right quadrant */}
+        <span className="absolute right-3 bottom-3 z-20">
+          <AiOutlineGlobal className="h-6 w-6 text-special-1" />
+        </span>
       </motion.button>
 
       {/* Dropdown */}
       <AnimatePresence>
         {showLangDropdown && (
           <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.15 }}
-            className="absolute left-14 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-xl p-2 w-32 cursor-pointer flex flex-col gap-1 border"
+            className="absolute bottom-full right-0 mb-0 mt-2 bg-white shadow-lg rounded-xl p-2 w-40 cursor-pointer flex flex-col gap-1 border translate-x-[-10%]"
           >
             <button
               onClick={() => changeLanguage("fr")}

@@ -31,7 +31,8 @@ const fadeInScale = {
 };
 
 const Home = () => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen">
       {/* Section Hero avec Bannière */}
@@ -53,14 +54,13 @@ const Home = () => {
               variant="secondary"
               className="mb-6 bg-special-1/80 backdrop-blur-sm text-white border-none"
             >
-              Excellence & Innovation
+              {t("home.hero.badge")}
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            {t("welcome")}
+              {t("home.hero.title")}
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl mb-8 text-gray-100 leading-relaxed">
-              Bienvenue sur IKOLO-VINA, votre partenaire pour un développement
-              harmonieux alliant nature, bien-être et innovation.
+              {t("home.hero.subtitle")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -83,7 +83,7 @@ const Home = () => {
                   section?.scrollIntoView({ behavior: "smooth" });
                 }}
               >
-                Découvrir nos services
+                {t("home.hero.discoverButton")}
                 <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5" />
               </Button>
               <Link to="/contact">
@@ -104,7 +104,7 @@ const Home = () => {
                     e.currentTarget.style.color = "white";
                   }}
                 >
-                  Nous contacter
+                  {t("home.hero.contactButton")}
                 </Button>
               </Link>
             </div>
@@ -131,11 +131,10 @@ const Home = () => {
                       <FlaskConical className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
                     </div>
                     <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">
-                      Expertise Scientifique
+                      {t("home.consortium.expertise.title")}
                     </h3>
                     <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                      Une maîtrise reconnue en génie des procédés, formulation
-                      cosmétique et gestion durable des ressources naturelles.
+                      {t("home.consortium.expertise.description")}
                     </p>
                   </CardContent>
                 </Card>
@@ -146,12 +145,10 @@ const Home = () => {
                       <Briefcase className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
                     </div>
                     <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">
-                      Leadership Stratégique
+                      {t("home.consortium.leadership.title")}
                     </h3>
                     <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                      Une expertise en organisation, communication et
-                      coordination de partenariats entre secteurs public et
-                      privé.
+                      {t("home.consortium.leadership.description")}
                     </p>
                   </CardContent>
                 </Card>
@@ -162,11 +159,10 @@ const Home = () => {
                       <Globe2 className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
                     </div>
                     <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">
-                      Vision Durable
+                      {t("home.consortium.vision.title")}
                     </h3>
                     <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                      Nos actions favorisent la biodiversité, la durabilité
-                      environnementale et une économie verte résiliente.
+                      {t("home.consortium.vision.description")}
                     </p>
                   </CardContent>
                 </Card>
@@ -177,11 +173,10 @@ const Home = () => {
                       <Handshake className="h-5 w-5 lg:h-8 lg:w-8 text-black" />
                     </div>
                     <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">
-                      Partenariats Inclusifs
+                      {t("home.consortium.partnerships.title")}
                     </h3>
                     <p className="text-gray-600 text-xs lg:text-sm leading-relaxed">
-                      Nous créons des ponts entre acteurs économiques et sociaux
-                      pour des impacts positifs et partagés.
+                      {t("home.consortium.partnerships.description")}
                     </p>
                   </CardContent>
                 </Card>
@@ -195,7 +190,7 @@ const Home = () => {
             >
               <div className="text-center flex flex-col items-center space-y-4 lg:space-y-6">
                 <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
-                  <span className="text-special-1">Le consortium</span>
+                  <span className="text-special-1">{t("home.consortium.title")}</span>
                 </h2>
 
                 <div className="relative group flex justify-center">
@@ -208,16 +203,11 @@ const Home = () => {
                 </div>
 
                 <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">
-                  Une Alliance{" "}
-                  <span className="text-special-1">Visionnaire</span> et Durable
+                  {t("home.consortium.subtitle")}
                 </h2>
 
                 <p className="text-lg lg:text-xl text-gray-600 leading-relaxed">
-                  Le consortium Ikolo-Vina unit deux fondatrices aux expertises
-                  complémentaires — l’une scientifique et technique, l’autre
-                  stratégique et organisationnelle. Ensemble, elles conçoivent
-                  des solutions intégrant biodiversité, durabilité et bien-être
-                  humain, au service d’une économie verte et inclusive.
+                  {t("home.consortium.description")}
                 </p>
               </div>
             </motion.div>
@@ -237,8 +227,7 @@ const Home = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">
-              Les <span className="text-special-1">Visionnaires</span> derrière
-              le Consortium
+              {t("home.founders.title")}
             </h2>
           </motion.div>
 
@@ -269,19 +258,10 @@ const Home = () => {
 
               <div className="relative z-10 space-y-4">
                 <h3 className="text-xl lg:text-2xl font-bold text-gray-900">
-                  Felana Anna
-                  <br />
-                  RAMAHANDRISON
+                  {t("home.founders.felana.name")}
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-                  Avec une solide expérience en organisation d’événements et
-                  communication institutionnelle, elle excelle dans la mise en
-                  relation de partenaires publics et privés. Diplômée en
-                  Management du Tourisme Durable et en Communication &
-                  Marketing, elle a piloté plus de 15 événements majeurs,
-                  favorisant des collaborations efficaces. Spécialiste des
-                  campagnes hybrides, elle met l’accent sur l’inclusion,
-                  l’impact social et la promotion du développement durable.
+                  {t("home.founders.felana.description")}
                 </p>
                 <div className="flex justify-center">
                   <img
@@ -301,7 +281,7 @@ const Home = () => {
               <img
                 src="/assets/ikoloVina/AnnaHoly.png"
                 alt="Felana Anna et Holiniaina Norohariliva"
-                className="max-h-96 w-auto object-contain" // <-- max-h pour pas étirer, object-contain pour garder proportions
+                className="max-h-96 w-auto object-contain"
               />
             </motion.div>
 
@@ -324,20 +304,10 @@ const Home = () => {
 
               <div className="relative z-10 space-y-4">
                 <h3 className="text-xl lg:text-2xl font-bold text-gray-900">
-                  Holiniaina Norohariliva
-                  <br />
-                  RAKOTOMALALA
+                  {t("home.founders.holiniaina.name")}
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-                  Elle valorise la biodiversité malgache grâce à son expertise
-                  en procédés chimiques, formulation cosmétique et gestion
-                  durable des ressources naturelles. Forte de plus de 15 ans
-                  d’expérience et d’une formation en chimie appliquée, elle
-                  conçoit des conférences adaptées aux enjeux locaux et
-                  internationaux. Appuyée par un réseau d’experts, elle
-                  développe des formulations éco-responsables à base d'actifs
-                  biothérapeutiques et d’huiles essentielles, alliant protection
-                  des écosystèmes et création de valeur pour les communautés.
+                  {t("home.founders.holiniaina.description")}
                 </p>
                 <div className="flex justify-center">
                   <img
@@ -368,16 +338,11 @@ const Home = () => {
                 <div className="flex justify-center items-center gap-3 mb-3">
                   <Star className="h-5 w-5 text-special-1" />
                   <h3 className="text-lg font-bold text-gray-900">
-                    Felana Anna
-                    <br />
-                    RAMAHANDRISON
+                    {t("home.founders.felana.name")}
                   </h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-xs">
-                  Entrepreneuse visionnaire et fondatrice de Vina Consulting,
-                  Felana Anna apporte son expertise en stratégie d'entreprise et
-                  innovation digitale. Passionnée par le développement
-                  économique durable, elle transforme les défis en opportunités.
+                  {t("home.founders.felana.mobileDescription")}
                 </p>
                 <div className="flex justify-center mt-3">
                   <img
@@ -393,16 +358,11 @@ const Home = () => {
                 <div className="flex justify-center items-center gap-3 mb-3">
                   <Star className="h-5 w-5 text-special-2" />
                   <h3 className="text-lg font-bold text-gray-900">
-                    Holiniaina Norohariliva
-                    <br />
-                    RAKOTOMALALA
+                    {t("home.founders.holiniaina.name")}
                   </h3>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-xs">
-                  Fondatrice d'Ikolo, entreprise spécialisée dans les produits
-                  cosmétiques et médicinaux à base de plantes malgaches.
-                  Entrepreneuse engagée pour la valorisation des ressources
-                  naturelles et le bien-être par les plantes.
+                  {t("home.founders.holiniaina.mobileDescription")}
                 </p>
                 <div className="flex justify-center mt-3">
                   <img
@@ -434,12 +394,10 @@ const Home = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 lg:mb-6">
-              Nos <span className="text-special-1">Offres</span> sur Mesure
+              {t("home.offers.title")}
             </h2>
             <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Découvrez notre gamme complète de services conçus pour répondre à
-              tous vos besoins en matière de développement d'entreprise et
-              d'innovation.
+              {t("home.offers.subtitle")}
             </p>
           </motion.div>
 
@@ -465,12 +423,10 @@ const Home = () => {
                 {/* En-tête de section */}
                 <div className="text-center mb-4 mt-2 lg:mb-4">
                   <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4">
-                    Ils nous ont{" "}
-                    <span className="text-special-1">fait confiance</span>
+                    {t("home.partners.title")}
                   </h2>
                   <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Découvrez les entreprises et organisations qui ont collaboré
-                    avec nous
+                    {t("home.partners.subtitle")}
                   </p>
                 </div>
 
@@ -512,15 +468,11 @@ const Home = () => {
             <div className="bg-linear-to-r from-special-1/15 via-special-3/10 to-special-2/15 rounded-3xl p-6 lg:p-8 max-w-5xl mx-auto relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
-                  Prêt à <span className="text-special-1">transformer</span>{" "}
-                  votre vision en{" "}
-                  <span className="text-special-2">réalité</span> ?
+                  {t("home.cta.title")}
                 </h3>
 
                 <p className="text-base lg:text-lg xl:text-xl text-gray-600 mb-6 lg:mb-10 max-w-3xl mx-auto leading-relaxed">
-                  Contactez-nous dès aujourd'hui pour discuter de votre projet
-                  et découvrir comment notre expertise peut vous accompagner
-                  vers le succès.
+                  {t("home.cta.description")}
                 </p>
 
                 {/* Phrase clignotante */}
@@ -533,7 +485,7 @@ const Home = () => {
                     repeatType: "loop",
                   }}
                 >
-                  Premier rendez-vous offert !
+                  {t("home.cta.offer")}
                 </motion.p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -541,13 +493,12 @@ const Home = () => {
                     to="/contact"
                     className="bg-linear-to-r from-special-1 to-special-2 hover:from-special-2 hover:to-special-3 text-black px-8 py-3 lg:px-10 lg:py-4 text-base lg:text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center border border-black"
                   >
-                    Nous contacter
+                    {t("home.cta.contactButton")}
                   </Link>
                 </div>
 
                 <p className="text-gray-500 text-xs lg:text-sm mt-4 lg:mt-6">
-                  Réponse sous 24h • Devis personnalisé • Accompagnement sur
-                  mesure
+                  {t("home.cta.footer")}
                 </p>
               </div>
             </div>

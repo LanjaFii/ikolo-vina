@@ -109,7 +109,7 @@ const About = () => {
 
           <div className="space-y-6 text-gray-700 max-w-4xl mx-auto">
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-3 h-3 bg-special-2 rounded-full mt-2"></div>
+              <div className="shrink-0 w-3 h-3 bg-special-2 rounded-full mt-2"></div>
               <p className="text-lg">
                 <strong className="text-special-1">Consultants chefs de projets</strong> :
                 experts dans les domaines du tourisme, de l'événementiel professionnel, de la
@@ -119,7 +119,7 @@ const About = () => {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-3 h-3 bg-special-2 rounded-full mt-2"></div>
+              <div className="shrink-0 w-3 h-3 bg-special-2 rounded-full mt-2"></div>
               <p className="text-lg">
                 <strong className="text-special-1">Une équipe pluridisciplinaire</strong> composée de jeunes talents
                 passionnés et créatifs, unis par une même vision.

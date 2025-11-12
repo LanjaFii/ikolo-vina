@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { offersData, type Offer } from "@/data/offersData";
 import { OfferModal } from "./OfferModal";
+import { useTranslation } from "react-i18next";
 
 export const OffersCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
@@ -109,11 +111,11 @@ export const OffersCarousel = () => {
                 >
                   <CardContent className="p-4 lg:p-6 text-center h-full flex flex-col">
                     {/* Image de l'offre */}
-                    <div className="aspect-video mb-3 lg:mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-special-1/20 to-special-2/20 flex items-center justify-center">
+                    <div className="aspect-video mb-3 lg:mb-4 rounded-lg overflow-hidden bg-linear-to-br from-special-1/20 to-special-2/20 flex items-center justify-center">
                       {offer.image ? (
                         <img 
                           src={offer.image} 
-                          alt={offer.title}
+                          alt={t(`offers.${offer.id}.title`)}
                           className="w-full h-full object-cover"
                         />
                       ) : (
@@ -126,12 +128,12 @@ export const OffersCarousel = () => {
                       text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3 transition-colors
                       ${isCenter ? 'text-special-1' : 'text-gray-700'}
                     `}>
-                      {offer.title}
+                      {t(`offers.${offer.id}.title`)}
                     </h3>
                     
                     {/* Description courte */}
-                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed mb-4 lg:mb-6 flex-grow">
-                      {offer.shortDescription}
+                    <p className="text-gray-600 text-xs lg:text-sm leading-relaxed mb-4 lg:mb-6 grow">
+                      {t(`offers.${offer.id}.shortDescription`)}
                     </p>
 
                     {/* Bouton */}
@@ -146,7 +148,7 @@ export const OffersCarousel = () => {
                         }
                       `}
                     >
-                      En savoir plus
+                      {t('offers.learnMore')}
                     </Button>
                   </CardContent>
                 </Card>
