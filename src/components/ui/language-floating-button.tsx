@@ -37,7 +37,7 @@ const LanguageFloatingButton = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setShowLangDropdown((prev) => !prev)}
-  className="bg-gray-300 shadow-md p-3 hover:bg-gray-100 transition flex items-center justify-center relative overflow-hidden"
+      className="bg-gray-300 shadow-md p-3 hover:bg-gray-100 transition flex items-center justify-center relative overflow-hidden"
         aria-label="Choisir la langue"
         style={{
           width: 102,
